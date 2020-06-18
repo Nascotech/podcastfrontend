@@ -3,6 +3,9 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ConstNameService } from 'src/app/services/const-name.service';
 import { PodcastService } from 'src/app/services/podcast.service';
 import { ActivatedRoute } from '@angular/router';
+import {NgxUiLoaderService} from 'ngx-ui-loader';
+import { NgxSpinnerService } from 'ngx-spinner';
+
 declare var $: any;
 
 @Component({
@@ -20,6 +23,7 @@ export class DirectoryComponent implements OnInit {
   id:String;
   constructor(private costname:ConstNameService,
     private podcastService:PodcastService,
+    private spinner: NgxSpinnerService,
     private route:ActivatedRoute) {
       this.route.params.subscribe(params => this.id = params['id']);
      }
@@ -54,11 +58,13 @@ export class DirectoryComponent implements OnInit {
   }
 
   allPodcastEpisod() {
+    this.spinner.show();
     this.podcastService.getPodcastEpisode(this.id).subscribe(data => {
       this.dataResponseEpisode = data;
       this.podcastEpisodes = this.dataResponseEpisode.response.data;
       this.getTime(this.podcastEpisodes,this.id);
       localStorage.setItem('podcastEpisodes', JSON.stringify(this.dataResponseEpisode.response));
+      this.spinner.hide();
     }, (error: HttpErrorResponse) => {
       this.costname.forbidden(error);
     });

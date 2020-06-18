@@ -13,10 +13,10 @@ import {ConstNameService} from './const-name.service';
 })
 export class PodcastService {
   private baseURL = environment.base_url;
-  getGrouplistURL = this.baseURL + '/api/getGroups'; 
+  getGrouplistURL = this.baseURL + '/api/getGroups';
   getpodcastlistURL = this.baseURL + '/api/getPodcasts';
   getpodcastdetailsURL = this.baseURL + '/api/getPodcastDetails/';
-  getpodcastepisodeURL = this.baseURL + '//api/getPodcastEpisodes/';
+  getpodcastepisodeURL = this.baseURL + '/api/getPodcastEpisodes/';
 
   constructor(private _coreHttpService: CoreHttpService,
     private http:HttpClient,

@@ -32,7 +32,7 @@ export class DirectoryComponent implements OnInit {
   podcastDetils() {
     this.podcastService.getPodcastDetails(this.id).subscribe(data => {
       this.dataResponseDetails = data;
-      this.podcastDetail = this.dataResponseDetails.response;      
+      this.podcastDetail = this.dataResponseDetails.response;
       this.relatedPodcastList(this.podcastDetail.group)
     }, (error: HttpErrorResponse) => {
       this.costname.forbidden(error);
@@ -48,20 +48,16 @@ export class DirectoryComponent implements OnInit {
           this.podcastList.push(item);
         }
       });
-      console.log(this.podcastList,"list");
-      
     }, (error: HttpErrorResponse) => {
       this.costname.forbidden(error);
     });
   }
 
   allPodcastEpisod() {
-    debugger
     this.podcastService.getPodcastEpisode(this.id).subscribe(data => {
       this.dataResponseEpisode = data;
       this.podcastEpisodes = this.dataResponseEpisode.response.data;
-      console.log(this.podcastEpisodes,"djkghfjk");
-      this.getTime(this.podcastEpisodes,this.id);
+      //this.getTime(this.podcastEpisodes,this.id);
       localStorage.setItem('podcastEpisodes', JSON.stringify(this.dataResponseEpisode.response));
     }, (error: HttpErrorResponse) => {
       this.costname.forbidden(error);

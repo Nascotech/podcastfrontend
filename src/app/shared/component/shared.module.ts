@@ -9,12 +9,8 @@ import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { LeadAddbannerComponent } from './lead-addbanner/lead-addbanner.component';
 import { PodcastComponent } from './podcast/podcast.component';
-import { SearchPipe } from 'src/app/pipe/search.pipe';
 import { NgxProgressiveImageLoaderModule } from 'ngx-progressive-image-loader';
 import { NgxSpinnerModule } from 'ngx-spinner';
-
-
-
 
 @NgModule({
   imports: [
@@ -25,9 +21,16 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     FormsModule,
     NgxProgressiveImageLoaderModule,
     NgxSpinnerModule
- 
   ],
-  declarations: [ControlMessagesComponent,SearchPipe, SpinnerComponent, FooterComponent, HeaderComponent, SidebarComponent, LeadAddbannerComponent, PodcastComponent],
+  declarations: [
+    ControlMessagesComponent,
+    SpinnerComponent,
+    FooterComponent,
+    HeaderComponent,
+    SidebarComponent, 
+    LeadAddbannerComponent,
+    PodcastComponent
+  ],
   exports: [
     CommonModule,
     FormsModule,

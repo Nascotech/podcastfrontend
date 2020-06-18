@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="45.225" height="36.15" viewBox="0 0 45.225 36.15">
+  <defs>
+    <filter id="Icon_awesome-video" x="0" y="0" width="45.225" height="36.15" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-color="#0064ff" flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Icon_awesome-video)">
+    <path id="Icon_awesome-video-2" data-name="Icon awesome-video" d="M15.891,4.5H2.259A2.259,2.259,0,0,0,0,6.759V20.391A2.259,2.259,0,0,0,2.259,22.65H15.891a2.259,2.259,0,0,0,2.259-2.259V6.759A2.259,2.259,0,0,0,15.891,4.5Zm8.952,1.782-5.18,3.573v7.44l5.18,3.569a1.516,1.516,0,0,0,2.382-1.219V7.5A1.516,1.516,0,0,0,24.843,6.282Z" transform="translate(9 1.5)" fill="#fff"/>
+  </g>
+</svg>

@@ -1,0 +1,199 @@
+// In Home page
+.hero-area {
+    position: relative;
+
+    &:after {
+        position: absolute;
+        content: "";
+        right: 0;
+        top: 0;
+        height: 100%;
+        width: 48%;
+        background: $main-gradient-bg;
+        z-index: -1;
+    }
+
+    .hero-content {
+        h2 {
+            font-family: $font-secondary;
+            font-weight: 900;
+            font-size: $font_xl_x2;
+            text-align: left;
+            color: $color-dark;
+            margin: 0;
+            line-height: 1;
+
+            img {
+                margin-right: 15px;
+            }
+        }
+
+        p {
+            font-family: $font-secondary;
+            font-weight: 300;
+            font-size: $font_md_x1;
+            text-align: left;
+            color: $color-dark;
+            margin: 0;
+            margin-bottom: 45px;
+        }
+
+        h6 {
+            font-family: $font-secondary;
+            font-weight: 900;
+            font-size: 30px;
+            text-align: left;
+            color: $color-dark;
+            margin: 0;
+            margin-bottom: 50px;
+        }
+
+        .hro-src-inpt {
+            position: relative;
+
+            img {
+                position: absolute;
+                left: 0;
+                height: 14px;
+                top: 7px;
+            }
+
+            input {
+                font-family: $font-secondary;
+                font-weight: 500;
+                font-size: $font_sm_x2;
+                text-align: left;
+                color: $color-dark;
+                border: none;
+                border-bottom: 1px solid $color-dark;
+                position: relative;
+                padding-left: 28px;
+                width: 180px;
+                background: transparent;
+
+                &::placeholder {
+                    color: $color-dark;
+                    font-size: $font_sm_x2;
+                }
+            }
+        }
+
+    }
+
+    .hero-video-play {
+        position: relative;
+
+        img {
+            width: 100%;
+        }
+
+        .hro-vdo-ply-btn {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+
+            img {
+                height: 70px;
+                width: 70px;
+            }
+        }
+    }
+
+    .hro-cat-wpr {
+        position: relative;
+        top: -90px;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+        .hro-cat-itm {
+            width: 23%;
+            display: flex;
+            align-items: center;
+            padding: 0 25px;
+            height: 127px;
+            background: $white-bg;
+            box-shadow: $box-shadow-secondary;
+            border-radius: 15px;
+
+            h5 {
+
+                font-weight: 900;
+                font-size: $font_lg_x1;
+                text-align: left;
+                color: $color-dark;
+                text-shadow: $text-shadow-primary;
+                margin-left: 10px;
+            }
+        }
+    }
+
+
+}
+
+
+
+
+
+// In reversed page
+.revised-pg {
+    .hro-src-inpt {
+        position: relative;
+
+        input {
+
+            font-weight: 500;
+            font-size: $font_sm_x2;
+            text-align: left;
+            color: $color-dark;
+            border: none;
+            border-bottom: 1px solid $color-dark;
+            position: relative;
+            padding-left: 28px;
+            width: 180px;
+            background: transparent;
+
+            &::placeholder {
+                color: $color-dark;
+            }
+        }
+
+        img {
+            position: absolute;
+            left: 0;
+            height: 14px;
+            top: 7px;
+        }
+    }
+
+}
+
+.podcasts-directory-blk {
+
+
+    .hero-content {
+        h2 {
+            font-family: $font-secondary;
+            font-weight: 900;
+            font-size: $font_xl_x2;
+            text-align: left;
+            color: $color-dark;
+            margin: 0;
+            line-height: 1;
+        }
+
+        p {
+            font-family: $font-secondary;
+            font-weight: 300;
+            font-size: $font_md_x1;
+            text-align: left;
+            color: $color-dark;
+            margin: 0;
+            margin-bottom: 45px;
+        }
+    }
+}

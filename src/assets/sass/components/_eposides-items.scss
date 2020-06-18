@@ -1,0 +1,82 @@
+.epsod-itm {
+    border-bottom: 1px solid $color-primary;
+
+    .epsod-txt {
+        h4 {
+
+            font-weight: 900;
+            font-size: $font_md_x3;
+            text-align: left;
+            color: $color-dark;
+        }
+
+        span {
+
+            font-weight: 300;
+            font-size: $font_sm_x3;
+            text-align: left;
+            color: $color-dark;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        h2 {
+
+            font-weight: 900;
+            font-size: $font_lg_x2;
+            text-align: left;
+            color: $color-dark;
+        }
+
+        p {
+
+            font-weight: 400;
+            font-size: $font_sm_x3;
+            text-align: left;
+            color: $color-dark;
+        }
+    }
+
+    .epsod-img {
+        img {
+            max-width: 100%;
+            width: 100%;
+            box-shadow: 0 2px 60px #8b6ae917;
+        }
+    }
+
+
+    .epsode-btn-grp {
+        .btn {
+            font-family: "Helvetica Neue";
+            font-weight: 500;
+            font-size: $font_sm_x1;
+            text-align: left;
+            color: $color-white;
+            border-radius: 30px;
+            border: 1px solid transparent;
+
+            &:hover {
+                background: transparent;
+                color: $color-primary;
+                border: 1px solid $color-primary;
+            }
+        }
+
+        .btn-invert {
+            color: $color-primary;
+            background: $white-bg;
+        }
+
+        i {
+            margin-right: 5px;
+        }
+
+        img {
+            margin-right: 5px;
+        }
+    }
+
+
+
+}

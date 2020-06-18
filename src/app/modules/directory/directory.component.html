@@ -1,0 +1,747 @@
+
+		<!-- start header -->
+		<div
+			class="rvsd-page-mbl-had white-bg header-area header-padding mobile-only"
+		>
+			<div class="container-fluid">
+				<div class="row align-items-center">
+					<div
+						class="col-xl-6 col-lg-6 col-md-6 col-6 text-left d-flex justify-content-between"
+					>
+						<div class="bck-home-btn">
+							<a href="index.html"
+								><img src="assets/img/icon/tphm.png" alt="" /><span
+									>Back to Home</span
+								></a
+							>
+						</div>
+					</div>
+
+					<div class="col-xl-6 col-lg-6 col-md-6 col-6 text-right">
+						<div class="home-logo prod-pag">
+							<a href="#"><img src="assets/img/logo/homelogo.svg" alt="" /></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<header class="header-area header-padding white-bg rvsd-pag desktop-only">
+			<div class="container-fluid">
+				<div class="row align-items-center">
+					<div class="col-xl-3 d-flex justify-content-between">
+						<div class="home-logo">
+							<a href="index.html"
+								><img src="assets/img/logo/homelogo.svg" alt=""
+							/></a>
+						</div>
+						<div class="tp-auth-action">
+							<a href="#">Subscribe</a>
+							<a href="#">Register</a>
+						</div>
+					</div>
+					<div class="col-xl-7 text-right">
+						<div class="main-menu">
+							<nav>
+								<ul>
+									<li><a href="#">Live Radio</a></li>
+									<li><a href="#">Podcasts</a></li>
+									<li><a href="#">Artist Radio</a></li>
+									<li><a href="#">Playlists</a></li>
+									<li><a href="#">Genres</a></li>
+									<li><a href="#">More</a></li>
+								</ul>
+							</nav>
+						</div>
+					</div>
+					<div class="col-xl-2">
+						<div class="tp-action">
+							<a href="#" class="tp-act-lnk">
+								<img src="assets/img/icon/src.svg" alt="" />
+							</a>
+							<a href="#" class="tp-act-lnk urs-icn">
+								<i class="fas fa-user-circle"></i>
+							</a>
+							<div class="tp-act-lnk">
+								<button
+									class="dropdown-toggle"
+									type="button"
+									id="dropdownMenuButton"
+									data-toggle="dropdown"
+									aria-haspopup="true"
+									aria-expanded="false"
+								>
+									Lan
+								</button>
+								<div
+									class="lng-d-down dropdown-menu"
+									aria-labelledby="dropdownMenuButton"
+								>
+									<a class="dropdown-item" href="#">En</a>
+									<a class="dropdown-item" href="#">Bn</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+		<!-- end header -->
+		<!-- main content -->
+		<section class="main-content">
+			<div class="container">
+				<div class="row">
+					<div class="col-xl-8 col-lg-8">
+						<!-- start top banner -->
+						<div class="notify-hero-banner pt-40">
+							<div class="container">
+								<div class="row">
+									<div class="col-xl-12">
+										<div class="hro-banner-img">
+											<img
+												class="desktop-only"
+												src="assets/img/bg/banner1.svg"
+												alt=""
+											/>
+											<img
+												class="mobile-only"
+												src="assets/img/banner/Rectangle 103.png"
+												alt=""
+											/>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- end top banner -->
+						<!-- start feature-itm block -->
+						<div class="feature-itm-block pt-30 pb-30">
+							<div class="podct-itm desktop-only">
+								<div class="row no-gutters">
+									<div class="col-xl-4 col-lg-5 col-md-6">
+										<div class="feature-itm-img">
+											<img class="rounded" height="300" width="300"
+											src="{{podcastDetail.image ? podcastDetail.image : 'assets/img/noimage.png'}}"
+												alt=""
+											/>
+										</div>
+										
+									</div>
+									<div class="col-xl-8 col-lg-7 col-md-6">
+										<div class="feature-itm-txt">
+											<h2>{{podcastDetail.name}}</h2>
+											<span>{{podcastDetail.createdAtTimestamp * 1000 | date}}</span>
+											<p>
+												{{podcastDetail.description}}
+											</p>
+											<a href="#" class="btn btn-invert">Listen All</a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="podct-itm mobile-only">
+								<div class="row no-gutters">
+									<div class="col-xl-4 col-lg-5 col-md-6">
+										<div class="feature-itm-img">
+											<div>
+												<img
+													src="assets/img/product-img/feture-list.svg"
+													alt=""
+												/>
+											</div>
+											<div>
+												<h2>J111oyTime In His Presence</h2>
+												<span>Joy FM</span>
+												<a href="#" class="btn btn-invert">Listen All</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-xl-8 col-lg-7 col-md-6">
+										<div class="feature-itm-txt">
+											<p>
+												The economy explained. Imagine you could call up a
+												friend and say, “Meet me at the bar and tell me what’s
+												going on with the economy.” Now imagine that’s actually
+												a fun evening.
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- end feature-itm block -->
+						<!-- start episodes-showcase block -->
+						<div class="episode-showcase pt-20 pb-40 desktop-only">
+							<div class="section-title blue-border-tp pt-45">
+								<div class="sec-titl-txt mblk">
+									<h3>Most Recent Episodes</h3>
+								</div>
+							</div>
+
+							<div class="epsod-itm pt-25 pb-25">
+								<div class="row align-items-center">
+									<div class="col-xl-7 col-7 col-lg-7 col-md-7">
+										<div class="epsod-txt">
+											<span>October 9, 2019</span>
+											<h2>Joy Time In His Presence</h2>
+											<p>
+												The economy explained. Imagine you could call up a
+												friend and say, “Meet me at the bar and tell me what’s
+												going on with the economy.” Now imagine that’s actually
+												a fun evening.
+											</p>
+
+											<div class="epsode-btn-grp pt-10">
+												<a href="#" class="btn">
+													<i class="fa fa-play"></i>Listen:31:89
+												</a>
+												<a href="#" class="btn btn-invert ml-2">
+													<i class="fas fa-plus-circle"></i>
+													Playlist
+												</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-xl-5 col-lg-5 col-md-5 col-5">
+										<div class="epsod-img">
+											<img src="assets/img/product-img/e1.png" alt="" />
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="epsod-itm pt-25 pb-25">
+								<div class="row align-items-center">
+									<div class="col-xl-7 col-7 col-lg-7 col-md-7">
+										<div class="epsod-txt">
+											<span>October 9, 2019</span>
+											<h2>Joy Time In His Presence</h2>
+											<p>
+												The economy explained. Imagine you could call up a
+												friend and say, “Meet me at the bar and tell me what’s
+												going on with the economy.” Now imagine that’s actually
+												a fun evening.
+											</p>
+
+											<div class="epsode-btn-grp pt-10">
+												<a href="#" class="btn">
+													<i class="fa fa-play"></i>Listen:31:89
+												</a>
+												<a href="#" class="btn btn-invert ml-2">
+													<i class="fas fa-plus-circle"></i>
+													Playlist
+												</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-xl-5 col-lg-5 col-md-5 col-5">
+										<div class="epsod-img">
+											<img src="assets/img/product-img/e2.png" alt="" />
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="epsod-itm pt-25 pb-25">
+								<div class="row align-items-center">
+									<div class="col-xl-7 col-7 col-lg-7 col-md-7">
+										<div class="epsod-txt">
+											<span>October 9, 2019</span>
+											<h2>Joy Time In His Presence</h2>
+											<p>
+												The economy explained. Imagine you could call up a
+												friend and say, “Meet me at the bar and tell me what’s
+												going on with the economy.” Now imagine that’s actually
+												a fun evening.
+											</p>
+
+											<div class="epsode-btn-grp pt-10">
+												<a href="#" class="btn">
+													<i class="fa fa-play"></i>Listen:31:89
+												</a>
+												<a href="#" class="btn btn-invert ml-2">
+													<i class="fas fa-plus-circle"></i>
+													Playlist
+												</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-xl-5 col-lg-5 col-md-5 col-5">
+										<div class="epsod-img">
+											<img src="assets/img/product-img/e3.png" alt="" />
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="epsod-itm pt-25 pb-25">
+								<div class="row align-items-center">
+									<div class="col-xl-7 col-7 col-lg-7 col-md-7">
+										<div class="epsod-txt">
+											<span>October 9, 2019</span>
+											<h2>Joy Time In His Presence</h2>
+											<p>
+												The economy explained. Imagine you could call up a
+												friend and say, “Meet me at the bar and tell me what’s
+												going on with the economy.” Now imagine that’s actually
+												a fun evening.
+											</p>
+
+											<div class="epsode-btn-grp pt-10">
+												<a href="#" class="btn">
+													<i class="fa fa-play"></i>Listen:31:89
+												</a>
+												<a href="#" class="btn btn-invert ml-2">
+													<i class="fas fa-plus-circle"></i>
+													Playlist
+												</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-xl-5 col-lg-5 col-md-5 col-5">
+										<div class="epsod-img">
+											<img src="assets/img/product-img/e4.png" alt="" />
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="episode-showcase pt-20 pb-40 mobile-only">
+							<div class="section-title blue-border-tp pt-45">
+								<div class="sec-titl-txt mblk">
+									<h3>Most Recent Episodes</h3>
+								</div>
+							</div>
+
+							<div class="epsod-itm pt-25 pb-25">
+								<div class="row align-items-center">
+									<div class="col-xl-7 col-7 col-lg-7 col-md-7">
+										<div class="epsod-txt">
+											<span>October 9, 2019</span>
+											<h2>Joy Time In His Presence</h2>
+											<p>
+												The economy explained. Imagine you could call up a
+												friend and say, “Meet me at the bar and tell me what’s
+												going on with the
+											</p>
+										</div>
+									</div>
+									<div class="col-xl-5 col-lg-5 col-md-5 col-5">
+										<div class="epsod-img">
+											<img src="assets/img/product-img/e1.png" alt="" />
+										</div>
+									</div>
+									<div class="col-sm-12">
+										<div class="epsod-txt">
+											<p>
+												economy.” Now imagine that’s actually a fun evening.
+											</p>
+										</div>
+
+										<div class="epsode-btn-grp pt-20">
+											<a href="#" class="btn btn-invert">
+												<i class="fa fa-play"></i>Listen:31:89
+											</a>
+											<a href="#" class="btn btn-invert ml-2">
+												<i class="fas fa-plus-circle"></i>
+												Playlist
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="epsod-itm pt-25 pb-25">
+								<div class="row align-items-center">
+									<div class="col-xl-7 col-7 col-lg-7 col-md-7">
+										<div class="epsod-txt">
+											<span>October 9, 2019</span>
+											<h2>Joy Time In His Presence</h2>
+											<p>
+												The economy explained. Imagine you could call up a
+												friend and say, “Meet me at the bar and tell me what’s
+												going on with the
+											</p>
+										</div>
+									</div>
+									<div class="col-xl-5 col-lg-5 col-md-5 col-5">
+										<div class="epsod-img">
+											<img src="assets/img/product-img/e2.png" alt="" />
+										</div>
+									</div>
+									<div class="col-sm-12">
+										<div class="epsod-txt">
+											<p>
+												economy.” Now imagine that’s actually a fun evening.
+											</p>
+										</div>
+
+										<div class="epsode-btn-grp pt-20">
+											<a href="#" class="btn btn-invert">
+												<i class="fa fa-play"></i>Listen:31:89
+											</a>
+											<a href="#" class="btn btn-invert ml-2">
+												<i class="fas fa-plus-circle"></i>
+												Playlist
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="epsod-itm pt-25 pb-25">
+								<div class="row align-items-center">
+									<div class="col-xl-7 col-7 col-lg-7 col-md-7">
+										<div class="epsod-txt">
+											<span>October 9, 2019</span>
+											<h2>Joy Time In His Presence</h2>
+											<p>
+												The economy explained. Imagine you could call up a
+												friend and say, “Meet me at the bar and tell me what’s
+												going on with the
+											</p>
+										</div>
+									</div>
+									<div class="col-xl-5 col-lg-5 col-md-5 col-5">
+										<div class="epsod-img">
+											<img src="assets/img/product-img/e3.png" alt="" />
+										</div>
+									</div>
+									<div class="col-sm-12">
+										<div class="epsod-txt">
+											<p>
+												economy.” Now imagine that’s actually a fun evening.
+											</p>
+										</div>
+
+										<div class="epsode-btn-grp pt-20">
+											<a href="#" class="btn btn-invert">
+												<i class="fa fa-play"></i>Listen:31:89
+											</a>
+											<a href="#" class="btn btn-invert ml-2">
+												<i class="fas fa-plus-circle"></i>
+												Playlist
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="epsod-itm pt-25 pb-25">
+								<div class="row align-items-center">
+									<div class="col-xl-7 col-7 col-lg-7 col-md-7">
+										<div class="epsod-txt">
+											<span>October 9, 2019</span>
+											<h2>Joy Time In His Presence</h2>
+											<p>
+												The economy explained. Imagine you could call up a
+												friend and say, “Meet me at the bar and tell me what’s
+												going on with the
+											</p>
+										</div>
+									</div>
+									<div class="col-xl-5 col-lg-5 col-md-5 col-5">
+										<div class="epsod-img">
+											<img src="assets/img/product-img/e4.png" alt="" />
+										</div>
+									</div>
+									<div class="col-sm-12">
+										<div class="epsod-txt">
+											<p>
+												economy.” Now imagine that’s actually a fun evening.
+											</p>
+										</div>
+
+										<div class="epsode-btn-grp pt-20">
+											<a href="#" class="btn btn-invert">
+												<i class="fa fa-play"></i>Listen:31:89
+											</a>
+											<a href="#" class="btn btn-invert ml-2">
+												<i class="fas fa-plus-circle"></i>
+												Playlist
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="epsod-itm pt-25 pb-25">
+								<div class="row align-items-center">
+									<div class="col-xl-7 col-7 col-lg-7 col-md-7">
+										<div class="epsod-txt">
+											<span>October 9, 2019</span>
+											<h2>Joy Time In His Presence</h2>
+											<p>
+												The economy explained. Imagine you could call up a
+												friend and say, “Meet me at the bar and tell me what’s
+												going on with the
+											</p>
+										</div>
+									</div>
+									<div class="col-xl-5 col-lg-5 col-md-5 col-5">
+										<div class="epsod-img">
+											<img src="assets/img/product-img/e3.png" alt="" />
+										</div>
+									</div>
+									<div class="col-sm-12">
+										<div class="epsod-txt">
+											<p>
+												economy.” Now imagine that’s actually a fun evening.
+											</p>
+										</div>
+
+										<div class="epsode-btn-grp pt-20">
+											<a href="#" class="btn btn-invert">
+												<i class="fa fa-play"></i>Listen:31:89
+											</a>
+											<a href="#" class="btn btn-invert ml-2">
+												<i class="fas fa-plus-circle"></i>
+												Playlist
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- end episodes-showcase block -->
+						<!-- start recent podcasts block -->
+						<div class="recent-podcasts-block pt-40 pb-20">
+							<div class="section-title b-none pb-30">
+								<div class="sec-titl-txt">
+									<h3>Related Podcasts</h3>
+								</div>
+							</div>
+							<div class="reltd-podcasts-wpr">
+								<div class="row">
+									<div class="col-xl-6">
+										<div class="reltd-pod-itm mb-30">
+											<div class="reltd-pod-itm-contnt">
+												<div class="pod-itm-img">
+													<img
+														src="assets/img/thumbnail/product-thumbnail(1).svg"
+														alt=""
+													/>
+												</div>
+												<div class="pod-itm-txt">
+													<span>May 2, 2020</span>
+													<h5>Sports Night</h5>
+												</div>
+											</div>
+											<div class="reltd-pod-itm-icn">
+												<a href="#"
+													><img src="assets/img/icon/blur-play-icnn.svg" alt=""
+												/></a>
+											</div>
+										</div>
+										<div class="reltd-pod-itm mb-30">
+											<div class="reltd-pod-itm-contnt">
+												<div class="pod-itm-img">
+													<img
+														src="assets/img/thumbnail/product-thumbnail(4).svg"
+														alt=""
+													/>
+												</div>
+												<div class="pod-itm-txt">
+													<span>May 2, 2020</span>
+													<h5>Super Morning Show</h5>
+												</div>
+											</div>
+											<div class="reltd-pod-itm-icn">
+												<a href="#"
+													><img src="assets/img/icon/blur-play-icnn.svg" alt=""
+												/></a>
+											</div>
+										</div>
+										<div class="reltd-pod-itm mb-30">
+											<div class="reltd-pod-itm-contnt">
+												<div class="pod-itm-img">
+													<img
+														src="assets/img/thumbnail/product-thumbnail(3).svg"
+														alt=""
+													/>
+												</div>
+												<div class="pod-itm-txt">
+													<span>May 2, 2020</span>
+													<h5>The Joy Business Report</h5>
+												</div>
+											</div>
+											<div class="reltd-pod-itm-icn">
+												<a href="#"
+													><img src="assets/img/icon/blur-play-icnn.svg" alt=""
+												/></a>
+											</div>
+										</div>
+										<div class="reltd-pod-itm mb-30">
+											<div class="reltd-pod-itm-contnt">
+												<div class="pod-itm-img">
+													<img
+														src="assets/img/thumbnail/product-thumbnail(2).svg"
+														alt=""
+													/>
+												</div>
+												<div class="pod-itm-txt">
+													<span>May 2, 2020</span>
+													<h5>Work & Happiness</h5>
+												</div>
+											</div>
+											<div class="reltd-pod-itm-icn">
+												<a href="#"
+													><img src="assets/img/icon/blur-play-icnn.svg" alt=""
+												/></a>
+											</div>
+										</div>
+									</div>
+									<div class="col-xl-6">
+										<div class="reltd-pod-itm mb-30">
+											<div class="reltd-pod-itm-contnt">
+												<div class="pod-itm-img">
+													<img
+														src="assets/img/thumbnail/product-thumbnail(1).svg"
+														alt=""
+													/>
+												</div>
+												<div class="pod-itm-txt">
+													<span>May 2, 2020</span>
+													<h5>Sports Night</h5>
+												</div>
+											</div>
+											<div class="reltd-pod-itm-icn">
+												<a href="#"
+													><img src="assets/img/icon/blur-play-icnn.svg" alt=""
+												/></a>
+											</div>
+										</div>
+										<div class="reltd-pod-itm mb-30">
+											<div class="reltd-pod-itm-contnt">
+												<div class="pod-itm-img">
+													<img
+														src="assets/img/thumbnail/product-thumbnail(4).svg"
+														alt=""
+													/>
+												</div>
+												<div class="pod-itm-txt">
+													<span>May 2, 2020</span>
+													<h5>Super Morning Show</h5>
+												</div>
+											</div>
+											<div class="reltd-pod-itm-icn">
+												<a href="#"
+													><img src="assets/img/icon/blur-play-icnn.svg" alt=""
+												/></a>
+											</div>
+										</div>
+										<div class="reltd-pod-itm mb-30">
+											<div class="reltd-pod-itm-contnt">
+												<div class="pod-itm-img">
+													<img
+														src="assets/img/thumbnail/product-thumbnail(3).svg"
+														alt=""
+													/>
+												</div>
+												<div class="pod-itm-txt">
+													<span>May 2, 2020</span>
+													<h5>The Joy Business Report</h5>
+												</div>
+											</div>
+											<div class="reltd-pod-itm-icn">
+												<a href="#"
+													><img src="assets/img/icon/blur-play-icnn.svg" alt=""
+												/></a>
+											</div>
+										</div>
+										<div class="reltd-pod-itm mb-30">
+											<div class="reltd-pod-itm-contnt">
+												<div class="pod-itm-img">
+													<img
+														src="assets/img/thumbnail/product-thumbnail(2).svg"
+														alt=""
+													/>
+												</div>
+												<div class="pod-itm-txt">
+													<span>May 2, 2020</span>
+													<h5>Work & Happiness</h5>
+												</div>
+											</div>
+											<div class="reltd-pod-itm-icn">
+												<a href="#"
+													><img src="assets/img/icon/blur-play-icnn.svg" alt=""
+												/></a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- end recent podcasts block -->
+					</div>
+					<div class="col-xl-4 col-lg-4">
+						<div class="add-bnr-wpr prod-details-pg">
+							<div class="ad-banner-wpr mt-40">
+								<img src="assets/img/banner/Rectangle 103.png" alt="" />
+							</div>
+							<div class="ad-banner-wpr pt-50">
+								<img src="assets/img/banner/Rectangle 103.png" alt="" />
+							</div>
+							<div class="ad-banner-wpr pt-50">
+								<img src="assets/img/banner/Rectangle 15.svg" alt="" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!--  main content -->
+		<!-- start newsletter area -->
+		<footer
+			class="newsletter-area white-bg pt-60"
+			style="background-image: url('../img/illistration/t-tm.svg');"
+		>
+			<div class="container">
+				<div class="row">
+					<div class="col-xl-8 offset-xl-2 col-md-12">
+						<div class="nes-ltr-frm-wpr text-center pb-100">
+							<h2>Get latest news from us!</h2>
+							<div class="nws-ltr-inpt-bx mt-50">
+								<input type="email" placeholder="email@email.com" />
+								<input type="submit" value="Send" />
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xl-6 col-lg-4 col-md-12">
+						<div class="ftr-title pb-80">
+							<div class="ftr-logo">
+								<img src="assets/img/logo/homelogo.svg" alt="" />
+								<p>Music, radio and podcasts, all free.</p>
+							</div>
+							<p>
+								© 2020 Joy Online | All rights reserved.
+							</p>
+							<div class="powered-by">
+								<span>Powered by </span>
+								<img src="assets/img/icon/elepent-svg.svg" alt="" />
+								<span>Atuwa Digital</span>
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-3 col-lg-4 col-md-12">
+						<div class="ftr-socl-lnk pb-80">
+							<a href="#"><img src="assets/img/icon/social(1).svg" alt="" /></a>
+							<a href="#"><img src="assets/img/icon/social(2).svg" alt="" /></a>
+							<a href="#"><img src="assets/img/icon/social(3).svg" alt="" /></a>
+							<a href="#"><img src="assets/img/icon/social(4).svg" alt="" /></a>
+						</div>
+					</div>
+					<div class="col-xl-3 col-lg-4 col-md-12">
+						<div class="app-lnk mb-45">
+							<a href="#"
+								><img src="assets/img/icon/storedownload1.svg" alt=""
+							/></a>
+							<a href="#"
+								><img src="assets/img/icon/storedownload2.svg" alt=""
+							/></a>
+						</div>
+
+						<div class="policy-lnk pb-80">
+							<a href="#">Privacy Policy</a>
+							<a href="#">Terms of Use</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+		<!-- end newsletter area -->
+		<!-- JS here -->

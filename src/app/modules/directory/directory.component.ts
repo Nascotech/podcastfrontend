@@ -22,6 +22,7 @@ export class DirectoryComponent implements OnInit {
   podcastEpisodes: any = [];
   dataResponseEpisode: any = [];
   id:String;
+  idmobile:String;
   constructor(private costname:ConstNameService,
     private podcastService:PodcastService,
     private spinner: NgxSpinnerService,

@@ -1,0 +1,53 @@
+<div id="music-player-div" style="display:none" class="fixed-bottom bg-light mt-20">
+    <div class="row">
+      <div class="col-4">
+        <div class="player__container mt-2">
+          <div class="player__body">
+            <div class="body__buttons">
+              <ul class="list list--buttons">
+                <li><a class="list__link" (click)="rewindSong()" href="javascript:void(0);"><i class="fa fa-undo" aria-hidden="true"></i></a></li>
+  
+                <li><a class="list__link" (click)="previousSong()" href="javascript:void(0);"><i class="fa fa-step-backward" aria-hidden="true"></i></a></li>
+  
+                <li id="playButton"><a class="list__link" (click)="playSong()" href="javascript:void(0);"><i class="fa fa-play"></i></a></li>
+  
+                <li id="pauseButton" style="display: none"><a class="list__link" (click)="pauseSong()" href="javascript:void(0);"><i class="fa fa-pause"></i></a></li>
+  
+                <li><a class="list__link" (click)="nextSong()" href="javascript:void(0);"><i class="fa fa-step-forward" aria-hidden="true"></i></a></li>
+  
+                <li><a class="list__link" (click)="forwardSong()" href="javascript:void(0);"><i class="fas fa-repeat" aria-hidden="true"></i></a></li>
+  
+                <li><a class="list__link" data-toggle="collapse" data-target="#playlist-div" href="javascript:void(0);"><i class="fa fa-list" aria-hidden="true"></i></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-1">
+        <img src="/assets/img/noimage.png" class="p-2 m-1" height="75" width="75" alt="">
+      </div>
+      <div class="col-7">
+        <p class="pt-4 pb-0 track-title"></p>
+        <audio controls id="player"></audio>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-8 offset-2">
+        <div id="playlist-div" class="collapse hide">
+          <div class="playlist">
+            <ul id="my-row" class="playlist--list">
+              <li *ngFor="let song of songsList; let i = index" id="{{song.id}}" [attr.data-id]="song.id" [attr.data-title]="song.title" [attr.data-audio]="song.url">
+                <span class="name">{{song.title}}</span>
+                <span class="pull-right playlist-btn">
+                  <a id="playlist_play_{{song.id}}" class="mr-2 episode-play-btn" (click)="setSource(song.id,song.url,song.title,true)" href="javascript:void(0);"><i class="fa fa-play"></i></a>
+                  <a id="playlist_pause_{{song.id}}" class="mr-2 episode-pause-btn" style="display:none" (click)="setSource(song.id,song.url,song.title,true)" href="javascript:void(0);"><i class="fa fa-pause"></i></a>
+                  <a href="javascript:void(0)" (click)="removeFromPlaylist({id:song.id})"><span class="fa fa-minus-circle"></span></a>
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,4 +1,3 @@
-<ngx-spinner size="medium" color="white" type="ball-scale-multiple"></ngx-spinner>
 
 <div class="podcasts-directory-blk pt-40">
 	<div class="row">
@@ -14,7 +13,7 @@
 			<div class="chos-station">
 				<select class="custom-dropdown custom-select" (change)="groupFilter($event)">
 					<option value="" selected>More Stations</option>
-					<option *ngFor="let group of groupList" value="{{group.id}}">{{group.displayName}}</option>
+					<option *ngFor="let group of groupList" value="{{group.id}}">{{group?.displayName}}</option>
 				</select>
 			</div>
 		</div>
@@ -35,15 +34,26 @@
 
 	<div class="bx-lnk-list-wpr">
 		<div class="row">
+			<div class="col-sm-12 col-md-12 col-lg-12">
+			  <!-- Start Loading Indicator -->
+			  <div class="c-loading text-center" *ngIf="isLoadingService === true">
+				<div class="spinner-grow" role="status">
+					<span class="sr-only">Loading...</span>
+				</div>
+			  </div>
+			  <!-- END Loading Indicator -->
+			</div>
+		  </div>
+		<div class="row">
 			<div *ngFor="let podcast of podcastList  | search:'name':searchText" routerLink="/directory/{{podcast.id}}" class="col-xl-3 col-lg-3 col-md-4 col-6"  >
 					<div class="bx-lnk-itm pb-20" >
 						<a routerLink="/directory/{{podcast.id}}">
 							<img  class="rounded" src="{{podcast.image ? podcast.image : 'assets/img/no-image-2.jpg'}}"  onError="this.src='assets/img/no-image-2.jpg'">
-							<!-- <img  class="rounded" src="{{'assets/img/no-image-2.jpg'}}"  onError="this.src='assets/img/no-image-2.jpg'"> -->
+							<!-- <img class="rounded" src="{{'assets/img/no-image-2.jpg'}}"  onError="this.src='assets/img/no-image-2.jpg'"> -->
 						</a>
 						<div class="bx-itm-txt">
 							<a routerLink="/directory/{{podcast.id}}">
-								<p>{{podcast.name}}</p>
+								<p>{{podcast?.name}}</p>
 							</a>
 						</div>
 					</div>

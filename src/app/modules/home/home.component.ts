@@ -25,11 +25,10 @@ export class HomeComponent implements OnInit {
   groupList: any;
   isloadmore: boolean = false;
   submitted = false;
-
+  isLoadingService:boolean = true;
   constructor(
     private podcastService: PodcastService,
     private constname: ConstNameService,
-    private spinner: NgxSpinnerService,
     private router: Router
   ) { }
 
@@ -60,19 +59,20 @@ export class HomeComponent implements OnInit {
 
   getPodcastlist() {
     this.count = 1;
-    this.spinner.show();
     this.podcastService.getPodcastList(1, this.searchGroup).subscribe(data => {
       this.isloadmore=true;
       this.dataResponse = data;
+      this.isLoadingService = false;
       this.podcastList = this.dataResponse.response.list;
       let totalRecord = this.dataResponse.response.total;
       this.lastPage = Math.ceil(totalRecord / 25);
       if(this.lastPage > 1) {
         $('#more-podcast-btn').show();
       }
-     this.spinner.hide()
+      this.isLoadingService = false;
     }, (error: HttpErrorResponse) => {
       this.constname.forbidden(error);
+      this.isLoadingService = false;
     });
   }
 

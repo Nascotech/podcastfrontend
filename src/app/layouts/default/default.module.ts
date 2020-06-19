@@ -15,6 +15,7 @@ import { ErrorInterceptor } from '../../core/interceptor/error.interceptor';
 import { HomeComponent } from '../../modules/home/home.component';
 import { DirectoryComponent } from '../../modules/directory/directory.component';
 import { SearchPipe } from '../../pipe/search.pipe';
+import { PlayerComponent } from 'src/app/shared/component/player/player.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { SearchPipe } from '../../pipe/search.pipe';
     HomeComponent,
     DirectoryComponent,
     SearchPipe,
+    PlayerComponent
   ],
   imports: [
     CommonModule,

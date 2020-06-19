@@ -23,6 +23,7 @@
     "ngx-progressive-image-loader": "^4.0.0",
     "ngx-spinner": "^6.1.2",
     "ngx-ui-loader": "^9.1.1",
+    "plyr": "^3.5.10",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"

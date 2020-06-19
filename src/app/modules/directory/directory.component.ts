@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ConstNameService } from 'src/app/services/const-name.service';
 import { PodcastService } from 'src/app/services/podcast.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {NgxUiLoaderService} from 'ngx-ui-loader';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { EventEmitterService } from 'src/app/services/event-emitter.service';
 
 declare var $: any;
 
@@ -24,7 +25,9 @@ export class DirectoryComponent implements OnInit {
   constructor(private costname:ConstNameService,
     private podcastService:PodcastService,
     private spinner: NgxSpinnerService,
-    private route:ActivatedRoute) {
+    private route:ActivatedRoute,
+    private eventEmitterService:EventEmitterService,
+    private router:Router) {
       this.route.params.subscribe(params => this.id = params['id']);
      }
 
@@ -58,13 +61,11 @@ export class DirectoryComponent implements OnInit {
   }
 
   allPodcastEpisod() {
-    this.spinner.show();
     this.podcastService.getPodcastEpisode(this.id).subscribe(data => {
       this.dataResponseEpisode = data;
       this.podcastEpisodes = this.dataResponseEpisode.response.data;
       this.getTime(this.podcastEpisodes,this.id);
       localStorage.setItem('podcastEpisodes', JSON.stringify(this.dataResponseEpisode.response));
-      this.spinner.hide();
     }, (error: HttpErrorResponse) => {
       this.costname.forbidden(error);
     });
@@ -95,6 +96,45 @@ export class DirectoryComponent implements OnInit {
     });
   }
 
+  playAllEpisode() {
+    this.podcastEpisodes.forEach((info, index) => {
+      if(index == 0) {
+        this.eventEmitterService.onEpisodePlayButtonClick(this.id + '_' + index, info.enclosure.url, info.title, true);
+      }
+      this.eventEmitterService.onEpisodePlaylistButtonClick(this.id + '_' + index, info.enclosure.url, info.title);
+    });
+  }
+  redirectUrl(uri: string) {
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
+      this.router.navigate([uri]));
+  }
 
+  redirectTo(id) {
+    this.redirectUrl('/directory/' + id);
+  }
+
+  setSource(id, url, title, play) {
+    this.eventEmitterService.onEpisodePlayButtonClick(id, url, title, play);
+  }
+
+  addToPlaylist(episodeId, url, title) {
+    this.eventEmitterService.onEpisodePlaylistButtonClick(episodeId, url, title);
+  }
+
+  removeFromPlaylist(episodeId) {
+    this.eventEmitterService.removeFromPlaylist(episodeId);
+  }
+
+  checkPlaylistClick(episodeId) {
+    let playlist = JSON.parse(localStorage.getItem('playList'));
+    if(playlist) {
+      for (let list of playlist) {
+        if (episodeId === list.id) {
+          return true;
+        }
+      }
+      return false;
+    }
+  }
 
 }

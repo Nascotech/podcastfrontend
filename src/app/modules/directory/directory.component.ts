@@ -61,6 +61,7 @@ export class DirectoryComponent implements OnInit {
     });
   }
 
+  
   allPodcastEpisod() {
     this.podcastService.getPodcastEpisode(this.id).subscribe(data => {
       this.dataResponseEpisode = data;

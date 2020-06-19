@@ -61,11 +61,11 @@
 					<p>{{episode?.description}}</p>
 
 					<div class="epsode-btn-grp pt-10">
-						<a id="play_{{id + '_' + i}}" class="btn" (click)="setSource(id + '_' + i,episode.enclosure.url,episode.title,true)">
+						<a id="play_{{id + '_' + i}}" class="btn episode-play-btn" (click)="setSource(id + '_' + i,episode.enclosure.url,episode.title,true)">
 							<i class="fa fa-play"></i>Listen
 							<code id="duration-{{id + '-' + i}}">{{episode?.duration}}</code>
 						</a>
-						<a style="display:none" id="pause_{{id + '_' + i}}" class="btn" (click)="setSource(id + '_' + i,episode.enclosure.url,episode.title,true)">
+						<a style="display:none" id="pause_{{id + '_' + i}}" class="btn episode-pause-btn" (click)="setSource(id + '_' + i,episode.enclosure.url,episode.title,true)">
 							<i class="fa fa-pause"></i> Pause
 							<code id="duration-{{id + '-' + i}}">{{episode?.duration}}</code>
 						  </a>
@@ -110,11 +110,11 @@
 			</div>
 			<div class="col-sm-12">
 				<div class="epsode-btn-grp pt-20">
-					<a id="play_{{idmobile + '_' + i}}" (click)="setSource(idmobile + '_' + i,episode.enclosure.url,episode.title,true)"  class="btn btn-invert" >
+					<a id="play_{{idmobile + '_' + i}}" (click)="setSource(idmobile + '_' + i,episode.enclosure.url,episode.title,true)"  class="btn btn-invert episode-play-btn" >
 						<i class="fa fa-play"></i>Listen
 						<code id="duration-{{idmobile + '-' + i}}">{{episode?.duration}}</code>
 					</a>
-					<a style="display:none" id="pause_{{idmobile + '_' + i}}" class="btn" (click)="setSource(idmobile + '_' + i,episode.enclosure.url,episode.title,true)">
+					<a style="display:none" id="pause_{{idmobile + '_' + i}}" class="btn episode-pause-btn" (click)="setSource(idmobile + '_' + i,episode.enclosure.url,episode.title,true)">
 						<i class="fa fa-pause"></i> Pause
 						<code id="duration-{{idmobile + '-' + i}}">{{episode?.duration}}</code>
 					  </a>

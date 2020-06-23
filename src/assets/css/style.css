@@ -2746,4 +2746,15 @@ div#style-1 {
 #style-1::-webkit-scrollbar-thumb {
     background-color: #8b6ae9;
 }
+.list--buttons a:focus, .list--buttons a:hover {
+    opacity: 1;
+    box-shadow: 0 6px 9px rgba(33,33,33,0), 0 6px 16px rgba(33,33,33,0);
+    background: #8b6ae9 !important;
+    color: #e9e4fc !important;
+}
+
+#playButton a:hover, #pauseButton a:hover {
+    color: #e9e4fc !important;
+    background: #8b6ae9;
+}
 /* Playlist css end */

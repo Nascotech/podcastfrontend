@@ -838,7 +838,6 @@ label {
 
 .bx-lnk-list-wpr {
   position: relative;
-  z-index: 1111;
 }
 .bx-lnk-list-wpr .bx-itm-txt {
   margin-top: 15px;
@@ -2703,3 +2702,48 @@ select.custom-dropdown option {
 		right: 10px !important
 	}
 }
+
+/* Playlist CSS */
+.playlist--list li.active {
+    background-color: #e9e4fc !important;
+    color: #8b6ae9 !important;
+}
+
+.playlist--list li.active .playlist-btn a {
+    border: 1px solid #c9c3de !important;
+    color: #8b6ae9 !important;
+}
+
+.playlist--list li:hover {
+    background-color: #e9e4fc !important;
+    color: #8b6ae9 !important;
+}
+
+.playlist--list li:hover .playlist-btn a {
+    border: 1px solid #c9c3de;
+    color: #8b6ae9;
+}
+
+.playlist[_ngcontent-uej-c5] {
+    max-height: 260px;
+}
+
+.playlist--list{
+	margin : 0 !important;
+}
+
+div#style-1 {
+    margin-top: 20px;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+#style-1::-webkit-scrollbar {
+    width: 4px;
+    background-color: #cbc3ec;
+}
+
+#style-1::-webkit-scrollbar-thumb {
+    background-color: #8b6ae9;
+}
+/* Playlist css end */

@@ -48,9 +48,9 @@
 }
 
 .player__container {
-  margin-right: 20px;
-  margin-left: auto;
-  max-width: 20rem;
+  margin-right: 0px;
+  margin-left: 0px;
+  max-width: 100%;
   border-radius: 0.25rem;
 }
 .list {

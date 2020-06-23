@@ -23,30 +23,33 @@
           </div>
         </div>
       </div>
-      <div class="col-xl-1 col-lg-1 d-none d-lg-block">
-        <img id="plyr-img" src="/assets/img/no-image-2.jpg" class="p-2 m-1" height="75" width="75" alt="">
+      <div class="col-xl-1 col-lg-2 d-none d-lg-block">
+        <img id="plyr-img" src="/assets/img/no-image-2.jpg" height="95" width="95" alt="">
       </div>
-      <div class="col-xl-7 col-lg-6 col-md-6 col-sm-12 play-btm">
+      <div class="col-xl-7 col-lg-5 col-md-6 col-sm-12 play-btm">
         <p class="track-title"></p>
         <audio controls id="player"></audio>
       </div>
     </div>
-    <div class="row">
-      <div class="col-8 offset-2">
-        <div id="playlist-div" class="collapse hide">
-          <div class="playlist">
-            <ul id="my-row" class="playlist--list">
-              <li *ngFor="let song of songsList; let i = index" id="{{song.id}}" [attr.data-id]="song.id" [attr.data-title]="song.title" [attr.data-audio]="song.url">
-                <span class="name">{{song.title}}</span>
-                <span class="pull-right playlist-btn">
-                  <a id="playlist_play_{{song.id}}" class="mr-2 episode-play-btn" (click)="setSource(song.id,song.url,song.title,song.image,true)" href="javascript:void(0);"><i class="fa fa-play"></i></a>
-                  <a id="playlist_pause_{{song.id}}" class="mr-2 episode-pause-btn" style="display:none" (click)="setSource(song.id,song.url,song.title,song.image,true)" href="javascript:void(0);"><i class="fa fa-pause"></i></a>
-                  <a href="javascript:void(0)" (click)="removeFromPlaylist({id:song.id})"><span class="fa fa-minus-circle"></span></a>
-                </span>
-              </li>
-            </ul>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div id="playlist-div" class="collapse hide">
+            <div id="style-1" class="playlist">
+              <ul id="my-row" class="playlist--list">
+                <li *ngFor="let song of songsList; let i = index" id="{{song.id}}" [attr.data-id]="song.id" [attr.data-title]="song.title" [attr.data-audio]="song.url">
+                  <span class="name">{{song.title}}</span>
+                  <span class="pull-right playlist-btn">
+                    <a id="playlist_play_{{song.id}}" class="mr-2 episode-play-btn" (click)="setSource(song.id,song.url,song.title,song.image,true)" href="javascript:void(0);"><i class="fa fa-play"></i></a>
+                    <a id="playlist_pause_{{song.id}}" class="mr-2 episode-pause-btn" style="display:none" (click)="setSource(song.id,song.url,song.title,song.image,true)" href="javascript:void(0);"><i class="fa fa-pause"></i></a>
+                    <a href="javascript:void(0)" (click)="removeFromPlaylist({id:song.id})"><span class="fa fa-minus-circle"></span></a>
+                  </span>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
     </div>
+
   </div>

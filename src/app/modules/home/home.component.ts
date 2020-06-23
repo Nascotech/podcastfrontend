@@ -44,7 +44,6 @@ export class HomeComponent implements OnInit {
       this.groupList = this.groupDataResponse.response.data;
     }, (error: HttpErrorResponse) => {
       this.constname.forbidden(error);
-
     });
   }
 
@@ -58,6 +57,7 @@ export class HomeComponent implements OnInit {
   }
 
   getPodcastlist() {
+    this.isLoadingService = true;
     this.count = 1;
     this.podcastService.getPodcastList(1, this.searchGroup).subscribe(data => {
       this.isloadmore=true;

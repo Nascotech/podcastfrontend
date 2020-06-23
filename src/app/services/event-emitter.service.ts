@@ -15,12 +15,12 @@ export class EventEmitterService {
 
   constructor() { }
 
-  onEpisodePlayButtonClick(id, url, title, play) {
-    this.invokePodcastComponentFunction.emit({id: id, url: url, title: title, play: play});
+  onEpisodePlayButtonClick(id, url, title, image, play) {
+    this.invokePodcastComponentFunction.emit({id: id, url: url, title: title, image: image,play: play});
   }
 
-  onEpisodePlaylistButtonClick(episodeId, episodeUrl, episodeTitle) {
-    this.invokePlaylist.emit({id: episodeId, url: episodeUrl, title: episodeTitle});
+  onEpisodePlaylistButtonClick(episodeId, episodeUrl, episodeTitle, episodeImage) {
+    this.invokePlaylist.emit({id: episodeId, url: episodeUrl, title: episodeTitle, image: episodeImage});
   }
 
   removeFromPlaylist(episodeId) {

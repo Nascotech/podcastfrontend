@@ -61,7 +61,7 @@ export class DirectoryComponent implements OnInit {
     });
   }
 
-  
+
   allPodcastEpisod() {
     this.podcastService.getPodcastEpisode(this.id).subscribe(data => {
       this.dataResponseEpisode = data;
@@ -78,6 +78,7 @@ export class DirectoryComponent implements OnInit {
       var url = item.enclosure.url.split('?')[0];
       this.getDuration(url).then(function(length) {
         $("#duration-" + podcastId + '-' + index).text(length);
+        $("#duration-mob-" + podcastId + '-' + index).text(length);
       });
     });
   }
@@ -101,9 +102,9 @@ export class DirectoryComponent implements OnInit {
   playAllEpisode() {
     this.podcastEpisodes.forEach((info, index) => {
       if(index == 0) {
-        this.eventEmitterService.onEpisodePlayButtonClick(this.id + '_' + index, info.enclosure.url, info.title, true);
+        this.eventEmitterService.onEpisodePlayButtonClick(this.id + '_' + index, info.enclosure.url, info.title, info.image.link, true);
       }
-      this.eventEmitterService.onEpisodePlaylistButtonClick(this.id + '_' + index, info.enclosure.url, info.title);
+      this.eventEmitterService.onEpisodePlaylistButtonClick(this.id + '_' + index, info.enclosure.url, info.title, info.image.link);
     });
   }
   redirectUrl(uri: string) {
@@ -115,12 +116,12 @@ export class DirectoryComponent implements OnInit {
     this.redirectUrl('/directory/' + id);
   }
 
-  setSource(id, url, title, play) {
-    this.eventEmitterService.onEpisodePlayButtonClick(id, url, title, play);
+  setSource(id, url, title, image, play) {
+    this.eventEmitterService.onEpisodePlayButtonClick(id, url, title, image, play);
   }
 
-  addToPlaylist(episodeId, url, title) {
-    this.eventEmitterService.onEpisodePlaylistButtonClick(episodeId, url, title);
+  addToPlaylist(episodeId, url, title, image) {
+    this.eventEmitterService.onEpisodePlaylistButtonClick(episodeId, url, title, image);
   }
 
   removeFromPlaylist(episodeId) {

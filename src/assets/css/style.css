@@ -953,7 +953,8 @@ label {
 }
 .epsod-itm .epsod-img img {
   max-width: 100%;
-  width: 100%;
+  width: 225px;
+  float: right;
   box-shadow: 0 2px 60px #8b6ae917;
 }
 .epsod-itm .epsode-btn-grp .btn {
@@ -2621,3 +2622,84 @@ select.custom-dropdown option {
   margin: .125rem 0 0 !important;
 }
 
+.f-footer {
+    padding-bottom: 30px;
+}
+
+.bg-theme {
+    background-color: #e2e1ff85!important;
+}
+
+.list--buttons{
+    font-size: 1rem;
+    border-radius: 50%;
+    box-shadow: 0 3px 6px rgba(33,33,33,0), 0 3px 12px rgba(33,33,33,0) !important;
+    padding: .45rem .75rem;
+}
+
+#music-player-div p {
+    margin-bottom: 0px;
+    padding-top: 20px;
+}
+
+#scrollUp {
+	bottom: 110px !important;
+  right: 15px !important;
+}
+
+.bg-light {
+    background-color: #f7f7f7!important;
+    background-color: #f4f2fe !important;
+}
+
+.list--buttons li:nth-of-type(3) a, .list--buttons li:nth-of-type(4) a {
+    margin-left: .5rem;
+    font-size: 1.25rem;
+    color: rgb(139, 106, 233) !important;
+    padding: .82rem 1rem .82rem 1.19rem;
+}
+.list--buttons[_ngcontent-lrx-c5] li[_ngcontent-lrx-c5]:first-of-type a[_ngcontent-lrx-c5], .list--buttons[_ngcontent-lrx-c5] li[_ngcontent-lrx-c5]:last-of-type a[_ngcontent-lrx-c5] {
+    font-size: .95rem;
+    color: rgb(139, 106, 233) !important;
+    opacity: .5;
+    background: #8b6ae91a;
+}
+
+.plyr--full-ui input[type=range] {
+	color : #828282 !important;
+}
+
+.list--buttons[_ngcontent-qpo-c5] li[_ngcontent-qpo-c5]:first-of-type a[_ngcontent-qpo-c5], .list--buttons[_ngcontent-qpo-c5] li[_ngcontent-qpo-c5]:last-of-type a[_ngcontent-qpo-c5] {
+    font-size: .95rem;
+    color: #8b6ae9;
+    opacity: .5;
+    background: #e9e4fb;
+}
+
+@media (max-width: 767px) {
+	.f-footer {
+	    padding-bottom: 80px;
+	}
+	.player__container {
+	    margin-right: 0px !important;
+	    margin-left: auto !important;
+	    max-width: 100% !important;
+	    border-radius: .25rem !important;
+	}
+	.play-btm p, .play-btm .plyr {
+	    margin-left: 20px;
+	    margin-right: 20px;
+	}
+
+	.play-btm .plyr {
+		margin-bottom: 20px;
+	}
+	#music-player-div p {
+		margin-bottom: -10px !important;
+	    padding-top: 0px !important;
+	}
+	#scrollUp {
+		bottom:175px !important;
+		right: 10px !important
+	}
+}

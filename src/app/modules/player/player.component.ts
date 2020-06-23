@@ -10,7 +10,7 @@ import * as Plyr from 'plyr';
 @Component({
   selector: 'app-player',
   templateUrl: './player.component.html',
-  styleUrls: ['./player.component.scss']
+  styleUrls: ['./player.component.css']
 })
 export class PlayerComponent implements OnInit {
   songs: any = [];
@@ -24,7 +24,7 @@ export class PlayerComponent implements OnInit {
     private router: Router,
     private eventEmitterService: EventEmitterService,
     private constname: ConstNameService
-  ) { 
+  ) {
     this.route.params.subscribe(params => this.id = params['id']);
 
   }
@@ -122,6 +122,7 @@ export class PlayerComponent implements OnInit {
     this.toggleButton(result.id);
     if (this.active !== result.id) {
       $('.track-title').text(result.title);
+      $('#plyr-img').attr("src", result.image);
       this.active = result.id;
       this.player.source = {
         type: "audio",
@@ -152,10 +153,11 @@ export class PlayerComponent implements OnInit {
     }
   }
 
-  setSource(selected, sourceAudio, title, play) {
+  setSource(selected, sourceAudio, title, image, play) {
     this.toggleButton(selected);
     if (this.active !== selected) {
       $('.track-title').text(title);
+      $('#plyr-img').attr("src", image);
       this.active = selected;
       this.player.source = {
         type: "audio",
@@ -194,6 +196,8 @@ export class PlayerComponent implements OnInit {
       if(id){
         $('#play_' + id).hide();
         $('#pause_' + id).show();
+        $('#play_mob_' + id).hide();
+        $('#pause_mob_' + id).show();
         $('#playlist_play_' + id).hide();
         $('#playlist_pause_' + id).show();
       }
@@ -206,6 +210,9 @@ export class PlayerComponent implements OnInit {
       if(id) {
         $('#play_' + id).show();
         $('#pause_' + id).hide();
+        $('#play_mob_' + id).show();
+        $('#pause_mob_' + id).hide();
+
         $('#playlist_play_' + id).show();
         $('#playlist_pause_' + id).hide();
       }
@@ -250,7 +257,7 @@ export class PlayerComponent implements OnInit {
       let match = this.songsList.findIndex((item) => item.id == this.active);
       let checkNextSong = this.songsList[match + 1];
       if(checkNextSong) {
-        this.setSource(checkNextSong.id, checkNextSong.url, checkNextSong.title, true);
+        this.setSource(checkNextSong.id, checkNextSong.url, checkNextSong.title, checkNextSong.image, true);
       } else {
         console.log('next song not available');
       }
@@ -262,7 +269,7 @@ export class PlayerComponent implements OnInit {
       let match = this.songsList.findIndex((item) => item.id == this.active);
       let checkPreviousSong = this.songsList[match - 1];
       if(checkPreviousSong) {
-        this.setSource(checkPreviousSong.id, checkPreviousSong.url, checkPreviousSong.title, true);
+        this.setSource(checkPreviousSong.id, checkPreviousSong.url, checkPreviousSong.title, checkPreviousSong.image, true);
       } else {
         console.log('Previous song not available');
       }

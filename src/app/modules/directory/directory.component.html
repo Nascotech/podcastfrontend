@@ -81,7 +81,7 @@
 			</div>
 			<div class="col-xl-5 col-lg-5 col-md-5 col-5">
 				<div class="epsod-img">
-					<img src="assets/img/no-image.jpg"  alt="" />
+					<img  src="{{episode?.image ? episode?.image : 'assets/img/no-image-2.jpg'}}"  alt="" />
 				</div>
 			</div>
 		</div>
@@ -105,7 +105,7 @@
 			</div>
 			<div class="col-xl-5 col-lg-5 col-md-5 col-5">
 				<div class="epsod-img">
-					<img src="assets/img/no-image.jpg"  alt="" />
+					<img  src="{{episode?.image ? episode?.image : 'assets/img/no-image-2.jpg'}}"  alt="" />
 				</div>
 			</div>
 			<div class="col-sm-12">
@@ -132,7 +132,7 @@
 </div>
 <!-- end episodes-showcase block -->
 <!-- start recent podcasts block -->
-<div class="recent-podcasts-block pt-40 pb-20">
+<div  *ngIf="podcastList.length != 0" class="recent-podcasts-block pt-40 pb-20">
 	<div class="section-title b-none pb-30">
 		<div class="sec-titl-txt">
 			<h3>Related Podcasts</h3>

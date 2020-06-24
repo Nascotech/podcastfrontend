@@ -42,7 +42,7 @@ export class HomeComponent implements OnInit {
 
   getAccessToken() {
     let domain = location.protocol + '//' + location.hostname;
-    this.podcastService.getAccessToken('domain').subscribe((data: any) => {
+    this.podcastService.getAccessToken(domain).subscribe((data: any) => {
       if (data.errorMsg === "")  {
         this.userResponse = data;
         localStorage.setItem('publisherInfo', JSON.stringify(this.userResponse.response));

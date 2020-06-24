@@ -2647,14 +2647,13 @@ select.custom-dropdown option {
 }
 
 .bg-light {
-    background-color: #f7f7f7!important;
-    background-color: #f4f2fe !important;
+    background-color: #f5f5f5 !important;
 }
 
 .list--buttons li:nth-of-type(3) a, .list--buttons li:nth-of-type(4) a {
     margin-left: .5rem;
     font-size: 1.25rem;
-    color: rgb(139, 106, 233) !important;
+    color: var(--primary-color) !important;
     padding: .82rem 1rem .82rem 1.19rem;
 }
 .list--buttons[_ngcontent-lrx-c5] li[_ngcontent-lrx-c5]:first-of-type a[_ngcontent-lrx-c5], .list--buttons[_ngcontent-lrx-c5] li[_ngcontent-lrx-c5]:last-of-type a[_ngcontent-lrx-c5] {
@@ -2705,7 +2704,7 @@ select.custom-dropdown option {
 
 /* Playlist CSS */
 .playlist--list li.active {
-    background-color: #e9e4fc !important;
+    background-color: #eaeaea !important;
     color: var(--primary-color) !important;
 }
 
@@ -2715,7 +2714,7 @@ select.custom-dropdown option {
 }
 
 .playlist--list li:hover {
-    background-color: #e9e4fc !important;
+    background-color: #eaeaea !important;
     color: var(--primary-color) !important;
 }
 
@@ -2740,7 +2739,7 @@ div#style-1 {
 
 #style-1::-webkit-scrollbar {
     width: 4px;
-    background-color: #cbc3ec;
+    background-color: #d3d9de;
 }
 
 #style-1::-webkit-scrollbar-thumb {
@@ -2750,11 +2749,30 @@ div#style-1 {
     opacity: 1;
     box-shadow: 0 6px 9px rgba(33,33,33,0), 0 6px 16px rgba(33,33,33,0);
     background: var(--primary-color) !important;
-    color: #e9e4fc !important;
+    color: #fff !important;
 }
 
 #playButton a:hover, #pauseButton a:hover {
-    color: #e9e4fc !important;
+    color: #fff !important;
     background: var(--primary-color);
 }
+
+.playlist--list .name::before {
+  content: "\f130";
+  font-family: FontAwesome;
+  margin-right: 10px;
+  margin-left: 10px;
+  display: inline-flex;
+  vertical-align: middle;
+  color: var(--primary-color);
+  font-size: 15px;
+}
 /* Playlist css end */
+
+.a-back {
+  font-size: 21px;
+}
+
+.header-area .bck-home-btn a:hover .a-back{
+  color: #fff;
+}

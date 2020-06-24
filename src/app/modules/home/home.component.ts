@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2, Inject } from '@angular/core';
 import { PodcastService } from 'src/app/services/podcast.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ConstNameService } from 'src/app/services/const-name.service';
-import * as $ from "jquery";
 import {NgxUiLoaderService} from 'ngx-ui-loader';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Router } from '@angular/router';
+import { DOCUMENT } from '@angular/common';
+
+import * as $ from "jquery";
 
 @Component({
   selector: 'app-home',
@@ -33,7 +35,9 @@ export class HomeComponent implements OnInit {
   constructor(
     private podcastService: PodcastService,
     private constname: ConstNameService,
-    private router: Router
+    private router: Router,
+    private _renderer2: Renderer2,
+    @Inject(DOCUMENT) private _document: Document
   ) { }
 
   ngOnInit() {
@@ -42,13 +46,13 @@ export class HomeComponent implements OnInit {
 
   getAccessToken() {
     let domain = location.protocol + '//' + location.hostname;
-    this.podcastService.getAccessToken(domain).subscribe((data: any) => {
+    this.podcastService.getAccessToken('https://atunwapodcasts.com').subscribe((data: any) => {
       if (data.errorMsg === "")  {
         this.userResponse = data;
         localStorage.setItem('publisherInfo', JSON.stringify(this.userResponse.response));
         localStorage.setItem('publisherToken', this.userResponse.response.accessToken);
         localStorage.setItem('themeColor', this.userResponse.response.headerColor);
-        document.documentElement.style.setProperty('--primary-color', this.userResponse.response.headerColor);
+        this.updateGoogleScript();
         this.getGroupList();
         this.getPodcastlist();
       } else if (data.errorMsg === "ValidationError") {
@@ -69,6 +73,17 @@ export class HomeComponent implements OnInit {
          this.errorMessage = error.error.errorMsg;
        }
     });
+  }
+
+  updateGoogleScript() {
+    document.documentElement.style.setProperty('--primary-color', this.userResponse.response.headerColor);
+    // if(this.userResponse.response.headerScript) {
+    //   let script = $(atob(this.userResponse.response.headerScript));
+    //   document.getElementsByTagName("head")[0].appendChild(script[0]);
+    // }
+    // if(this.userResponse.response.leaderboard1){
+    //   $("#lead-banner").html(atob(this.userResponse.response.leaderboard1));
+    // }
   }
 
   getGroupList() {

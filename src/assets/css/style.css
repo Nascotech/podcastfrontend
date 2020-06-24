@@ -100,13 +100,13 @@ a:focus,
 a:hover,
 .portfolio-cat a:hover,
 .footer -menu li a:hover {
-  color: #8b6ae9;
+  color: var(--primary-color);
   text-decoration: none;
 }
 
 a,
 button {
-  color: #8b6ae9;
+  color: var(--primary-color);
   outline: medium none;
 }
 
@@ -198,19 +198,19 @@ label {
 }
 
 *::-moz-selection {
-  background: #8b6ae9;
+  background: var(--primary-color);
   color: #ffff;
   text-shadow: none;
 }
 
 ::-moz-selection {
-  background: #8b6ae9;
+  background: var(--primary-color);
   color: #ffff;
   text-shadow: none;
 }
 
 ::selection {
-  background: #8b6ae9;
+  background: var(--primary-color);
   color: #ffff;
   text-shadow: none;
 }
@@ -313,7 +313,7 @@ label {
 
 .btn {
   -moz-user-select: none;
-  background: #8b6ae9 none repeat scroll 0 0;
+  background: var(--primary-color) none repeat scroll 0 0;
   border: medium none;
   border-radius: 2px;
   color: #ffff;
@@ -335,7 +335,7 @@ label {
 
 /* scrollUp */
 #scrollUp {
-  background: #8b6ae9;
+  background: var(--primary-color);
   height: 35px;
   width: 35px;
   right: 50px;
@@ -358,7 +358,7 @@ label {
   align-items: center;
   flex-wrap: wrap;
   background: transparent;
-  border-top: 1px solid #8b6ae9;
+  border-top: 1px solid var(--primary-color);
   filter: drop-shadow(0px 5px 20px rgba(0, 0, 0, 0.16));
   -webkit-filter: drop-shadow(0px 5px 20px rgba(0, 0, 0, 0.16));
   margin-top: -1px;
@@ -387,7 +387,7 @@ label {
   text-transform: capitalize;
 }
 .section-btm-lnk a:hover {
-  color: #8b6ae9;
+  color: var(--primary-color);
 }
 .section-btm-lnk a i {
   margin-left: 15px;
@@ -409,7 +409,7 @@ label {
 }
 .header-area .tp-auth-action {
   display: inline-block;
-  border: 1px solid #8b6ae9;
+  border: 1px solid var(--primary-color);
   border-radius: 30px;
   padding: 5px 10px;
   height: 50px;
@@ -419,11 +419,11 @@ label {
 }
 .header-area .tp-auth-action a {
   text-align: left;
-  border-right: 1px solid #8b6ae9;
+  border-right: 1px solid var(--primary-color);
   padding: 5px 10px;
   font-family: "Lato";
   font-size: 20px;
-  color: #8b6ae9;
+  color: var(--primary-color);
   font-weight: 500;
   line-height: 1;
 }
@@ -454,7 +454,7 @@ label {
   -o-transition: all 0.3s;
 }
 .header-area .main-menu ul li a:hover {
-  border-bottom: 4px solid #8b6ae9;
+  border-bottom: 4px solid var(--primary-color);
 }
 .header-area .tp-action {
   display: flex;
@@ -496,17 +496,17 @@ label {
 .header-area .bck-home-btn a {
   display: flex;
   align-items: center;
-  border: 1px solid #8b6ae9;
+  border: 1px solid var(--primary-color);
   width: 227px;
   height: 49px;
   border-radius: 24.5px;
   background: #ffff;
-  color: #8b6ae9;
+  color: var(--primary-color);
   justify-content: center;
-  border: 1px solid #8b6ae9;
+  border: 1px solid var(--primary-color);
 }
 .header-area .bck-home-btn a:hover {
-  background: #8b6ae9;
+  background: var(--primary-color);
 }
 .header-area .bck-home-btn a:hover span {
   color: #ffff;
@@ -612,7 +612,7 @@ label {
   padding-right: 10px;
 }
 .newsletter-area .policy-lnk a:hover {
-  color: #8b6ae9;
+  color: var(--primary-color);
 }
 .newsletter-area .policy-lnk a:last-child {
   border: none;
@@ -658,7 +658,7 @@ label {
   top: 0;
   height: 100%;
   width: 48%;
-  background: linear-gradient(#8b6ae9 0%, #463575 100%);
+  background: linear-gradient(var(--primary-color) 0%, #463575 100%);
   z-index: -1;
 }
 .hero-area .hero-content h2 {
@@ -814,7 +814,7 @@ label {
   width: 346px;
   height: 54px;
   border-radius: 10px;
-  background: #8b6ae9;
+  background: var(--primary-color);
   border: 3px solid #ffff;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
   padding: 0 20px;
@@ -908,8 +908,8 @@ label {
   font-weight: 500;
   font-size: 20px;
   text-align: left;
-  color: #8b6ae9;
-  border: 1px solid #8b6ae9;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
   text-align: center;
   padding: 14px 24px;
   border-radius: 30px;
@@ -917,12 +917,12 @@ label {
   line-height: 1;
 }
 .feature-itm-txt .btn-invert:hover {
-  background: #8b6ae9;
+  background: var(--primary-color);
   color: #ffff;
 }
 
 .epsod-itm {
-  border-bottom: 1px solid #8b6ae9;
+  border-bottom: 1px solid var(--primary-color);
 }
 .epsod-itm .epsod-txt h4 {
   font-weight: 900;
@@ -954,7 +954,7 @@ label {
   max-width: 100%;
   width: 225px;
   float: right;
-  box-shadow: 0 2px 60px #8b6ae917;
+  box-shadow: 0 2px 60px var(--primary-color)17;
 }
 .epsod-itm .epsode-btn-grp .btn {
   font-family: "Helvetica Neue";
@@ -967,11 +967,11 @@ label {
 }
 .epsod-itm .epsode-btn-grp .btn:hover {
   background: transparent;
-  color: #8b6ae9;
-  border: 1px solid #8b6ae9;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
 }
 .epsod-itm .epsode-btn-grp .btn-invert {
-  color: #8b6ae9;
+  color: var(--primary-color);
   background: #ffff;
 }
 .epsod-itm .epsode-btn-grp i {
@@ -982,10 +982,10 @@ label {
 }
 
 .revised-pg .section-title h3 {
-  color: #8b6ae9;
+  color: var(--primary-color);
 }
 .revised-pg .section-btm-lnk a {
-  color: #8b6ae9;
+  color: var(--primary-color);
 }
 .revised-pg .section-btm-lnk a:hover {
   color: #27292d;
@@ -1004,7 +1004,7 @@ label {
   font-weight: 900;
   font-size: 25px;
   text-align: center !important;
-  color: #8b6ae9 !important;
+  color: var(--primary-color) !important;
   text-shadow: 0px 3px 6px rgba(0, 100, 255, 0.16);
   padding: 22px 20px;
   border-radius: 15px;
@@ -1383,12 +1383,12 @@ label {
   }
 
   .epsod-itm .epsode-btn-grp .btn {
-    border: 1px solid #8b6ae9;
+    border: 1px solid var(--primary-color);
   }
   .epsod-itm .epsode-btn-grp .btn:hover {
-    background: #8b6ae9;
+    background: var(--primary-color);
     color: #ffff;
-    border: 1px solid #8b6ae9;
+    border: 1px solid var(--primary-color);
   }
 
   .hero-area .hro-cat-wpr {
@@ -1453,7 +1453,7 @@ label {
     color: #27292d;
   }
   .mobile-menu-inner ul li a:hover {
-    color: #8b6ae9;
+    color: var(--primary-color);
   }
   .mobile-menu-inner .tp-src-bx {
     margin: 0 auto;
@@ -1547,7 +1547,7 @@ label {
   }
   .hro-cat-wpr .hro-cat-itm:nth-child(2) {
     border-top-right-radius: 25px;
-    background: #8b6ae9;
+    background: var(--primary-color);
   }
   .hro-cat-wpr .hro-cat-itm:nth-child(2) h5 {
     color: #ffff;
@@ -1593,11 +1593,11 @@ label {
   }
 
   .sec-titl-txt h3 {
-    color: #8b6ae9;
+    color: var(--primary-color);
   }
 
   .section-btm-lnk a {
-    color: #8b6ae9;
+    color: var(--primary-color);
   }
 
   .add-bnr-wpr {
@@ -1678,7 +1678,7 @@ label {
 
   .section-btm-lnk a {
     font-size: 18px;
-    color: #8b6ae9;
+    color: var(--primary-color);
   }
   .section-btm-lnk a:hover {
     color: #27292d;
@@ -1793,7 +1793,7 @@ label {
 
   .tp-auth-action {
     display: inline-block;
-    border: 1px solid #8b6ae9;
+    border: 1px solid var(--primary-color);
     border-radius: 30px;
     padding: 5px 10px;
     height: 50px;
@@ -1803,10 +1803,10 @@ label {
   }
   .tp-auth-action a {
     text-align: left;
-    border-right: 1px solid #8b6ae9;
+    border-right: 1px solid var(--primary-color);
     padding: 5px 10px;
     font-size: 20px;
-    color: #8b6ae9;
+    color: var(--primary-color);
     font-weight: 500;
     line-height: 1;
   }
@@ -1900,16 +1900,16 @@ label {
   }
 
   .epsod-itm .epsode-btn-grp .btn {
-    border: 1px solid #8b6ae9;
+    border: 1px solid var(--primary-color);
   }
   .epsod-itm .epsode-btn-grp .btn:hover {
-    background: #8b6ae9;
+    background: var(--primary-color);
     color: #ffff;
-    border: 1px solid #8b6ae9;
+    border: 1px solid var(--primary-color);
   }
 
   .feature-itm-txt .btn-invert:hover {
-    background: #8b6ae9;
+    background: var(--primary-color);
     color: #ffff;
   }
 
@@ -1991,7 +1991,7 @@ label {
     color: #000000;
   }
   .mobile-menu-inner ul li a:hover {
-    color: #8b6ae9;
+    color: var(--primary-color);
   }
   .mobile-menu-inner .tp-src-bx {
     margin: 0 auto;
@@ -2082,7 +2082,7 @@ label {
   }
   .hro-cat-wpr .hro-cat-itm:nth-child(2) {
     border-top-right-radius: 25px;
-    background: #8b6ae9;
+    background: var(--primary-color);
   }
   .hro-cat-wpr .hro-cat-itm:nth-child(2) h5 {
     color: #ffff;
@@ -2207,7 +2207,7 @@ label {
 
   .section-btm-lnk a {
     font-size: 14px;
-    color: #8b6ae9;
+    color: var(--primary-color);
   }
   .section-btm-lnk a i {
     margin-left: 7px;
@@ -2292,13 +2292,13 @@ label {
   .header-area .bck-home-btn a {
     display: flex;
     align-items: center;
-    border: 1px solid #8b6ae9;
+    border: 1px solid var(--primary-color);
     width: auto;
     height: auto;
     border-radius: 24.5px;
     background: #ffff;
     justify-content: center;
-    border: 1px solid #8b6ae9;
+    border: 1px solid var(--primary-color);
     padding: 5px 10px;
   }
 
@@ -2307,7 +2307,7 @@ label {
     font-weight: 500;
     font-size: 14px;
     text-align: left;
-    color: #8b6ae9;
+    color: var(--primary-color);
     margin-left: auto;
     line-height: 1.5;
   }
@@ -2341,7 +2341,7 @@ label {
   }
 
   .sec-titl-txt h3 {
-    color: #8b6ae9;
+    color: var(--primary-color);
     font-size: 24px;
   }
 
@@ -2493,8 +2493,8 @@ label {
     font-weight: 500;
     font-size: 20px;
     text-align: left;
-    color: #8b6ae9;
-    border: 1px solid #8b6ae9;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
     text-align: center;
     padding: 8px 17px;
     border-radius: 30px;
@@ -2542,7 +2542,7 @@ label {
   }
 
   .epsode-btn-grp .btn-invert {
-    color: #8b6ae9;
+    color: var(--primary-color);
     border: 1px solid;
   }
 
@@ -2572,7 +2572,7 @@ label {
 
   .tp-auth-action {
     display: inline-block;
-    border: 1px solid #8b6ae9;
+    border: 1px solid var(--primary-color);
     border-radius: 30px;
     padding: 5px 10px;
     height: 50px;
@@ -2582,10 +2582,10 @@ label {
   }
   .tp-auth-action a {
     text-align: left;
-    border-right: 1px solid #8b6ae9;
+    border-right: 1px solid var(--primary-color);
     padding: 5px 10px;
     font-size: 20px;
-    color: #8b6ae9;
+    color: var(--primary-color);
     font-weight: 500;
     line-height: 1;
   }
@@ -2597,7 +2597,7 @@ label {
 /*# sourceMappingURL=style.css.map */
 
 .chos-station .custom-dropdown {
-  background: #8b6ae9 url('../img/chevron.svg') no-repeat right .75rem center;
+  background: var(--primary-color) url('../img/chevron.svg') no-repeat right .75rem center;
   padding: 0 30px;
   height: 54px;
   min-width: 325px;
@@ -2661,7 +2661,7 @@ select.custom-dropdown option {
     font-size: .95rem;
     color: rgb(139, 106, 233) !important;
     opacity: .5;
-    background: #8b6ae91a;
+    background: var(--primary-color)1a;
 }
 
 .plyr--full-ui input[type=range] {
@@ -2670,7 +2670,7 @@ select.custom-dropdown option {
 
 .list--buttons[_ngcontent-qpo-c5] li[_ngcontent-qpo-c5]:first-of-type a[_ngcontent-qpo-c5], .list--buttons[_ngcontent-qpo-c5] li[_ngcontent-qpo-c5]:last-of-type a[_ngcontent-qpo-c5] {
     font-size: .95rem;
-    color: #8b6ae9;
+    color: var(--primary-color);
     opacity: .5;
     background: #e9e4fb;
 }
@@ -2706,22 +2706,22 @@ select.custom-dropdown option {
 /* Playlist CSS */
 .playlist--list li.active {
     background-color: #e9e4fc !important;
-    color: #8b6ae9 !important;
+    color: var(--primary-color) !important;
 }
 
 .playlist--list li.active .playlist-btn a {
     border: 1px solid #c9c3de !important;
-    color: #8b6ae9 !important;
+    color: var(--primary-color) !important;
 }
 
 .playlist--list li:hover {
     background-color: #e9e4fc !important;
-    color: #8b6ae9 !important;
+    color: var(--primary-color) !important;
 }
 
 .playlist--list li:hover .playlist-btn a {
     border: 1px solid #c9c3de;
-    color: #8b6ae9;
+    color: var(--primary-color);
 }
 
 .playlist[_ngcontent-uej-c5] {
@@ -2744,17 +2744,17 @@ div#style-1 {
 }
 
 #style-1::-webkit-scrollbar-thumb {
-    background-color: #8b6ae9;
+    background-color: var(--primary-color);
 }
 .list--buttons a:focus, .list--buttons a:hover {
     opacity: 1;
     box-shadow: 0 6px 9px rgba(33,33,33,0), 0 6px 16px rgba(33,33,33,0);
-    background: #8b6ae9 !important;
+    background: var(--primary-color) !important;
     color: #e9e4fc !important;
 }
 
 #playButton a:hover, #pauseButton a:hover {
     color: #e9e4fc !important;
-    background: #8b6ae9;
+    background: var(--primary-color);
 }
 /* Playlist css end */

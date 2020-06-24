@@ -28,13 +28,24 @@ export class DirectoryComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private route:ActivatedRoute,
     private eventEmitterService:EventEmitterService,
-    private router:Router) {
-      this.route.params.subscribe(params => this.id = params['id']);
-     }
+    private router:Router
+  ) {
+    this.route.params.subscribe(params => this.id = params['id']);
+  }
 
   ngOnInit() {
+    this.checkLocalStorage();
     this.podcastDetils();
     this.allPodcastEpisod();
+  }
+
+  checkLocalStorage() {
+    const checkInfo = JSON.parse(localStorage.getItem('publisherInfo') || '[]');
+    if(!checkInfo || !localStorage.getItem('publisherToken') || !localStorage.getItem('themeColor')) {
+      this.router.navigate(['/']);
+    } else {
+      document.documentElement.style.setProperty('--primary-color', localStorage.getItem('themeColor'));
+    }
   }
 
   podcastDetils() {

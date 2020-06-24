@@ -17,10 +17,19 @@ export class PodcastService {
   getpodcastlistURL = this.baseURL + '/api/getPodcasts';
   getpodcastdetailsURL = this.baseURL + '/api/getPodcastDetails/';
   getpodcastepisodeURL = this.baseURL + '/api/getPodcastEpisodes/';
+  getAccessTokenURL = this.baseURL + '/api/getAccessToken/';
 
-  constructor(private _coreHttpService: CoreHttpService,
+  constructor(
+    private _coreHttpService: CoreHttpService,
     private http:HttpClient,
-    private constname:ConstNameService){}
+    private constname:ConstNameService
+  ){}
+
+  getAccessToken(domain) {
+    return this.http.post(this.getAccessTokenURL, {
+      domain: domain
+    });
+  }
 
   getPodcastList(page_no, groupId) {
     let params = {

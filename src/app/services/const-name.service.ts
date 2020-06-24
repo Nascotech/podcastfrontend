@@ -14,12 +14,6 @@ export class ConstNameService {
   constructor(private  router: Router) {
   }
 
-
-  wimpy = {
-    // base_url: 'http://192.168.1.46/atunwa-node/wimpy/wimpy.iframe.html'
-    base_url: 'http://atunwapodcasts.com/api/wimpy/wimpy.iframe.html',
-  };
-
   clearStorage() {
     localStorage.clear();
   }
@@ -27,7 +21,7 @@ export class ConstNameService {
   getAccessToken() {
     return {
       headers: new HttpHeaders({
-        'access_token': '0d0d869b330c43730a132bce5f5e5b5f0e9982ca6d056826f528febcb1deAAAA',
+        'access_token': localStorage.getItem('publisherToken'),
       })
     };
   }

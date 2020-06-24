@@ -26,6 +26,10 @@ export class HomeComponent implements OnInit {
   isloadmore: boolean = false;
   submitted = false;
   isLoadingService:boolean = true;
+  userResponse: any = [];
+  errorMessage: string;
+  validationMessage = [];
+
   constructor(
     private podcastService: PodcastService,
     private constname: ConstNameService,
@@ -33,14 +37,44 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getGroupList();
-    this.getPodcastlist();
+    this.getAccessToken();
+  }
+
+  getAccessToken() {
+    let domain = location.protocol + '//' + location.hostname;
+    this.podcastService.getAccessToken('domain').subscribe((data: any) => {
+      if (data.errorMsg === "")  {
+        this.userResponse = data;
+        localStorage.setItem('publisherInfo', JSON.stringify(this.userResponse.response));
+        localStorage.setItem('publisherToken', this.userResponse.response.accessToken);
+        localStorage.setItem('themeColor', this.userResponse.response.headerColor);
+        document.documentElement.style.setProperty('--primary-color', this.userResponse.response.headerColor);
+        this.getGroupList();
+        this.getPodcastlist();
+      } else if (data.errorMsg === "ValidationError") {
+        let messages = data.response.message;
+        if (messages.length > 1) {
+          this.validationMessage = messages;
+        } else {
+          this.errorMessage = data.response.message;
+        }
+      } else {
+        this.errorMessage = data.errorMsg;
+      }
+    }, (error: HttpErrorResponse) => {
+       if (error.status === 0) {
+         this.errorMessage = "Server can't be connect try again.";
+       } else {
+         this.constname.forbidden(error);
+         this.errorMessage = error.error.errorMsg;
+       }
+    });
   }
 
   getGroupList() {
     this.podcastService.getGroupList(1).subscribe(data => {
       this.groupDataResponse = data;
-      this.isloadmore=true;
+      this.isloadmore = true;
       this.groupList = this.groupDataResponse.response.data;
     }, (error: HttpErrorResponse) => {
       this.constname.forbidden(error);

@@ -16,6 +16,7 @@ import * as $ from "jquery";
 })
 export class HomeComponent implements OnInit {
 
+  photoUrl: string;
   searchText: string;
   searchGroup: string;
   dataResponse: any = [];
@@ -45,10 +46,14 @@ export class HomeComponent implements OnInit {
   }
 
   getAccessToken() {
+    this.photoUrl = this.constname.BASE.img_uri;
     let domain = location.protocol + '//' + location.hostname;
-    this.podcastService.getAccessToken('https://atunwapodcasts.com').subscribe((data: any) => {
+    this.podcastService.getAccessToken(domain).subscribe((data: any) => {
       if (data.errorMsg === "")  {
         this.userResponse = data;
+        if(this.userResponse.response.photo) {
+          $("#header-logo").attr("src", this.photoUrl + this.userResponse.response.photo.path);
+        }
         localStorage.setItem('publisherInfo', JSON.stringify(this.userResponse.response));
         localStorage.setItem('publisherToken', this.userResponse.response.accessToken);
         localStorage.setItem('themeColor', this.userResponse.response.headerColor);
@@ -81,9 +86,21 @@ export class HomeComponent implements OnInit {
     //   let script = $(atob(this.userResponse.response.headerScript));
     //   document.getElementsByTagName("head")[0].appendChild(script[0]);
     // }
-    // if(this.userResponse.response.leaderboard1){
-    //   $("#lead-banner").html(atob(this.userResponse.response.leaderboard1));
-    // }
+    if(this.userResponse.response.leaderboard1){
+      $("#lead-banner").html(atob(this.userResponse.response.leaderboard1));
+    }
+    if(this.userResponse.response.sidebar1){
+      $("#sidebar1").html(atob(this.userResponse.response.sidebar1));
+    }
+    if(this.userResponse.response.sidebar2){
+      $("#sidebar2").html(atob(this.userResponse.response.sidebar2));
+    }
+    if(this.userResponse.response.sidebar3){
+      $("#sidebar3").html(atob(this.userResponse.response.sidebar3));
+    }
+    if(this.userResponse.response.sidebar4){
+      $("#sidebar4").html(atob(this.userResponse.response.sidebar4));
+    }
   }
 
   getGroupList() {

@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import {Router} from '@angular/router';
+import {environment} from '../../environments/environment';
 
 declare var jquery: any;
 declare var $: any;
@@ -13,6 +14,8 @@ export class ConstNameService {
 
   constructor(private  router: Router) {
   }
+
+  BASE = { img_uri: environment.IMG_URI };
 
   clearStorage() {
     localStorage.clear();

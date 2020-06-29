@@ -15,6 +15,8 @@ declare var $: any;
   styleUrls: ['./directory.component.scss']
 })
 export class DirectoryComponent implements OnInit {
+
+  photoUrl: string;
   dataResponseDetails: any = [];
   podcastDetail: any = [];
   podcastList: any = [];
@@ -23,7 +25,9 @@ export class DirectoryComponent implements OnInit {
   dataResponseEpisode: any = [];
   id:String;
   idmobile:String;
-  constructor(private costname:ConstNameService,
+
+  constructor(
+    private costname:ConstNameService,
     private podcastService:PodcastService,
     private spinner: NgxSpinnerService,
     private route:ActivatedRoute,
@@ -34,6 +38,7 @@ export class DirectoryComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.photoUrl = this.costname.BASE.img_uri;
     this.checkLocalStorage();
     this.podcastDetils();
     this.allPodcastEpisod();
@@ -45,6 +50,9 @@ export class DirectoryComponent implements OnInit {
       this.router.navigate(['/']);
     } else {
       document.documentElement.style.setProperty('--primary-color', localStorage.getItem('themeColor'));
+      if(checkInfo.photo) {
+        $("#header-logo").attr("src", this.photoUrl + checkInfo.photo.path);
+      }
     }
   }
 

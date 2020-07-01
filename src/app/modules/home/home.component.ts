@@ -55,7 +55,8 @@ export class HomeComponent implements OnInit {
   getAccessToken() {
     this.photoUrl = this.constname.BASE.img_uri;
     let domain = location.protocol + '//' + location.hostname;
-    this.podcastService.getAccessToken('https://atunwapodcasts.com').subscribe((data: any) => {
+    //let domain = 'https://atunwapodcasts.com';
+    this.podcastService.getAccessToken(domain).subscribe((data: any) => {
       if (data.errorMsg === "")  {
         this.userResponse = data;
         if(this.userResponse.response.photo) {

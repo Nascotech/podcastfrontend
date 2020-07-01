@@ -88,7 +88,7 @@ export class DirectoryComponent implements OnInit {
     this.podcastService.getPodcastEpisode(this.id).subscribe(data => {
       this.dataResponseEpisode = data;
       this.podcastEpisodes = this.dataResponseEpisode.response.data;
-      //this.getTime(this.podcastEpisodes,this.id);
+      this.getTime(this.podcastEpisodes,this.id);
       localStorage.setItem('podcastEpisodes', JSON.stringify(this.dataResponseEpisode.response));
     }, (error: HttpErrorResponse) => {
       this.costname.forbidden(error);

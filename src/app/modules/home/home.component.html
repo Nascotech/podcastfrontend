@@ -28,7 +28,7 @@
 			<h3 class="primary-color">Featured Podcasts</h3>
 		</div>
 		<div class="feat-src-inpt hro-src-inpt">
-			<input [(ngModel)]="searchText" type="text" placeholder="Search" />
+			<input (blur)="searchPodcast()" [(ngModel)]="searchText" type="text" placeholder="Search" />
 			<img src="assets/img/icon/src-sm-icn.svg" alt="" />
 		</div>
 	</div>
@@ -46,11 +46,11 @@
 			</div>
 		  </div>
 		<div class="row">
-			<div *ngFor="let podcast of podcastList  | search:'name':searchText" routerLink="/directory/{{podcast.id}}" class="col-xl-3 col-lg-3 col-md-4 col-6"  >
+			<div *ngFor="let podcast of podcastList" routerLink="/directory/{{podcast.id}}" class="col-xl-3 col-lg-3 col-md-4 col-6"  >
 					<div class="bx-lnk-itm pb-20" >
 						<a routerLink="/directory/{{podcast.id}}">
-							<img  class="rounded" src="{{podcast.image ? podcast.image : 'assets/img/no-image-2.jpg'}}"  onError="this.src='assets/img/no-image-2.jpg'">
-							<!-- <img class="rounded" src="{{'assets/img/no-image-2.jpg'}}"  onError="this.src='assets/img/no-image-2.jpg'"> -->
+							<!-- <img  class="rounded" src="{{podcast.image ? podcast.image : 'assets/img/no-image-2.jpg'}}"  onError="this.src='assets/img/no-image-2.jpg'"> -->
+							<img class="rounded" src="{{'assets/img/no-image-2.jpg'}}"  onError="this.src='assets/img/no-image-2.jpg'">
 						</a>
 						<div class="bx-itm-txt">
 							<a routerLink="/directory/{{podcast.id}}">
@@ -65,6 +65,6 @@
 		<button *ngIf="this.submitted === true" type="submit" class="btn-lod-mor">
 			<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span> loading...
 		</button>
-		<a *ngIf="count !== lastPage && isloadmore==true && this.submitted === false && this.podcastList.length > 0" (click)="loadMorePodcast()" id="more-podcast-btn" class="btn-lod-mor">load more</a>
+		<a href="javascript:void(0);" *ngIf="count !== lastPage && isloadmore==true && this.submitted === false && this.podcastList.length > 0" (click)="loadMorePodcast()" id="more-podcast-btn" class="btn-lod-mor">load more</a>
 	</div>
 </div>

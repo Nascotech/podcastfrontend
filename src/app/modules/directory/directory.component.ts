@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import {NgxUiLoaderService} from 'ngx-ui-loader';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { EventEmitterService } from 'src/app/services/event-emitter.service';
+import { Title } from '@angular/platform-browser';
 
 declare var $: any;
 
@@ -32,7 +33,8 @@ export class DirectoryComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private route:ActivatedRoute,
     private eventEmitterService:EventEmitterService,
-    private router:Router
+    private router:Router,
+    private titleService: Title
   ) {
     this.route.params.subscribe(params => this.id = params['id']);
   }
@@ -57,10 +59,12 @@ export class DirectoryComponent implements OnInit {
   }
 
   podcastDetils() {
+    let publisherInfo = JSON.parse(localStorage.getItem('publisherInfo'));
     this.podcastService.getPodcastDetails(this.id).subscribe(data => {
       this.dataResponseDetails = data;
       this.podcastDetail = this.dataResponseDetails.response;
-      this.relatedPodcastList(this.podcastDetail.group)
+      this.titleService.setTitle("Podcasts - " + this.podcastDetail.name + " - " + publisherInfo.fullName);
+      this.relatedPodcastList(this.podcastDetail.group);
     }, (error: HttpErrorResponse) => {
       this.costname.forbidden(error);
     });
@@ -68,7 +72,7 @@ export class DirectoryComponent implements OnInit {
 
 
   relatedPodcastList(groupId) {
-    this.podcastService.getPodcastList(1, groupId).subscribe(data => {
+    this.podcastService.getPodcastList(1, groupId, '').subscribe(data => {
       this.dataResponsePodcast = data;
       this.dataResponsePodcast.response.list.forEach(item => {
         if(item.podcastId !== Number(this.id)) {
@@ -80,12 +84,11 @@ export class DirectoryComponent implements OnInit {
     });
   }
 
-
   allPodcastEpisod() {
     this.podcastService.getPodcastEpisode(this.id).subscribe(data => {
       this.dataResponseEpisode = data;
       this.podcastEpisodes = this.dataResponseEpisode.response.data;
-      this.getTime(this.podcastEpisodes,this.id);
+      //this.getTime(this.podcastEpisodes,this.id);
       localStorage.setItem('podcastEpisodes', JSON.stringify(this.dataResponseEpisode.response));
     }, (error: HttpErrorResponse) => {
       this.costname.forbidden(error);

@@ -6,6 +6,8 @@ import {NgxUiLoaderService} from 'ngx-ui-loader';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Router } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
+import { Title } from '@angular/platform-browser';
+import postscribe from 'postscribe';
 
 import * as $ from "jquery";
 
@@ -38,6 +40,7 @@ export class HomeComponent implements OnInit {
     private constname: ConstNameService,
     private router: Router,
     private _renderer2: Renderer2,
+    private titleService: Title,
     @Inject(DOCUMENT) private _document: Document
   ) { }
 
@@ -45,15 +48,20 @@ export class HomeComponent implements OnInit {
     this.getAccessToken();
   }
 
+  searchPodcast() {
+    this.getPodcastlist();
+  }
+
   getAccessToken() {
     this.photoUrl = this.constname.BASE.img_uri;
     let domain = location.protocol + '//' + location.hostname;
-    this.podcastService.getAccessToken(domain).subscribe((data: any) => {
+    this.podcastService.getAccessToken('https://atunwapodcasts.com').subscribe((data: any) => {
       if (data.errorMsg === "")  {
         this.userResponse = data;
         if(this.userResponse.response.photo) {
           $(".header-logo").attr("src", this.photoUrl + this.userResponse.response.photo.path);
         }
+        this.titleService.setTitle("Podcasts - " + this.userResponse.response.fullName);
         localStorage.setItem('publisherInfo', JSON.stringify(this.userResponse.response));
         localStorage.setItem('publisherToken', this.userResponse.response.accessToken);
         localStorage.setItem('themeColor', this.userResponse.response.headerColor);
@@ -86,21 +94,22 @@ export class HomeComponent implements OnInit {
     //   let script = $(atob(this.userResponse.response.headerScript));
     //   document.getElementsByTagName("head")[0].appendChild(script[0]);
     // }
-    // if(this.userResponse.response.leaderboard1){
-    //   $("#lead-banner").html(atob(this.userResponse.response.leaderboard1));
-    // }
-    if(this.userResponse.response.sidebar1){
-      $("#sidebar1").html(atob(this.userResponse.response.sidebar1));
+    if(this.userResponse.response.leaderboard1){
+      postscribe('#lead-banner', atob(this.userResponse.response.leaderboard1));
     }
-    // if(this.userResponse.response.sidebar2){
-    //   $("#sidebar2").html(atob(this.userResponse.response.sidebar2));
-    // }
-    // if(this.userResponse.response.sidebar3){
-    //   $("#sidebar3").html(atob(this.userResponse.response.sidebar3));
-    // }
-    // if(this.userResponse.response.sidebar4){
-    //   $("#sidebar4").html(atob(this.userResponse.response.sidebar4));
-    // }
+    if(this.userResponse && this.userResponse.response.sidebar1) {
+      postscribe('#sidebar1', atob(this.userResponse.response.sidebar1));
+    }
+    if(this.userResponse.response.sidebar2){
+      postscribe('#sidebar2', atob(this.userResponse.response.sidebar2));
+    }
+    if(this.userResponse.response.sidebar3){
+      postscribe('#sidebar3', atob(this.userResponse.response.sidebar3));
+      $("#sidebar3").html(atob(this.userResponse.response.sidebar3));
+    }
+    if(this.userResponse.response.sidebar4){
+      postscribe('#sidebar4', atob(this.userResponse.response.sidebar4));
+    }
   }
 
   getGroupList() {
@@ -125,7 +134,7 @@ export class HomeComponent implements OnInit {
   getPodcastlist() {
     this.isLoadingService = true;
     this.count = 1;
-    this.podcastService.getPodcastList(1, this.searchGroup).subscribe(data => {
+    this.podcastService.getPodcastList(1, this.searchGroup, this.searchText).subscribe(data => {
       this.isloadmore=true;
       this.dataResponse = data;
       this.isLoadingService = false;
@@ -151,7 +160,7 @@ export class HomeComponent implements OnInit {
     this.submitted=true;
     if(this.count <= this.lastPage) {
       //this.ngxService.start();
-      this.podcastService.getPodcastList(this.count, this.searchGroup).subscribe(data => {
+      this.podcastService.getPodcastList(this.count, this.searchGroup, this.searchText).subscribe(data => {
         this.dataResponse = data;
         this.submitted=false;
         this.isloadmore=true;

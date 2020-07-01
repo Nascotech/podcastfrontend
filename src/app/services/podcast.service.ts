@@ -31,12 +31,13 @@ export class PodcastService {
     });
   }
 
-  getPodcastList(page_no, groupId) {
+  getPodcastList(page_no, groupId, searchText) {
     let params = {
       pageNo: page_no,
       isPagination: true,
       pageSize: 25,
-      groupId: groupId
+      groupId: groupId,
+      keyword: searchText
     };
     return this.http.post(this.getpodcastlistURL, params, this.constname.getAccessToken());
   }

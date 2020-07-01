@@ -58,6 +58,7 @@ export class PlayerComponent implements OnInit {
   loadPlyr() {
     this.player = new Plyr('#player', {
       autoplay: false,
+      loadSprite: true,
       controls: [
         // 'play',
         // 'restart',
@@ -79,6 +80,16 @@ export class PlayerComponent implements OnInit {
         $('.plyr--audio .plyr__controls').css('padding', '0px');
         $('.plyr--full-ui').css('margin-right', '20px');
         // $('<style>.plyr__progress:focus:after, .range:hover:after {background: rgba(211, 3, 32, .95);}</style>').appendTo('head');
+    });
+
+    this.player.on('waiting', event => {
+      $('#custom-pause').removeClass('fa fa-pause')
+      $('#custom-pause').addClass('fa fa-spinner fa-spin')
+    });
+
+    this.player.on('loadedmetadata', event => {
+      $('#custom-pause').removeClass('fa fa-spinner fa-spin')
+      $('#custom-pause').addClass('fa fa-pause')
     });
 
     let playlist = document.querySelector(".playlist");

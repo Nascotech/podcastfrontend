@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-// import { NgxSpinnerModule } from 'ngx-spinner';
-// import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { IImageLoaderOptions, NgxProgressiveImageLoaderModule } from 'ngx-progressive-image-loader';
 import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -12,17 +10,12 @@ import { CoreModule } from '../../core/core.module';
 import { ServicesModule } from '../../services/services.module';
 import { AuthInterceptor } from '../../core/interceptor/auth.interceptor';
 import { ErrorInterceptor } from '../../core/interceptor/error.interceptor';
-// import { HomeComponent } from '../../modules/home/home.component';
-// import { DirectoryComponent } from '../../modules/directory/directory.component';
-// import { SearchPipe } from '../../pipe/search.pipe';
 import {DefaultRoutingModule} from './default-routing.module';
+import { BrowserModule, Title }  from '@angular/platform-browser';
 
 @NgModule({
   declarations: [
-    DefaultComponent,
-    // HomeComponent,
-    // DirectoryComponent,
-    // SearchPipe
+    DefaultComponent
   ],
   imports: [
     CommonModule,
@@ -33,8 +26,7 @@ import {DefaultRoutingModule} from './default-routing.module';
     ReactiveFormsModule,
     SharedModule,
     ServicesModule,
-    // NgxUiLoaderModule,
-    // NgxSpinnerModule,
+    BrowserModule,
     NgxProgressiveImageLoaderModule.forRoot(<IImageLoaderOptions>{
       // rootMargin must be specified in pixels or percent
       rootMargin: '30px',
@@ -51,7 +43,8 @@ import {DefaultRoutingModule} from './default-routing.module';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    Title
   ]
 })
 export class DefaultModule { }

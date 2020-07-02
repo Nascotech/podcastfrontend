@@ -29,10 +29,12 @@
 		</div>
 		<div class="feat-src-inpt hro-src-inpt">
 			<input (blur)="searchPodcast()" [(ngModel)]="searchText" type="text" placeholder="Search" />
-			<img src="assets/img/icon/src-sm-icn.svg" alt="" />
+			<img class="search" src="assets/img/icon/src-sm-icn.svg" alt="" />
+			<a href="javascript:void(0);" *ngIf="searchText" (click)="clearSearch()">
+				<img class="cross" src="assets/img/icon/close.svg" alt="" />
+			</a>
 		</div>
 	</div>
-
 	<div class="bx-lnk-list-wpr">
 		<div class="row">
 			<div class="col-sm-12 col-md-12 col-lg-12">

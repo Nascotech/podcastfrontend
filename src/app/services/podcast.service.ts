@@ -35,7 +35,7 @@ export class PodcastService {
     let params = {
       pageNo: page_no,
       isPagination: true,
-      pageSize: 25,
+      pageSize: 24,
       groupId: groupId,
       keyword: searchText
     };

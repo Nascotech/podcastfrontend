@@ -49,6 +49,13 @@ export class HomeComponent implements OnInit {
   }
 
   searchPodcast() {
+    this.podcastList = [];
+    this.getPodcastlist();
+  }
+
+  clearSearch() {
+    this.podcastList = [];
+    this.searchText = '';
     this.getPodcastlist();
   }
 
@@ -89,27 +96,27 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  updateGoogleScript() {
+  async updateGoogleScript() {
     document.documentElement.style.setProperty('--primary-color', this.userResponse.response.headerColor);
     // if(this.userResponse.response.headerScript) {
     //   let script = $(atob(this.userResponse.response.headerScript));
     //   document.getElementsByTagName("head")[0].appendChild(script[0]);
     // }
-    if(this.userResponse.response.leaderboard1){
-      postscribe('#lead-banner', atob(this.userResponse.response.leaderboard1));
+
+    if(this.userResponse.response.leaderboard1 && !$("#lead-banner").find("script").length){
+      await postscribe('#lead-banner', atob(this.userResponse.response.leaderboard1));
     }
-    if(this.userResponse && this.userResponse.response.sidebar1) {
-      postscribe('#sidebar1', atob(this.userResponse.response.sidebar1));
+    if(this.userResponse.response.sidebar1 && !$("#sidebar1").find("script").length) {
+      await postscribe('#sidebar1', atob(this.userResponse.response.sidebar1));
     }
-    if(this.userResponse.response.sidebar2){
-      postscribe('#sidebar2', atob(this.userResponse.response.sidebar2));
+    if(this.userResponse.response.sidebar2 && !$("#sidebar2").find("script").length){
+      await postscribe('#sidebar2', atob(this.userResponse.response.sidebar2));
     }
-    if(this.userResponse.response.sidebar3){
-      postscribe('#sidebar3', atob(this.userResponse.response.sidebar3));
-      $("#sidebar3").html(atob(this.userResponse.response.sidebar3));
+    if(this.userResponse.response.sidebar3 && !$("#sidebar3").find("script").length){
+      await postscribe('#sidebar3', atob(this.userResponse.response.sidebar3));
     }
-    if(this.userResponse.response.sidebar4){
-      postscribe('#sidebar4', atob(this.userResponse.response.sidebar4));
+    if(this.userResponse.response.sidebar4 && !$("#sidebar4").find("script").length){
+      await postscribe('#sidebar4', atob(this.userResponse.response.sidebar4));
     }
   }
 
@@ -124,6 +131,7 @@ export class HomeComponent implements OnInit {
   }
 
   groupFilter(event) {
+    this.podcastList = [];
     this.searchGroup = event.target.value;;
     this.getPodcastlist();
   }
@@ -141,7 +149,7 @@ export class HomeComponent implements OnInit {
       this.isLoadingService = false;
       this.podcastList = this.dataResponse.response.list;
       let totalRecord = this.dataResponse.response.total;
-      this.lastPage = Math.ceil(totalRecord / 25);
+      this.lastPage = Math.ceil(totalRecord / 24);
       if(this.lastPage > 1) {
         $('#more-podcast-btn').show();
       }

@@ -142,23 +142,25 @@
 	<div class="reltd-podcasts-wpr">
 		<div class="row">
 			<div class="col-xl-6" *ngFor="let podcast of podcastList">
-				<div class="reltd-pod-itm mb-30">
-					<div class="reltd-pod-itm-contnt">
-						<div class="pod-itm-img">
-							<img src="{{podcast.image ? podcast.image : 'assets/img/no-image.jpg'}}" style="width: 80px;" alt="" />
-							<!-- <img src="{{'assets/img/no-image-2.jpg'}}" (click)="redirectTo(podcast.podcastId)" style="width: 80px;" alt="" /> -->
+				<a href="javascript:void(0);" (click)="redirectTo(podcast.podcastId)">
+					<div class="reltd-pod-itm mb-30">
+						<div class="reltd-pod-itm-contnt">
+							<div class="pod-itm-img">
+								<!-- <img src="{{podcast.image ? podcast.image : 'assets/img/no-image-2.jpg'}}" style="width: 80px;" alt="" /> -->
+								<img src="{{'assets/img/no-image-2.jpg'}}" (click)="redirectTo(podcast.podcastId)" style="width: 80px;" alt="" />
+							</div>
+							<div class="pod-itm-txt">
+								<span>{{podcast?.createdAtTimestamp * 1000 | date}}</span>
+								<h5>{{podcast?.name}}</h5>
+							</div>
 						</div>
-						<div class="pod-itm-txt">
-							<span>{{podcast?.createdAtTimestamp * 1000 | date}}</span>
-							<h5>{{podcast?.name}}</h5>
+						<div class="reltd-pod-itm-icn">
+							<a href="javascript:void(0)" (click)="redirectTo(podcast.podcastId)">
+								<img src="assets/img/icon/blur-play-icnn.svg" alt=""/>
+							</a>
 						</div>
 					</div>
-					<div class="reltd-pod-itm-icn">
-						<a href="javascript:void(0)" (click)="redirectTo(podcast.podcastId)">
-							<img src="assets/img/icon/blur-play-icnn.svg" alt=""/>
-						</a>
-					</div>
-				</div>
+				</a>
 			</div>
 		</div>
 	</div>

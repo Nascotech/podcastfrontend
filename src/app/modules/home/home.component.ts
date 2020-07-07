@@ -45,6 +45,7 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    window.scroll(0,0);
     this.getAccessToken();
   }
 
@@ -61,8 +62,8 @@ export class HomeComponent implements OnInit {
 
   getAccessToken() {
     this.photoUrl = this.constname.BASE.img_uri;
-    let domain = location.protocol + '//' + location.hostname;
-    //let domain = 'https://atunwapodcasts.com';
+    ///let domain = location.protocol + '//' + location.hostname;
+    let domain = 'https://atunwapodcasts.com';
     this.podcastService.getAccessToken(domain).subscribe((data: any) => {
       if (data.errorMsg === "")  {
         this.userResponse = data;

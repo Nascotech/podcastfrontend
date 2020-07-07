@@ -2,12 +2,16 @@
   <div class="container-fluid">
     <div class="row align-items-center">
       <div class="col-xl-6 col-lg-6 col-md-6 col-6 text-left d-flex justify-content-between">
-        <div class="bck-home-btn">
+        <div class="bck-home-btn" *ngIf="router.url === '/'">
           <a routerLink="/">
             <i class="fa fa-home a-back"></i>
             <span>Back to Home</span>
           </a>
         </div>
+        <a routerLink="/" *ngIf="router.url !== '/'">
+          <i class="fa fa-arrow-left"></i>
+          <span> Back </span>
+        </a>
       </div>
       <div class="col-xl-6 col-lg-6 col-md-6 col-6 text-right">
         <div class="home-logo prod-pag">

@@ -40,6 +40,7 @@ export class DirectoryComponent implements OnInit {
   }
 
   ngOnInit() {
+    window.scroll(0,0);
     this.photoUrl = this.costname.BASE.img_uri;
     this.checkLocalStorage();
     this.podcastDetils();

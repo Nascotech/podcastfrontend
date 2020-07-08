@@ -133,7 +133,11 @@ export class PlayerComponent implements OnInit {
     this.toggleButton(result.id);
     if (this.active !== result.id) {
       $('.track-title').text(result.title);
-      $('#plyr-img').attr("src", result.image);
+      if(result.image) {
+        $('#plyr-img').attr("src", result.image);
+      } else {
+        $('#plyr-img').attr("src", '/assets/img/no-image-2.jpg');
+      }
       this.active = result.id;
       this.player.source = {
         type: "audio",
@@ -168,7 +172,11 @@ export class PlayerComponent implements OnInit {
     this.toggleButton(selected);
     if (this.active !== selected) {
       $('.track-title').text(title);
-      $('#plyr-img').attr("src", image);
+      if(image) {
+        $('#plyr-img').attr("src", image);
+      } else {
+        $('#plyr-img').attr("src", '/assets/img/no-image-2.jpg');
+      }
       this.active = selected;
       this.player.source = {
         type: "audio",

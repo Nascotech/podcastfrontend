@@ -61,15 +61,15 @@
 					<p>{{episode?.description}}</p>
 
 					<div class="epsode-btn-grp pt-10">
-						<a id="play_{{id + '_' + i}}" class="btn episode-play-btn" (click)="setSource(id + '_' + i, episode.enclosure.url, episode.title, episode.image.link, true)">
+						<a id="play_{{id + '_' + i}}" class="btn episode-play-btn" (click)="setSource(id + '_' + i, episode.enclosure.url, episode.title, episode.image?.link, true)">
 							<i class="fa fa-play"></i>Listen
-							<code id="duration-{{id + '-' + i}}">{{episode?.duration}}</code>
+							<code id="duration-{{id + '-' + i}}">{{episode['itunes:duration']}}</code>
 						</a>
-						<a style="display:none" id="pause_{{id + '_' + i}}" class="btn episode-pause-btn" (click)="setSource(id + '_' + i, episode.enclosure.url, episode.title, episode.image.link, true)">
+						<a style="display:none" id="pause_{{id + '_' + i}}" class="btn episode-pause-btn" (click)="setSource(id + '_' + i, episode.enclosure.url, episode.title, episode.image?.link, true)">
 							<i class="fa fa-pause"></i> Pause
-							<code id="duration-{{id + '-' + i}}">{{episode?.duration}}</code>
+							<code id="duration-{{id + '-' + i}}">{{episode['itunes:duration']}}</code>
 						  </a>
-						<a *ngIf="!checkPlaylistClick(id + '_' + i)" (click)="addToPlaylist(id + '_' + i,episode.enclosure.url,episode.title,episode.image.link)" class="btn btn-invert ml-2">
+						<a *ngIf="!checkPlaylistClick(id + '_' + i)" (click)="addToPlaylist(id + '_' + i,episode.enclosure.url,episode.title,episode.image?.link)" class="btn btn-invert ml-2">
 							<i class="fas fa-plus-circle"></i>
 							Playlist
 						</a>
@@ -81,7 +81,7 @@
 			</div>
 			<div class="col-xl-5 col-lg-5 col-md-5 col-5">
 				<div class="epsod-img">
-					<img src="{{episode.image ? episode.image.link : 'assets/img/no-image-2.jpg'}}" alt="" />
+					<img src="{{episode.image ? episode.image?.link : 'assets/img/no-image-2.jpg'}}" alt="" />
 					<!-- <img class="rounded" src="{{'assets/img/no-image-2.jpg'}}" alt="" /> -->
 				</div>
 			</div>
@@ -106,20 +106,20 @@
 			</div>
 			<div class="col-xl-5 col-lg-5 col-md-5 col-5">
 				<div class="epsod-img">
-					<img src="{{episode.image ? episode.image.link : 'assets/img/no-image-2.jpg'}}"  alt="" />
+					<img src="{{episode.image ? episode.image?.link : 'assets/img/no-image-2.jpg'}}"  alt="" />
 				</div>
 			</div>
 			<div class="col-sm-12">
 				<div class="epsode-btn-grp pt-20">
-					<a id="play_mob_{{id + '_' + i}}" (click)="setSource(id + '_' + i, episode.enclosure.url, episode.title, episode.image.link, true)"  class="btn btn-invert episode-play-btn" >
+					<a id="play_mob_{{id + '_' + i}}" (click)="setSource(id + '_' + i, episode.enclosure.url, episode.title, episode.image?.link, true)"  class="btn btn-invert episode-play-btn" >
 						<i class="fa fa-play"></i>Listen
-						<code id="duration-mob-{{id + '-' + i}}">{{episode?.duration}}</code>
+						<code id="duration-mob-{{id + '-' + i}}">{{episode['itunes:duration']}}</code>
 					</a>
-					<a style="display:none" id="pause_mob_{{id + '_' + i}}" class="btn episode-pause-btn" (click)="setSource(id + '_' + i, episode.enclosure.url, episode.title, episode.image.link, true)">
+					<a style="display:none" id="pause_mob_{{id + '_' + i}}" class="btn episode-pause-btn" (click)="setSource(id + '_' + i, episode.enclosure.url, episode.title, episode.image?.link, true)">
 						<i class="fa fa-pause"></i> Pause
-						<code id="duration-mob-{{id + '-' + i}}">{{episode?.duration}}</code>
+						<code id="duration-mob-{{id + '-' + i}}">{{episode['itunes:duration']}}</code>
 					  </a>
-				  <a *ngIf="!checkPlaylistClick(id + '_' + i)" (click)="addToPlaylist(id + '_' + i,episode.enclosure.url,episode.title,episode.image.link)" class="btn btn-invert ml-2">
+				  <a *ngIf="!checkPlaylistClick(id + '_' + i)" (click)="addToPlaylist(id + '_' + i,episode.enclosure.url,episode.title,episode.image?.link)" class="btn btn-invert ml-2">
 						<i class="fas fa-plus-circle"></i>
 						Playlist
 					</a>
@@ -146,8 +146,8 @@
 					<div class="reltd-pod-itm mb-30">
 						<div class="reltd-pod-itm-contnt">
 							<div class="pod-itm-img">
-								<!-- <img src="{{podcast.image ? podcast.image : 'assets/img/no-image-2.jpg'}}" style="width: 80px;" alt="" /> -->
-								<img src="{{'assets/img/no-image-2.jpg'}}" (click)="redirectTo(podcast.podcastId)" style="width: 80px;" alt="" />
+								<img src="{{podcast.image ? podcast.image : 'assets/img/no-image-2.jpg'}}" style="width: 80px;" alt="" />
+								<!-- <img src="{{'assets/img/no-image-2.jpg'}}" (click)="redirectTo(podcast.podcastId)" style="width: 80px;" alt="" /> -->
 							</div>
 							<div class="pod-itm-txt">
 								<span>{{podcast?.createdAtTimestamp * 1000 | date}}</span>

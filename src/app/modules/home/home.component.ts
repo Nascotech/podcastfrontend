@@ -40,8 +40,7 @@ export class HomeComponent implements OnInit {
     private constname: ConstNameService,
     private router: Router,
     private _renderer2: Renderer2,
-    private titleService: Title,
-    @Inject(DOCUMENT) private _document: Document
+    private titleService: Title
   ) { }
 
   ngOnInit() {
@@ -62,15 +61,18 @@ export class HomeComponent implements OnInit {
 
   getAccessToken() {
     this.photoUrl = this.constname.BASE.img_uri;
-    ///let domain = location.protocol + '//' + location.hostname;
-    let domain = 'https://atunwapodcasts.com';
+    let domain = location.protocol + '//' + location.hostname;
+    //let domain = 'https://atunwapodcasts.com';
     this.podcastService.getAccessToken(domain).subscribe((data: any) => {
       if (data.errorMsg === "")  {
         this.userResponse = data;
         if(this.userResponse.response.photo) {
           $(".header-logo").attr("src", this.photoUrl + this.userResponse.response.photo.path);
         }
-        this.titleService.setTitle("Podcasts - " + this.userResponse.response.fullName);
+        if(this.userResponse.response.homeDomain) {
+          $("#home-link").attr("href", this.userResponse.response.homeDomain);
+        }
+        this.titleService.setTitle("Podcasts - " + this.userResponse.response.publisherName);
         localStorage.setItem('publisherInfo', JSON.stringify(this.userResponse.response));
         localStorage.setItem('publisherToken', this.userResponse.response.accessToken);
         localStorage.setItem('themeColor', this.userResponse.response.headerColor);

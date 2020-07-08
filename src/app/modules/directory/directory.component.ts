@@ -7,6 +7,7 @@ import {NgxUiLoaderService} from 'ngx-ui-loader';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { EventEmitterService } from 'src/app/services/event-emitter.service';
 import { Title } from '@angular/platform-browser';
+import postscribe from 'postscribe';
 
 declare var $: any;
 
@@ -54,8 +55,34 @@ export class DirectoryComponent implements OnInit {
     } else {
       document.documentElement.style.setProperty('--primary-color', localStorage.getItem('themeColor'));
       if(checkInfo.photo) {
-        $("#header-logo").attr("src", this.photoUrl + checkInfo.photo.path);
+        $(".header-logo").attr("src", this.photoUrl + checkInfo.photo.path);
       }
+      if(checkInfo.homeDomain) {
+        $("#home-link").attr("href", checkInfo.homeDomain);
+      }
+      this.titleService.setTitle("Podcasts - " + checkInfo.publisherName);
+      this.updateGoogleScript();
+    }
+  }
+
+  async updateGoogleScript() {
+    const publisherInfo = JSON.parse(localStorage.getItem('publisherInfo') || '[]');
+    document.documentElement.style.setProperty('--primary-color', publisherInfo.headerColor);
+
+    if(publisherInfo.leaderboard1 && !$("#lead-banner").find("script").length){
+      await postscribe('#lead-banner', atob(publisherInfo.leaderboard1));
+    }
+    if(publisherInfo.sidebar1 && !$("#sidebar1").find("script").length) {
+      await postscribe('#sidebar1', atob(publisherInfo.sidebar1));
+    }
+    if(publisherInfo.sidebar2 && !$("#sidebar2").find("script").length){
+      await postscribe('#sidebar2', atob(publisherInfo.sidebar2));
+    }
+    if(publisherInfo.sidebar3 && !$("#sidebar3").find("script").length){
+      await postscribe('#sidebar3', atob(publisherInfo.sidebar3));
+    }
+    if(publisherInfo.sidebar4 && !$("#sidebar4").find("script").length){
+      await postscribe('#sidebar4', atob(publisherInfo.sidebar4));
     }
   }
 
@@ -64,7 +91,7 @@ export class DirectoryComponent implements OnInit {
     this.podcastService.getPodcastDetails(this.id).subscribe(data => {
       this.dataResponseDetails = data;
       this.podcastDetail = this.dataResponseDetails.response;
-      this.titleService.setTitle("Podcasts - " + this.podcastDetail.name + " - " + publisherInfo.fullName);
+      this.titleService.setTitle("Podcasts - " + this.podcastDetail.name + " - " + publisherInfo.publisherName);
       this.relatedPodcastList(this.podcastDetail.group);
     }, (error: HttpErrorResponse) => {
       this.costname.forbidden(error);
@@ -89,7 +116,9 @@ export class DirectoryComponent implements OnInit {
     this.podcastService.getPodcastEpisode(this.id).subscribe(data => {
       this.dataResponseEpisode = data;
       this.podcastEpisodes = this.dataResponseEpisode.response.data;
-      this.getTime(this.podcastEpisodes,this.id);
+      console.log(this.podcastEpisodes);
+
+      //this.getTime(this.podcastEpisodes,this.id);
       localStorage.setItem('podcastEpisodes', JSON.stringify(this.dataResponseEpisode.response));
     }, (error: HttpErrorResponse) => {
       this.costname.forbidden(error);
@@ -124,10 +153,11 @@ export class DirectoryComponent implements OnInit {
 
   playAllEpisode() {
     this.podcastEpisodes.forEach((info, index) => {
+      let img = (info.image && info.image.link) ? info.image.link : '';
       if(index == 0) {
-        this.eventEmitterService.onEpisodePlayButtonClick(this.id + '_' + index, info.enclosure.url, info.title, info.image.link, true);
+        this.eventEmitterService.onEpisodePlayButtonClick(this.id + '_' + index, info.enclosure.url, info.title, img, true);
       }
-      this.eventEmitterService.onEpisodePlaylistButtonClick(this.id + '_' + index, info.enclosure.url, info.title, info.image.link);
+      this.eventEmitterService.onEpisodePlaylistButtonClick(this.id + '_' + index, info.enclosure.url, info.title, img);
     });
   }
   redirectUrl(uri: string) {

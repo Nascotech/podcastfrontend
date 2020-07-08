@@ -364,23 +364,25 @@ label {
   margin-top: -1px;
 }
 .section-title h3 {
-  font-weight: 900;
-  font-size: 30px;
-  text-align: left;
-  color: #27292d;
-  margin: 0;
-}
-.section-title p {
-  font-weight: 300;
+  font-weight: 700;
   font-size: 23px;
   text-align: left;
   color: #27292d;
+  margin: 0;
+  margin-bottom: 10px;
+  letter-spacing: 0.2px;
+}
+.section-title p {
+  font-weight: 400;
+  font-size: 17px;
+  text-align: left;
+  color: #717277;
   margin: 0;
 }
 
 .section-btm-lnk a {
   font-weight: 500;
-  font-size: 23px;
+  font-size: 18px;
   color: #27292d;
   display: block;
   text-align: right;
@@ -390,8 +392,8 @@ label {
   color: var(--primary-color);
 }
 .section-btm-lnk a i {
-  margin-left: 15px;
-  font-size: 28px;
+  margin-left: 10px;
+  font-size: 21px;
 }
 
 .header-area {
@@ -422,7 +424,7 @@ label {
   border-right: 1px solid var(--primary-color);
   padding: 5px 10px;
   font-family: "Lato";
-  font-size: 20px;
+  font-size: 17px;
   color: var(--primary-color);
   font-weight: 500;
   line-height: 1;
@@ -438,20 +440,21 @@ label {
 }
 .header-area .main-menu ul li a {
   text-align: left;
-  text-shadow: 0px 3px 6px rgba(0, 100, 255, 0.16);
+  /* text-shadow: 0px 3px 6px rgba(0, 100, 255, 0.16); */
   margin-left: 37px;
   border-bottom: 4px solid transparent;
   padding-bottom: 2px;
   font-family: Lato;
-  font-size: 20px;
+  font-size: 17px;
   color: #000000;
-  font-weight: bold;
+  font-weight: 500;
   line-height: 1;
   transition: all 0.3s;
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
   -ms-transition: all 0.3s;
   -o-transition: all 0.3s;
+  letter-spacing: 0.2px;
 }
 .header-area .main-menu ul li a:hover {
   border-bottom: 4px solid var(--primary-color);
@@ -462,7 +465,7 @@ label {
   align-items: center;
 }
 .header-area .tp-action img {
-  width: 24px;
+  width: 21px;
 }
 .header-area .tp-action .tp-act-lnk {
   display: inline-block;
@@ -478,10 +481,11 @@ label {
   background: none;
   font-family: "Helvetica Neue";
   font-weight: 500;
-  font-size: 20px;
+  font-size: 15px;
   text-align: left;
   color: #000000;
   text-shadow: 0px 3px 6px rgba(0, 100, 255, 0.16);
+  letter-spacing: 0.2px;
 }
 .header-area .bck-home-btn img {
   width: 27px;
@@ -489,7 +493,7 @@ label {
 .header-area .bck-home-btn span {
   font-family: "Helvetica Neue";
   font-weight: 500;
-  font-size: 20px;
+  font-size: 17px;
   text-align: left;
   margin-left: 16px;
 }
@@ -525,7 +529,7 @@ label {
 }
 .newsletter-area .nes-ltr-frm-wpr h2 {
   font-weight: 500;
-  font-size: 47px;
+  font-size: 42px;
   text-align: center;
   color: #27292d;
 }
@@ -541,7 +545,7 @@ label {
   border: none;
   padding: 14px 38px;
   margin: 0;
-  height: 120px;
+  height: 100px;
   width: 650px;
   font-size: 25px;
 }
@@ -556,7 +560,7 @@ label {
   opacity: 1;
 }
 .newsletter-area .nes-ltr-frm-wpr .nws-ltr-inpt-bx input[type=submit] {
-  width: 237px;
+  width: 180px;
   height: 63px;
   border-radius: 15px;
   background: #ff044e;
@@ -567,18 +571,19 @@ label {
   transform: translateY(-50%);
   color: #ffff;
   font-weight: normal;
-  font-size: 23px;
+  font-size: 21px;
   text-align: center;
   color: #ffff;
 }
 .newsletter-area .ftr-title p {
   font-weight: normal;
-  font-size: 20px;
+  font-size: 17px;
   line-height: 1.2;
   text-align: left;
   color: #000000;
   margin: 0;
   display: inline-block;
+  letter-spacing: 0.3px;
 }
 .newsletter-area .ftr-title .ftr-logo {
   display: flex;
@@ -599,18 +604,23 @@ label {
   justify-content: space-evenly;
 }
 .newsletter-area .policy-lnk {
-  display: flex;
+  display: block;
   justify-content: space-between;
 }
 .newsletter-area .policy-lnk a {
   font-weight: normal;
-  font-size: 25px;
-  line-height: 1.2;
+  font-size: 17px !important;
+  line-height: 25px;
   text-align: left;
   color: #000000;
-  border-right: 1px solid #27292d;
+  border-right: 0px solid #27292d;
   padding-right: 10px;
 }
+
+.newsletter-area .policy-lnk a:last-child {
+  float: right;
+}
+
 .newsletter-area .policy-lnk a:hover {
   color: var(--primary-color);
 }
@@ -663,33 +673,38 @@ label {
 }
 .hero-area .hero-content h2 {
   font-family: "Lato";
-  font-weight: 900;
-  font-size: 47px;
+  font-weight: 700;
+  font-size: 34px;
   text-align: left;
   color: #27292d;
   margin: 0;
   line-height: 1;
+  margin-bottom: 10px;
 }
 .hero-area .hero-content h2 img {
   margin-right: 15px;
 }
+
+.hero-content.prod-page h2 img {
+  margin-right: 10px;
+}
 .hero-area .hero-content p {
   font-family: "Lato";
-  font-weight: 300;
-  font-size: 23px;
+  font-weight: 400;
+  font-size: 17px;
   text-align: left;
-  color: #27292d;
+  color: #717277;
   margin: 0;
   margin-bottom: 45px;
 }
 .hero-area .hero-content h6 {
   font-family: "Lato";
-  font-weight: 900;
-  font-size: 30px;
+  font-weight: 700;
+  font-size: 25px;
   text-align: left;
   color: #27292d;
   margin: 0;
-  margin-bottom: 50px;
+  margin-bottom: 15px;
 }
 .hero-area .hero-content .hro-src-inpt {
   position: relative;
@@ -754,8 +769,8 @@ label {
   border-radius: 15px;
 }
 .hero-area .hro-cat-wpr .hro-cat-itm h5 {
-  font-weight: 900;
-  font-size: 34px;
+  font-weight: 500;
+  font-size: 25px;
   text-align: left;
   color: #27292d;
   text-shadow: 0px 3px 6px rgba(0, 100, 255, 0.16);
@@ -780,22 +795,36 @@ label {
 .revised-pg .hro-src-inpt input::placeholder {
   color: #27292d;
 }
+.revised-pg .hro-src-inpt .search {
+  position: absolute;
+  left: 0;
+  height: 14px;
+  top: 7px;
+}
+
+.revised-pg .hro-src-inpt .cross {
+  position: absolute;
+  right: 5px !important;
+  height: 10px;
+  top: 10px;
+}
 
 .podcasts-directory-blk .hero-content h2 {
   font-family: "Lato";
-  font-weight: 900;
-  font-size: 47px;
+  font-weight: 700;
+  font-size: 34px;
   text-align: left;
   color: #27292d;
   margin: 0;
   line-height: 1;
+  margin-bottom: 10px;
 }
 .podcasts-directory-blk .hero-content p {
   font-family: "Lato";
-  font-weight: 300;
-  font-size: 23px;
+  font-weight: 400;
+  font-size: 17px;
   text-align: left;
-  color: #27292d;
+  color: #717277;
   margin: 0;
   margin-bottom: 45px;
 }
@@ -832,6 +861,7 @@ label {
 
 .bx-lnk-list-wpr {
   position: relative;
+  /* z-index: 1111; */
 }
 .bx-lnk-list-wpr .bx-itm-txt {
   margin-top: 15px;
@@ -852,7 +882,7 @@ label {
   font-size: 15px;
   text-align: left;
   color: #27292d;
-  text-shadow: 0px 3px 6px rgba(0, 100, 255, 0.16);
+  /* text-shadow: 0px 3px 6px rgba(0, 100, 255, 0.16); */
 }
 .bx-lnk-list-wpr .bx-lnk-itm .intigat-icn {
   position: absolute;
@@ -871,36 +901,41 @@ label {
 
 .feature-itm-txt {
   padding-left: 40px;
+  padding-top: 10px;
 }
 .feature-itm-txt h2 {
-  font-weight: 900;
-  font-size: 47px;
+  font-weight: 800;
+  font-size: 34px;
   text-align: left;
   margin: 0;
   color: #27292d;
+  letter-spacing: 0.3px;
 }
 .feature-itm-txt span {
   font-weight: 500;
-  font-size: 23px;
+  font-size: 17px;
   text-align: left;
-  color: #27292d;
+  color: #717277;
   margin: 12px 0;
   display: block;
+  line-height: 30px;
 }
 .feature-itm-txt p {
-  font-weight: normal;
-  font-size: 23px;
+  font-weight: 400;
+  font-size: 17px;
   text-align: left;
-  color: #27292d;
+  color: rgb(63, 68, 71);
   margin: 0;
   margin-bottom: 30px;
+  line-height: 25px;
+  letter-spacing: 0.2px;
 }
 .feature-itm-txt .btn-invert {
   min-width: 141px;
   background: #ffff;
   font-family: "Helvetica Neue";
   font-weight: 500;
-  font-size: 20px;
+  font-size: 17px;
   text-align: left;
   color: var(--primary-color);
   border: 1px solid var(--primary-color);
@@ -912,7 +947,7 @@ label {
 }
 .feature-itm-txt .btn-invert:hover {
   background: var(--primary-color);
-  color: #ffff;
+  color: #ffff !important;
 }
 
 .epsod-itm {
@@ -925,35 +960,38 @@ label {
   color: #27292d;
 }
 .epsod-itm .epsod-txt span {
-  font-weight: 300;
-  font-size: 20px;
+  font-weight: 400;
+  font-size: 15px;
   text-align: left;
-  color: #27292d;
+  color: #717277;
   margin-bottom: 10px;
   display: block;
 }
 .epsod-itm .epsod-txt h2 {
-  font-weight: 900;
-  font-size: 32px;
+  font-weight: 700;
+  font-size: 25px;
   text-align: left;
   color: #27292d;
+  margin-bottom: 10px;
 }
 .epsod-itm .epsod-txt p {
   font-weight: 400;
-  font-size: 20px;
+  font-size: 16px;
   text-align: left;
-  color: #27292d;
+  color: rgb(63, 68, 71);
+  line-height: 25px;
+  letter-spacing: 0.2px;
 }
 .epsod-itm .epsod-img img {
   max-width: 100%;
-  width: 225px;
+  width: 200px;
   float: right;
   box-shadow: 0 2px 60px var(--primary-color)17;
 }
 .epsod-itm .epsode-btn-grp .btn {
   font-family: "Helvetica Neue";
   font-weight: 500;
-  font-size: 15px;
+  font-size: 13px;
   text-align: left;
   color: #ffff;
   border-radius: 30px;
@@ -986,24 +1024,25 @@ label {
 }
 .revised-pg .popular-podcasts-block .bx-itm-txt p {
   margin-top: 15px;
-  font-weight: 900;
+  font-weight: normal;
   font-size: 15px;
   text-align: left;
-  color: #27292d;
+  color: #2F3133;
 }
 .revised-pg .btn-lod-mor {
-  width: 292px;
+  width: 225px;
   display: inline-block !important;
   font-family: Lato;
-  font-weight: 900;
-  font-size: 25px;
+  font-weight: 700;
+  font-size: 19px;
   text-align: center !important;
   color: var(--primary-color) !important;
-  text-shadow: 0px 3px 6px rgba(0, 100, 255, 0.16);
+  /* text-shadow: 0px 3px 6px rgba(0, 100, 255, 0.16); */
   padding: 22px 20px;
   border-radius: 15px;
   background: #ffff;
   box-shadow: 0px 3px 6px rgba(0, 100, 255, 0.16);
+  letter-spacing: 0.5px;
 }
 .revised-pg .btn-lod-mor:hover {
   color: #27292d !important;
@@ -1039,17 +1078,18 @@ label {
 }
 .reltd-pod-itm .reltd-pod-itm-contnt .pod-itm-txt span {
   font-family: Lato;
-  font-weight: 900;
-  font-size: 18px;
+  font-weight: 400;
+  font-size: 15px;
   text-align: left;
   color: #b6bac1;
 }
 .reltd-pod-itm .reltd-pod-itm-contnt .pod-itm-txt h5 {
   font-family: Lato;
-  font-weight: 900;
+  font-weight: 700;
   font-size: 16px;
   text-align: left;
   color: #27292d;
+  margin-top: 0.2rem;
 }
 .reltd-pod-itm .reltd-pod-itm-icn {
   width: 15%;
@@ -1060,16 +1100,17 @@ label {
 /* end features css */
 @media (min-width: 1200px) and (max-width: 1500px) {
   .podcasts-directory-blk .hero-content h2 {
-    font-weight: 900;
-    font-size: 36px;
+    font-weight: 700;
+    font-size: 34px;
     text-align: left;
     color: #27292d;
     margin: 0;
     line-height: 1;
+    margin-bottom: 10px;
   }
 
   .header-area .main-menu ul li a {
-    margin-left: 12px;
+    margin-left: 30px;
     font-size: 16px;
   }
   .header-area .tp-action .tp-act-lnk {

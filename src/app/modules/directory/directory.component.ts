@@ -153,7 +153,12 @@ export class DirectoryComponent implements OnInit {
 
   playAllEpisode() {
     this.podcastEpisodes.forEach((info, index) => {
-      let img = (info.image && info.image.link) ? info.image.link : '';
+      let img = '';
+      if(info.image && info.image.link) {
+        img = info.image.link
+      } else if(this.podcastDetail.image) {
+        img = this.podcastDetail.image
+      }
       if(index == 0) {
         this.eventEmitterService.onEpisodePlayButtonClick(this.id + '_' + index, info.enclosure.url, info.title, img, true);
       }

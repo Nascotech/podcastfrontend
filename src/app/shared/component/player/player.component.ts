@@ -130,6 +130,7 @@ export class PlayerComponent implements OnInit {
   }
 
   newSetSource(result) {
+    $('.f-footer').addClass('f-padding');
     this.toggleButton(result.id);
     if (this.active !== result.id) {
       $('.track-title').text(result.title);
@@ -169,6 +170,7 @@ export class PlayerComponent implements OnInit {
   }
 
   setSource(selected, sourceAudio, title, image, play) {
+    $('.f-footer').addClass('f-padding');
     this.toggleButton(selected);
     if (this.active !== selected) {
       $('.track-title').text(title);
@@ -241,6 +243,7 @@ export class PlayerComponent implements OnInit {
   }
 
   playSong() {
+    $('.f-footer').addClass('f-padding');
     this.player.play();
     this.toggleButton(null);
   }

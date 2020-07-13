@@ -18,6 +18,7 @@ export class PodcastService {
   getpodcastdetailsURL = this.baseURL + '/api/getPodcastDetails/';
   getpodcastepisodeURL = this.baseURL + '/api/getPodcastEpisodes/';
   getAccessTokenURL = this.baseURL + '/api/getAccessToken/';
+  defaultConfig = this.baseURL + '/api/defaultConfig/';
 
   constructor(
     private _coreHttpService: CoreHttpService,
@@ -57,5 +58,7 @@ export class PodcastService {
     return this.http.get(this.getpodcastepisodeURL + id, this.constname.getAccessToken());
   }
 
-
+  getDefaultSetting() {
+    return this.http.get(this.defaultConfig, this.constname.getAccessToken());
+  }
 }

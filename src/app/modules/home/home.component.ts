@@ -34,6 +34,7 @@ export class HomeComponent implements OnInit {
   userResponse: any = [];
   errorMessage: string;
   validationMessage = [];
+  advScriptData: any = [];
 
   constructor(
     private podcastService: PodcastService,
@@ -45,6 +46,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     window.scroll(0,0);
+    this.getAdvScript();
     this.getAccessToken();
   }
 
@@ -61,8 +63,8 @@ export class HomeComponent implements OnInit {
 
   getAccessToken() {
     this.photoUrl = this.constname.BASE.img_uri;
-    //let domain = location.protocol + '//' + location.hostname;
-    let domain = 'https://atunwapodcasts.com';
+    let domain = location.protocol + '//' + location.hostname;
+    //let domain = 'https://atunwapodcasts.com';
     this.podcastService.getAccessToken(domain).subscribe((data: any) => {
       if (data.errorMsg === "")  {
         this.userResponse = data;
@@ -72,11 +74,11 @@ export class HomeComponent implements OnInit {
         if(this.userResponse.response.homeDomain) {
           $("#home-link").attr("href", this.userResponse.response.homeDomain);
         }
+        document.documentElement.style.setProperty('--primary-color', this.userResponse.response.headerColor);
         this.titleService.setTitle("Podcasts - " + this.userResponse.response.publisherName);
         localStorage.setItem('publisherInfo', JSON.stringify(this.userResponse.response));
         localStorage.setItem('publisherToken', this.userResponse.response.accessToken);
         localStorage.setItem('themeColor', this.userResponse.response.headerColor);
-        this.updateGoogleScript();
         this.getGroupList();
         this.getPodcastlist();
       } else if (data.errorMsg === "ValidationError") {
@@ -100,27 +102,31 @@ export class HomeComponent implements OnInit {
   }
 
   async updateGoogleScript() {
-    document.documentElement.style.setProperty('--primary-color', this.userResponse.response.headerColor);
-    // if(this.userResponse.response.headerScript) {
-    //   let script = $(atob(this.userResponse.response.headerScript));
-    //   document.getElementsByTagName("head")[0].appendChild(script[0]);
-    // }
+    if(this.advScriptData.leaderboard1 && !$("#lead-banner").find("script").length){
+      await postscribe('#lead-banner', atob(this.advScriptData.leaderboard1));
+    }
+    if(this.advScriptData.sidebar1 && !$("#sidebar1").find("script").length) {
+      await postscribe('#sidebar1', atob(this.advScriptData.sidebar1));
+    }
+    if(this.advScriptData.sidebar2 && !$("#sidebar2").find("script").length){
+      await postscribe('#sidebar2', atob(this.advScriptData.sidebar2));
+    }
+    if(this.advScriptData.sidebar3 && !$("#sidebar3").find("script").length){
+      await postscribe('#sidebar3', atob(this.advScriptData.sidebar3));
+    }
+    if(this.advScriptData.sidebar4 && !$("#sidebar4").find("script").length){
+      await postscribe('#sidebar4', atob(this.advScriptData.sidebar4));
+    }
+  }
 
-    if(this.userResponse.response.leaderboard1 && !$("#lead-banner").find("script").length){
-      await postscribe('#lead-banner', atob(this.userResponse.response.leaderboard1));
-    }
-    if(this.userResponse.response.sidebar1 && !$("#sidebar1").find("script").length) {
-      await postscribe('#sidebar1', atob(this.userResponse.response.sidebar1));
-    }
-    if(this.userResponse.response.sidebar2 && !$("#sidebar2").find("script").length){
-      await postscribe('#sidebar2', atob(this.userResponse.response.sidebar2));
-    }
-    if(this.userResponse.response.sidebar3 && !$("#sidebar3").find("script").length){
-      await postscribe('#sidebar3', atob(this.userResponse.response.sidebar3));
-    }
-    if(this.userResponse.response.sidebar4 && !$("#sidebar4").find("script").length){
-      await postscribe('#sidebar4', atob(this.userResponse.response.sidebar4));
-    }
+  getAdvScript() {
+    this.podcastService.getDefaultSetting().subscribe((data: any) => {
+      this.advScriptData = data.response;
+      localStorage.setItem('advScriptData', JSON.stringify(this.advScriptData));
+      this.updateGoogleScript();
+    }, (error: HttpErrorResponse) => {
+      this.constname.forbidden(error);
+    });
   }
 
   getGroupList() {

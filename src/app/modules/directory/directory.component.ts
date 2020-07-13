@@ -27,6 +27,7 @@ export class DirectoryComponent implements OnInit {
   dataResponseEpisode: any = [];
   id:String;
   idmobile:String;
+  advScriptData: any = [];
 
   constructor(
     private costname:ConstNameService,
@@ -50,7 +51,8 @@ export class DirectoryComponent implements OnInit {
 
   checkLocalStorage() {
     const checkInfo = JSON.parse(localStorage.getItem('publisherInfo') || '[]');
-    if(!checkInfo || !localStorage.getItem('publisherToken') || !localStorage.getItem('themeColor')) {
+    this.advScriptData = JSON.parse(localStorage.getItem('advScriptData'));
+    if(!checkInfo || !localStorage.getItem('publisherToken') || !localStorage.getItem('themeColor') || !localStorage.getItem('advScriptData')) {
       this.router.navigate(['/']);
     } else {
       document.documentElement.style.setProperty('--primary-color', localStorage.getItem('themeColor'));
@@ -66,23 +68,20 @@ export class DirectoryComponent implements OnInit {
   }
 
   async updateGoogleScript() {
-    const publisherInfo = JSON.parse(localStorage.getItem('publisherInfo') || '[]');
-    document.documentElement.style.setProperty('--primary-color', publisherInfo.headerColor);
-
-    if(publisherInfo.leaderboard1 && !$("#lead-banner").find("script").length){
-      await postscribe('#lead-banner', atob(publisherInfo.leaderboard1));
+    if(this.advScriptData.leaderboard1 && !$("#lead-banner").find("script").length){
+      await postscribe('#lead-banner', atob(this.advScriptData.leaderboard1));
     }
-    if(publisherInfo.sidebar1 && !$("#sidebar1").find("script").length) {
-      await postscribe('#sidebar1', atob(publisherInfo.sidebar1));
+    if(this.advScriptData.sidebar1 && !$("#sidebar1").find("script").length) {
+      await postscribe('#sidebar1', atob(this.advScriptData.sidebar1));
     }
-    if(publisherInfo.sidebar2 && !$("#sidebar2").find("script").length){
-      await postscribe('#sidebar2', atob(publisherInfo.sidebar2));
+    if(this.advScriptData.sidebar2 && !$("#sidebar2").find("script").length){
+      await postscribe('#sidebar2', atob(this.advScriptData.sidebar2));
     }
-    if(publisherInfo.sidebar3 && !$("#sidebar3").find("script").length){
-      await postscribe('#sidebar3', atob(publisherInfo.sidebar3));
+    if(this.advScriptData.sidebar3 && !$("#sidebar3").find("script").length){
+      await postscribe('#sidebar3', atob(this.advScriptData.sidebar3));
     }
-    if(publisherInfo.sidebar4 && !$("#sidebar4").find("script").length){
-      await postscribe('#sidebar4', atob(publisherInfo.sidebar4));
+    if(this.advScriptData.sidebar4 && !$("#sidebar4").find("script").length){
+      await postscribe('#sidebar4', atob(this.advScriptData.sidebar4));
     }
   }
 
@@ -198,4 +197,7 @@ export class DirectoryComponent implements OnInit {
     }
   }
 
+  updateTime(time) {
+    return time.replace(/^(?:00:)?0?/, '');
+  }
 }

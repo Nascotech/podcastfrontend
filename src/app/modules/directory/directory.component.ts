@@ -59,6 +59,9 @@ export class DirectoryComponent implements OnInit {
       if(checkInfo.photo) {
         $(".header-logo").attr("src", this.photoUrl + checkInfo.photo.path);
       }
+      if(checkInfo.favIcon) {
+        $('link[rel="shortcut icon"]').attr('href', this.photoUrl + checkInfo.favIcon.path)
+      }
       if(checkInfo.homeDomain) {
         $("#home-link").attr("href", checkInfo.homeDomain);
       }

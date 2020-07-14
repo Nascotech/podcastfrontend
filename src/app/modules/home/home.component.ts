@@ -4,7 +4,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ConstNameService } from 'src/app/services/const-name.service';
 import {NgxUiLoaderService} from 'ngx-ui-loader';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
 import { Title } from '@angular/platform-browser';
 import postscribe from 'postscribe';
@@ -41,30 +41,28 @@ export class HomeComponent implements OnInit {
     private constname: ConstNameService,
     private router: Router,
     private _renderer2: Renderer2,
+    private route: ActivatedRoute,
     private titleService: Title
-  ) { }
+  ) {
+    this.route.params.subscribe(params => this.searchGroup = params['groupId']);
+    this.route.params.subscribe(params => this.searchText = params['searchText']);
+  }
 
   ngOnInit() {
     window.scroll(0,0);
     this.getAdvScript();
     this.getAccessToken();
-  }
-
-  searchPodcast() {
-    this.podcastList = [];
-    this.getPodcastlist();
-  }
-
-  clearSearch() {
-    this.podcastList = [];
-    this.searchText = '';
-    this.getPodcastlist();
+    this.route.queryParams.subscribe(queryParams => {
+      this.searchGroup = queryParams.groupId;
+      this.searchText = queryParams.searchText;
+      this.getPodcastlist();
+    });
   }
 
   getAccessToken() {
-    this.photoUrl = this.constname.BASE.img_uri;
+    //this.photoUrl = this.constname.BASE.img_uri;
     let domain = location.protocol + '//' + location.hostname;
-    //let domain = 'https://atunwapodcasts.com';
+    let domain = 'https://atunwapodcasts.com';
     this.podcastService.getAccessToken(domain).subscribe((data: any) => {
       if (data.errorMsg === "")  {
         this.userResponse = data;
@@ -73,6 +71,12 @@ export class HomeComponent implements OnInit {
         }
         if(this.userResponse.response.homeDomain) {
           $("#home-link").attr("href", this.userResponse.response.homeDomain);
+        }
+        if(this.userResponse.response.privacyPolicy) {
+          $("#privacy-link").attr("href", this.userResponse.response.privacyPolicy);
+        }
+        if(this.userResponse.response.termsOfUse) {
+          $("#terms-link").attr("href", this.userResponse.response.termsOfUse);
         }
         document.documentElement.style.setProperty('--primary-color', this.userResponse.response.headerColor);
         this.titleService.setTitle("Podcasts - " + this.userResponse.response.publisherName);
@@ -137,16 +141,6 @@ export class HomeComponent implements OnInit {
     }, (error: HttpErrorResponse) => {
       this.constname.forbidden(error);
     });
-  }
-
-  groupFilter(event) {
-    this.podcastList = [];
-    this.searchGroup = event.target.value;;
-    this.getPodcastlist();
-  }
-
-  gotodirectoryPage() {
-    console.log("vhvh");
   }
 
   getPodcastlist() {

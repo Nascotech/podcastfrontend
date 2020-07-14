@@ -11,6 +11,7 @@ import { LeadAddbannerComponent } from './lead-addbanner/lead-addbanner.componen
 import { NgxProgressiveImageLoaderModule } from 'ngx-progressive-image-loader';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { PlayerComponent } from './player/player.component';
+import { FiltersComponent } from './filters/filters.component';
 
 @NgModule({
   imports: [
@@ -29,7 +30,8 @@ import { PlayerComponent } from './player/player.component';
     HeaderComponent,
     SidebarComponent,
     LeadAddbannerComponent,
-    PlayerComponent
+    PlayerComponent,
+    FiltersComponent
   ],
   exports: [
     CommonModule,
@@ -42,7 +44,8 @@ import { PlayerComponent } from './player/player.component';
     FooterComponent,
     SidebarComponent,
     LeadAddbannerComponent,
-    PlayerComponent
+    PlayerComponent,
+    FiltersComponent
   ]
 })
 export class SharedModule {}

@@ -4,13 +4,13 @@
 <div class="feature-itm-block pt-30 pb-30">
 	<div class="podct-itm desktop-only">
 		<div class="row no-gutters">
-			<div class="col-xl-4 col-lg-5 col-md-6">
+			<div class="col-xl-3 col-lg-3 col-md-4">
 				<div class="feature-itm-img">
-					<img class="rounded" height="300" width="300" src="{{podcastDetail.image ? podcastDetail.image : 'assets/img/no-image-2.jpg'}}" alt="" />
-					<!-- <img class="rounded" height="300" width="300" src="{{'assets/img/no-image-2.jpg'}}" alt="" /> -->
+					<img class="rounded" height="250" width="250" src="{{podcastDetail.image ? podcastDetail.image : 'assets/img/no-image-2.jpg'}}" alt="" />
+					<!-- <img class="rounded" height="250" width="250" src="{{'assets/img/no-image-2.jpg'}}" alt="" /> -->
 				</div>
 			</div>
-			<div class="col-xl-8 col-lg-7 col-md-6">
+			<div class="col-xl-9 col-lg-9 col-md-8">
 				<div class="feature-itm-txt">
 					<h2>{{podcastDetail?.name}}</h2>
 					<span>{{podcastDetail?.createdAtTimestamp * 1000 | date}}</span>
@@ -25,8 +25,8 @@
 			<div class="col-xl-4 col-lg-5 col-md-6">
 				<div class="feature-itm-img">
 					<div>
-						<img class="rounded" height="300" width="300" src="{{podcastDetail.image ? podcastDetail.image : 'assets/img/no-image-2.jpg'}}" alt="" />
-						<!-- <img class="rounded" height="300" width="300" src="{{'assets/img/no-image-2.jpg'}}" alt="" /> -->
+						<img class="rounded" height="150" width="150" src="{{podcastDetail.image ? podcastDetail.image : 'assets/img/no-image-2.jpg'}}" alt="" />
+						<!-- <img class="rounded pr-3" height="150" width="150" src="{{'assets/img/no-image-2.jpg'}}" alt="" /> -->
 					</div>
 					<div>
 						<h2>{{podcastDetail?.name}}</h2>
@@ -45,14 +45,14 @@
 </div>
 <!-- end feature-itm block -->
 <!-- start episodes-showcase block -->
-<div class="episode-showcase pt-20 pb-40 desktop-only">
-	<div class="section-title blue-border-tp pt-45">
+<div class="episode-showcase pb-40 desktop-only">
+	<div class="section-title blue-border-tp pt-30 pb-20">
 		<div class="sec-titl-txt mblk">
 			<h3>Most Recent Episodes</h3>
 		</div>
 	</div>
 
-	<div class="epsod-itm pt-25 pb-25" *ngFor="let episode of podcastEpisodes; let i = index">
+	<div class="epsod-itm pb-15" *ngFor="let episode of podcastEpisodes; let i = index" [ngClass]="{'pt-15' : i !== 0}">
 		<div class="row align-items-center">
 			<div class="col-xl-7 col-7 col-lg-7 col-md-7">
 				<div class="epsod-txt">
@@ -60,7 +60,7 @@
 					<h2>{{episode?.title}}</h2>
 					<p>{{episode?.description}}</p>
 
-					<div class="epsode-btn-grp pt-10">
+					<div class="epsode-btn-grp">
 						<a id="play_{{id + '_' + i}}" class="btn episode-play-btn" (click)="setSource(id + '_' + i, episode.enclosure.url, episode.title, episode.image ? episode.image?.link : podcastDetail.image ? podcastDetail.image : 'assets/img/no-image-2.jpg', true)">
 							<i class="fa fa-play"></i>Listen
 							<code id="duration-{{id + '-' + i}}">{{updateTime(episode['itunes:duration'])}}</code>
@@ -88,14 +88,14 @@
 		</div>
 	</div>
 </div>
-<div class="episode-showcase pt-20 pb-40 mobile-only" *ngFor="let episode of podcastEpisodes; let i = index">
+<div class="episode-showcase pt-20 pb-40 mobile-only">
 	<div class="section-title blue-border-tp pt-45">
 		<div class="sec-titl-txt mblk">
 			<h3>Most Recent Episodes</h3>
 		</div>
 	</div>
 
-	<div class="epsod-itm pt-25 pb-25">
+	<div class="epsod-itm pb-15" *ngFor="let episode of podcastEpisodes; let i = index" [ngClass]="{'pt-15' : i !== 0}">
 		<div class="row align-items-center">
 			<div class="col-xl-7 col-7 col-lg-7 col-md-7">
 				<div class="epsod-txt">
@@ -111,7 +111,7 @@
 				</div>
 			</div>
 			<div class="col-sm-12">
-				<div class="epsode-btn-grp pt-20">
+				<div class="epsode-btn-grp">
 					<a id="play_mob_{{id + '_' + i}}" (click)="setSource(id + '_' + i, episode.enclosure.url, episode.title, episode.image ? episode.image?.link : podcastDetail.image ? podcastDetail.image : 'assets/img/no-image-2.jpg', true)"  class="btn btn-invert episode-play-btn" >
 						<i class="fa fa-play"></i>Listen
 						<code id="duration-mob-{{id + '-' + i}}">{{updateTime(episode['itunes:duration'])}}</code>

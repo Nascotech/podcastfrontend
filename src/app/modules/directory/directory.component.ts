@@ -62,6 +62,12 @@ export class DirectoryComponent implements OnInit {
       if(checkInfo.homeDomain) {
         $("#home-link").attr("href", checkInfo.homeDomain);
       }
+      if(checkInfo.privacyPolicy) {
+        $("#privacy-link").attr("href", checkInfo.privacyPolicy);
+      }
+      if(checkInfo.termsOfUse) {
+        $("#terms-link").attr("href", checkInfo.termsOfUse);
+      }
       this.titleService.setTitle("Podcasts - " + checkInfo.publisherName);
       this.updateGoogleScript();
     }

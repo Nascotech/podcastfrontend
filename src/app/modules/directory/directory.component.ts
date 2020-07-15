@@ -124,7 +124,6 @@ export class DirectoryComponent implements OnInit {
     this.podcastService.getPodcastEpisode(this.id).subscribe(data => {
       this.dataResponseEpisode = data;
       this.podcastEpisodes = this.dataResponseEpisode.response.data;
-      console.log(this.podcastEpisodes);
 
       //this.getTime(this.podcastEpisodes,this.id);
       localStorage.setItem('podcastEpisodes', JSON.stringify(this.dataResponseEpisode.response));

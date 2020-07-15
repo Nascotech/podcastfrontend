@@ -26,7 +26,7 @@
 				<div class="feature-itm-img">
 					<div>
 						<img class="rounded" height="150" width="150" src="{{podcastDetail.image ? podcastDetail.image : 'assets/img/no-image-2.jpg'}}" alt="" />
-						<!-- <img class="rounded pr-3" height="150" width="150" src="{{'assets/img/no-image-2.jpg'}}" alt="" /> -->
+						<!-- <img class="rounded pr-3 mr-2" height="150" width="150" src="{{'assets/img/no-image-2.jpg'}}" alt="" /> -->
 					</div>
 					<div>
 						<h2>{{podcastDetail?.name}}</h2>
@@ -134,7 +134,7 @@
 </div>
 <!-- end episodes-showcase block -->
 <!-- start recent podcasts block -->
-<div  *ngIf="podcastList.length != 0" class="recent-podcasts-block pt-40 pb-20">
+<div  *ngIf="podcastList.length != 0" class="recent-podcasts-block pb-20">
 	<div class="section-title b-none pb-30">
 		<div class="sec-titl-txt">
 			<h3>Related Podcasts</h3>

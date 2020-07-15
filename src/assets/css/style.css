@@ -542,7 +542,7 @@ label {
   background-position: right bottom;
   background-size: 0%;
   background-color: #ffff;
-  margin-top: 45px;
+  margin-top: 10px;
 }
 
 .newsletter-area .nes-ltr-frm-wpr h2 {
@@ -738,7 +738,7 @@ label {
 
 .hero-content.prod-page h2 img {
   margin-right: 15px;
-  width: 50px;
+  width: 55px;
 }
 
 .hero-area .hero-content p {
@@ -896,6 +896,7 @@ label {
   color: #717277;
   margin: 0;
   margin-bottom: 45px;
+  margin-top: 27px;
 }
 
 .chos-station button {
@@ -1117,6 +1118,7 @@ label {
 
 .revised-pg .section-btm-lnk a:hover {
   color: #27292d;
+  text-decoration: none;
 }
 
 .revised-pg .popular-podcasts-block .bx-itm-txt p {
@@ -1132,8 +1134,9 @@ label {
   display: inline-block !important;
   font-family: Lato;
   font-weight: 700;
-  font-size: 18px;
+  font-size: 16px;
   text-align: center !important;
+  text-decoration: none;
   color: var(--primary-color) !important;
   /* text-shadow: 0px 3px 6px rgba(0, 100, 255, 0.16); */
   padding: 12px 20px;
@@ -1230,7 +1233,7 @@ label {
     width: 310px;
     margin-left: 0px;
     float: right;
-  }
+}
   img.st-search {
     position: absolute;
     top: 65px;
@@ -1240,6 +1243,10 @@ label {
   }
   .has-search .form-control {
     padding-left: 2rem;
+  }
+
+  .revised-pg .btn-lod-mor {
+    margin-right: 30px;
   }
 }
 
@@ -1261,7 +1268,8 @@ label {
     margin-left: 10px;
   }
   .header-area .home-logo {
-    margin-right: 30px;
+    /* margin-right: 30px; */
+    margin-right: 0px;
   }
   .header-area .tp-act-lnk {
     margin-left: 15px;
@@ -2445,7 +2453,7 @@ label {
   .epsode-btn-grp {
     display: flex;
     align-items: center;
-    justify-content: center;
+    margin-top: 10px;
   }
   .epsode-btn-grp .btn {
     font-size: 14px;
@@ -2914,10 +2922,7 @@ img.s-cross {
   padding-right: 0px;
 }
 
-.cc-allow:hover {
-  background-color: var(--primary-color) !important;
-}
-
-.cc-banner .cc-message {
-    font-size: 14px !important;
+.fa-size {
+  font-size: 22px;
+  margin-top: 3px;
 }

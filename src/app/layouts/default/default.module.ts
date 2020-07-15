@@ -12,12 +12,36 @@ import { AuthInterceptor } from '../../core/interceptor/auth.interceptor';
 import { ErrorInterceptor } from '../../core/interceptor/error.interceptor';
 import {DefaultRoutingModule} from './default-routing.module';
 import { BrowserModule, Title }  from '@angular/platform-browser';
+import {NgcCookieConsentModule, NgcCookieConsentConfig} from 'ngx-cookieconsent';
+import {environment} from 'src/environments/environment';
+
+const cookieConfig:NgcCookieConsentConfig = {
+  cookie: {
+    domain: environment.cookieDomain
+  },
+  palette: {
+    popup: {
+      background: '#cfd5d8'
+    },
+    button: {
+      background: 'var(--primary-color)'
+    }
+  },
+  content:{
+    message: 'This media player\'s features are powered by cookies. We use the data stored in cookies to keep track of what you\'ve listened to. We also use your IP address to work out roughly where you are. This data helps us provide the core media player service, and to better understand your radio listening patterns so that we can improve your radio experience.',
+    link: "",
+  },
+  position: "bottom",
+  theme: "classic",
+  type: 'opt-out'
+};
 
 @NgModule({
   declarations: [
     DefaultComponent
   ],
   imports: [
+    NgcCookieConsentModule.forRoot(cookieConfig),
     CommonModule,
     DefaultRoutingModule,
     RouterModule,

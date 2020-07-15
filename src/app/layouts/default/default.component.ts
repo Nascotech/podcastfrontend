@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgcCookieConsentService } from 'ngx-cookieconsent';
 
 @Component({
   selector: 'app-default',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DefaultComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private ccService: NgcCookieConsentService
+  ) { }
 
   ngOnInit() {
+    this.ccService.popupOpen$.subscribe(
+      () => {
+        // you can use this.ccService.getConfig() to do stuff...
+      });
   }
 
   onActivate(event) {

@@ -28,11 +28,12 @@
             ],
             "styles": [
               "src/styles.scss",
-              "node_modules/plyr/dist/plyr.css"
+              "node_modules/plyr/dist/plyr.css",
+              "node_modules/cookieconsent/build/cookieconsent.min.css"
             ],
             "scripts": [
-              "node_modules/plyr/dist/plyr.js"
-
+              "node_modules/plyr/dist/plyr.js",
+              "node_modules/cookieconsent/build/cookieconsent.min.js"
             ]
           },
           "configurations": {

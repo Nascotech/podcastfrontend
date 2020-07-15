@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  cookieDomain: 'localhost',
   base_url: 'https://atunwapodcasts.com:7000',
   IMG_URI : 'https://atunwapodcasts.com/api/'
 };

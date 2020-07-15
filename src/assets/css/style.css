@@ -542,7 +542,7 @@ label {
   background-position: right bottom;
   background-size: 0%;
   background-color: #ffff;
-  margin-top: 90px;
+  margin-top: 45px;
 }
 
 .newsletter-area .nes-ltr-frm-wpr h2 {
@@ -694,7 +694,7 @@ label {
 .newsletter-area .powered-by span {
   font-weight: normal;
   margin: 0 10px;
-  font-size: 20px;
+  font-size: 17px;
   line-height: 1;
   text-align: center;
   color: #461495;
@@ -733,6 +733,7 @@ label {
 
 .hero-content .title-box {
   display: flex;
+  padding-top: 10px;
 }
 
 .hero-content.prod-page h2 img {
@@ -1210,7 +1211,7 @@ label {
 @media (min-width: 1300px) and (max-width: 1367px) {
   .search-cust {
     min-width: 285px;
-    margin-left: -25px;
+    margin-left: -15px;
   }
   img.st-search {
     position: absolute;
@@ -1226,15 +1227,16 @@ label {
 
 @media (min-width: 1366px) and (max-width: 1367px) {
   .search-cust {
-    min-width: 285px;
-    margin-left: -15px;
+    width: 310px;
+    margin-left: 0px;
+    float: right;
   }
   img.st-search {
     position: absolute;
     top: 65px;
     height: 15px;
     width: 15px;
-    left: 5px !important;
+    left: 20px!important;
   }
   .has-search .form-control {
     padding-left: 2rem;
@@ -1899,6 +1901,10 @@ label {
 }
 
 @media (max-width: 767px) {
+  .margin-r-0 {
+    margin-right: 0px;
+    padding-right: 15px !important;
+  }
   .chos-station .custom-dropdown {
     margin-bottom: 15px !important;
   }
@@ -2541,8 +2547,8 @@ label {
     padding-right: 10px;
   }
   .epsod-img img {
-    height: 90%;
-    width: 90% !important;
+    height: 100%;
+    width: 100%;
     object-fit: cover;
     margin-left: 10px;
   }
@@ -2901,4 +2907,17 @@ img.s-cross {
   text-align: center;
   pointer-events: none;
   color: #aaa;
+}
+
+.margin-r-0 {
+  margin-right: 0px;
+  padding-right: 0px;
+}
+
+.cc-allow:hover {
+  background-color: var(--primary-color) !important;
+}
+
+.cc-banner .cc-message {
+    font-size: 14px !important;
 }

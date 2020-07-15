@@ -87,7 +87,7 @@ export class PlayerComponent implements OnInit {
       $('#custom-pause').addClass('fa fa-spinner fa-spin')
     });
 
-    this.player.on('loadedmetadata', event => {
+    this.player.on('canplay', event => {
       $('#custom-pause').removeClass('fa fa-spinner fa-spin')
       $('#custom-pause').addClass('fa fa-pause')
     });

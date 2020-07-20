@@ -2924,5 +2924,6 @@ img.s-cross {
 
 .fa-size {
   font-size: 22px;
-  margin-top: 3px;
+  vertical-align: middle;
+  margin-top: -1.9px;
 }

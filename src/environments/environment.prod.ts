@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  cookieDomain: 'https://atunwapodcasts.com',
+  cookieDomain: 'atunwapodcasts.com',
   base_url: 'https://atunwapodcasts.com:7000',
   IMG_URI : 'https://atunwapodcasts.com/api/'
 };

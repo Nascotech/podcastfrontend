@@ -3,9 +3,10 @@ import { PodcastService } from 'src/app/services/podcast.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EventEmitterService } from 'src/app/services/event-emitter.service';
 import { ConstNameService } from 'src/app/services/const-name.service';
-declare var $: any;
-import * as Plyr from 'plyr';
 
+declare const com_adswizz_synchro_decorateUrl: any;
+declare let $: any;
+import * as Plyr from 'plyr';
 
 @Component({
   selector: 'app-player',
@@ -13,11 +14,13 @@ import * as Plyr from 'plyr';
   styleUrls: ['./player.component.css']
 })
 export class PlayerComponent implements OnInit {
+
   songs: any = [];
   active: any = [];
   public player;
   songsList: any = [];
   id: string;
+
   constructor(
     private podcastServices: PodcastService,
     private route: ActivatedRoute,
@@ -26,7 +29,6 @@ export class PlayerComponent implements OnInit {
     private constname: ConstNameService
   ) {
     this.route.params.subscribe(params => this.id = params['id']);
-
   }
 
   ngOnInit() {
@@ -145,7 +147,7 @@ export class PlayerComponent implements OnInit {
         title: "test",
         sources: [
           {
-            src : result.url,
+            src : this.convertUrl(result.url),
             type: "audio/ogg"
           }
         ]
@@ -185,7 +187,7 @@ export class PlayerComponent implements OnInit {
         title: "test",
         sources: [
           {
-            src : sourceAudio,
+            src : this.convertUrl(sourceAudio),
             type: "audio/ogg"
           }
         ]
@@ -240,6 +242,10 @@ export class PlayerComponent implements OnInit {
       $('#playButton').show();
       $('#pauseButton').hide();
     });
+  }
+
+  convertUrl(url) {
+    return com_adswizz_synchro_decorateUrl(url);
   }
 
   playSong() {

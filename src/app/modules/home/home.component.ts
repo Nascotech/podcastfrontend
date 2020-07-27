@@ -60,11 +60,16 @@ export class HomeComponent implements OnInit {
 
   getAccessToken() {
     this.photoUrl = this.constname.BASE.img_uri;
-    let domain = location.protocol + '//' + location.hostname;
-    //let domain = 'https://atunwapodcasts.com';
+    //let domain = location.protocol + '//' + location.hostname;
+    let domain = 'https://atunwapodcasts.com';
     this.podcastService.getAccessToken(domain).subscribe((data: any) => {
       if (data.errorMsg === "")  {
         this.userResponse = data;
+        localStorage.setItem('publisherInfo', JSON.stringify(this.userResponse.response));
+        localStorage.setItem('publisherToken', this.userResponse.response.accessToken);
+        localStorage.setItem('themeColor', this.userResponse.response.headerColor);
+        document.documentElement.style.setProperty('--primary-color', this.userResponse.response.headerColor);
+        this.titleService.setTitle("Podcasts - " + this.userResponse.response.publisherName);
         if(this.userResponse.response.photo) {
           $(".header-logo").attr("src", this.photoUrl + this.userResponse.response.photo.path);
         }
@@ -80,11 +85,6 @@ export class HomeComponent implements OnInit {
         if(this.userResponse.response.termsOfUse) {
           $("#terms-link").attr("href", this.userResponse.response.termsOfUse);
         }
-        document.documentElement.style.setProperty('--primary-color', this.userResponse.response.headerColor);
-        this.titleService.setTitle("Podcasts - " + this.userResponse.response.publisherName);
-        localStorage.setItem('publisherInfo', JSON.stringify(this.userResponse.response));
-        localStorage.setItem('publisherToken', this.userResponse.response.accessToken);
-        localStorage.setItem('themeColor', this.userResponse.response.headerColor);
         this.getGroupList();
         this.getPodcastlist();
       } else if (data.errorMsg === "ValidationError") {

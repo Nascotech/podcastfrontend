@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NgcCookieConsentService, NgcStatusChangeEvent } from 'ngx-cookieconsent';
 import { Subscription }   from 'rxjs/Subscription';
+import postscribe from 'postscribe';
 
 declare let $: any;
 
@@ -21,11 +22,13 @@ export class DefaultComponent implements OnInit {
     this.statusChangeSubscription = this.ccService.statusChange$.subscribe(
       (event: NgcStatusChangeEvent) => {
         if(event.status === "allow") {
-          $("#adswizz_1").attr("src", "//synchrobox.adswizz.com/register2.php?aw_0_req.gdpr=1");
-          $("#adswizz_2").attr("src", "//cdn.adswizz.com/adswizz/js/SynchroClient2.js?aw_0_req.gdpr=1");
+          localStorage.setItem('isAccept', "1");
+          postscribe('#head-ads', '<script type="text/javascript" src="//synchrobox.adswizz.com/register2.php?aw_0_req.gdpr=1"></script>');
+          postscribe('#head-ads', '<script type="text/javascript" src="//cdn.adswizz.com/adswizz/js/SynchroClient2.js?aw_0_req.gdpr=1"></script>');
         } else {
-          $("#adswizz_1").attr("src", "//synchrobox.adswizz.com/register2.php?aw_0_req.gdpr=0");
-          $("#adswizz_2").attr("src", "//cdn.adswizz.com/adswizz/js/SynchroClient2.js?aw_0_req.gdpr=0");
+          localStorage.setItem('isAccept', "1");
+          postscribe('#head-ads', '<script type="text/javascript" src="//synchrobox.adswizz.com/register2.php?aw_0_req.gdpr=0"></script>');
+          postscribe('#head-ads', '<script type="text/javascript" src="//cdn.adswizz.com/adswizz/js/SynchroClient2.js?aw_0_req.gdpr=0"></script>');
         }
     });
   }

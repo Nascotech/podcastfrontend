@@ -56,6 +56,7 @@ export class DirectoryComponent implements OnInit {
       this.router.navigate(['/']);
     } else {
       document.documentElement.style.setProperty('--primary-color', localStorage.getItem('themeColor'));
+      this.titleService.setTitle("Podcasts - " + checkInfo.publisherName);
       if(checkInfo.photo) {
         $(".header-logo").attr("src", this.photoUrl + checkInfo.photo.path);
       }
@@ -71,7 +72,6 @@ export class DirectoryComponent implements OnInit {
       if(checkInfo.termsOfUse) {
         $("#terms-link").attr("href", checkInfo.termsOfUse);
       }
-      this.titleService.setTitle("Podcasts - " + checkInfo.publisherName);
       this.updateGoogleScript();
     }
   }

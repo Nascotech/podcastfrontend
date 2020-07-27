@@ -147,7 +147,7 @@ export class PlayerComponent implements OnInit {
         title: "test",
         sources: [
           {
-            src : this.convertUrl(result.url),
+            src : this.convertUrl(result.url, result.id),
             type: "audio/ogg"
           }
         ]
@@ -187,7 +187,7 @@ export class PlayerComponent implements OnInit {
         title: "test",
         sources: [
           {
-            src : this.convertUrl(sourceAudio),
+            src : this.convertUrl(sourceAudio, selected),
             type: "audio/ogg"
           }
         ]
@@ -244,8 +244,15 @@ export class PlayerComponent implements OnInit {
     });
   }
 
-  convertUrl(url) {
-    return com_adswizz_synchro_decorateUrl(url);
+  convertUrl(url, id) {
+    const isAccept = localStorage.getItem('isAccept');
+    if (isAccept && isAccept === "1") {
+      let b = url + '&awEpisodeId=' + id;
+      let final = com_adswizz_synchro_decorateUrl(b);
+      return final;
+    } else {
+      return url;
+    }
   }
 
   playSong() {

@@ -18,11 +18,11 @@ export class FiltersComponent implements OnInit {
     private podcastService: PodcastService,
     private constname: ConstNameService,
     private router: Router,
-  ) { }
-
-  ngOnInit() {
+  ) {
     this.getGroupList();
   }
+
+  ngOnInit() {}
 
   getGroupList() {
     this.podcastService.getGroupList(1).subscribe((data: any) => {

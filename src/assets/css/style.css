@@ -2958,3 +2958,15 @@ a.list__link.list-pad {
 a.list__link:hover .icon {
     fill: #fff;
 }
+
+@media (max-width: 767px) {
+    .cc-window.cc-floating {
+        display: none;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .cc-window.cc-floating {
+        display: none;
+    }
+}

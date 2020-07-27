@@ -245,8 +245,8 @@ export class PlayerComponent implements OnInit {
   }
 
   convertUrl(url, id) {
-    let b = url + '&awEpisodeId=' + id;
-    let final = com_adswizz_synchro_decorateUrl(b);
+    let newUrl = url + '&awEpisodeId=' + id;
+    return com_adswizz_synchro_decorateUrl(newUrl);
   }
 
   playSong() {

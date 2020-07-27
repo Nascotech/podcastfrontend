@@ -50,12 +50,12 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     window.scroll(0,0);
-    this.getAdvScript();
     this.route.queryParams.subscribe(queryParams => {
       this.searchGroup = queryParams.groupId;
       this.searchText = queryParams.searchText;
       this.getAccessToken();
     });
+    this.getAdvScript();
   }
 
   getAccessToken() {

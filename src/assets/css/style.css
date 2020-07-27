@@ -2947,8 +2947,12 @@ img.s-cross {
     justify-content: center;
 }
 
+a.list__link.list-pad {
+    padding: 10px 5px !important;
+}
+
 .icon {
-    fill: #4a1756;
+    fill: var(--primary-color);
 }
 
 a.list__link:hover .icon {

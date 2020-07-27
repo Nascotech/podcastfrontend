@@ -60,8 +60,8 @@ export class HomeComponent implements OnInit {
 
   getAccessToken() {
     this.photoUrl = this.constname.BASE.img_uri;
-    //let domain = location.protocol + '//' + location.hostname;
-    let domain = 'https://atunwapodcasts.com';
+    let domain = location.protocol + '//' + location.hostname;
+    //let domain = 'https://atunwapodcasts.com';
     this.podcastService.getAccessToken(domain).subscribe((data: any) => {
       if (data.errorMsg === "")  {
         this.userResponse = data;
@@ -108,6 +108,12 @@ export class HomeComponent implements OnInit {
   }
 
   async updateGoogleScript() {
+    const isAccept = localStorage.getItem('isAccept');
+    if (isAccept && isAccept === "allow") {
+      $("#adswizz_1").attr("src", "//synchrobox.adswizz.com/register2.php?aw_0_req.gdpr=1");
+      $("#adswizz_2").attr("src", "//cdn.adswizz.com/adswizz/js/SynchroClient2.js?aw_0_req.gdpr=1");
+    }
+
     if(this.advScriptData.leaderboard1 && !$("#lead-banner").find("script").length){
       await postscribe('#lead-banner', atob(this.advScriptData.leaderboard1));
     }

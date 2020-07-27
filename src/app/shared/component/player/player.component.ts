@@ -245,14 +245,8 @@ export class PlayerComponent implements OnInit {
   }
 
   convertUrl(url, id) {
-    const isAccept = localStorage.getItem('isAccept');
-    if (isAccept && isAccept === "1") {
-      let b = url + '&awEpisodeId=' + id;
-      let final = com_adswizz_synchro_decorateUrl(b);
-      return final;
-    } else {
-      return url;
-    }
+    let b = url + '&awEpisodeId=' + id;
+    let final = com_adswizz_synchro_decorateUrl(b);
   }
 
   playSong() {

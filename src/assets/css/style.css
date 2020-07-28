@@ -2959,6 +2959,10 @@ a.list__link:hover .icon {
     fill: #fff;
 }
 
+a.list__link:focus .icon {
+    fill: #fff;
+}
+
 @media (max-width: 767px) {
     .cc-window.cc-floating {
         display: none;
@@ -2969,4 +2973,24 @@ a.list__link:hover .icon {
     .cc-window.cc-floating {
         display: none;
     }
+}
+
+.removeall {
+    text-align: right;
+    margin: 10px 0 0px;
+}
+
+.btn-removeall {
+    border: 1px solid #4a1756;
+    background: transparent;
+    border-radius: 25px;
+    color: #4a1756;
+    padding: 10px 15px;
+    font-size: 11px;
+}
+
+.btn-removeall:hover {
+    border: 1px solid #4a1756;
+    background:#4a1756;
+    color: #fff;
 }

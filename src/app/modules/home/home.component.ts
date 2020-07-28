@@ -26,8 +26,6 @@ export class HomeComponent implements OnInit {
   count: number = 1;
   podcastList: any = [];
   isFullListDisplayed: boolean = false;
-  groupDataResponse: any = [];
-  groupList: any;
   isloadmore: boolean = false;
   submitted = false;
   isLoadingService:boolean = true;
@@ -85,7 +83,6 @@ export class HomeComponent implements OnInit {
         if(this.userResponse.response.termsOfUse) {
           $("#terms-link").attr("href", this.userResponse.response.termsOfUse);
         }
-        this.getGroupList();
         this.getPodcastlist();
       } else if (data.errorMsg === "ValidationError") {
         let messages = data.response.message;
@@ -102,7 +99,6 @@ export class HomeComponent implements OnInit {
          this.errorMessage = "Server can't be connect try again.";
        } else {
          this.constname.forbidden(error);
-         this.errorMessage = error.error.errorMsg;
        }
     });
   }
@@ -136,16 +132,6 @@ export class HomeComponent implements OnInit {
       this.advScriptData = data.response;
       localStorage.setItem('advScriptData', JSON.stringify(this.advScriptData));
       this.updateGoogleScript();
-    }, (error: HttpErrorResponse) => {
-      this.constname.forbidden(error);
-    });
-  }
-
-  getGroupList() {
-    this.podcastService.getGroupList(1).subscribe(data => {
-      this.groupDataResponse = data;
-      this.isloadmore = true;
-      this.groupList = this.groupDataResponse.response.data;
     }, (error: HttpErrorResponse) => {
       this.constname.forbidden(error);
     });

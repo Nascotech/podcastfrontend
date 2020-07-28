@@ -131,6 +131,11 @@ export class PlayerComponent implements OnInit {
     }
   }
 
+  removeAll() {
+    this.songsList = [];
+    localStorage.setItem('playList', JSON.stringify(this.songsList));
+  }
+
   newSetSource(result) {
     $('.f-footer').addClass('f-padding');
     this.toggleButton(result.id);

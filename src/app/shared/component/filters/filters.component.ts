@@ -1,32 +1,41 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { PodcastService } from 'src/app/services/podcast.service';
 import { Router } from '@angular/router';
 import { ConstNameService } from 'src/app/services/const-name.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-filters',
   templateUrl: './filters.component.html'
 })
-export class FiltersComponent implements OnInit {
+export class FiltersComponent implements OnInit, OnDestroy {
 
   groupList: any;
   searchText: string;
   groupId: '';
+  intervalId: any;
+  iterations = 0;
 
   constructor(
     private podcastService: PodcastService,
     private constname: ConstNameService,
     private router: Router,
   ) {
-    this.getGroupList();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.intervalId = setInterval(()=> this.getGroups(), 2000);
+  }
 
-  getGroupList() {
+  getGroups() {
+    this.iterations++;
+    if(this.iterations === 2 ){
+      clearInterval(this.intervalId);
+    }
     this.podcastService.getGroupList(1).subscribe((data: any) => {
       this.groupList = data.response.data;
+      localStorage.setItem('groupList', JSON.stringify(data.response.data));
     }, (error: HttpErrorResponse) => {
       this.constname.forbidden(error);
     });
@@ -44,5 +53,9 @@ export class FiltersComponent implements OnInit {
   clearSearch() {
     this.searchText = '';
     this.router.navigate(['/'], { queryParams: { groupId: this.groupId, searchText: this.searchText } });
+  }
+
+  ngOnDestroy() {
+    clearInterval(this.intervalId);
   }
 }

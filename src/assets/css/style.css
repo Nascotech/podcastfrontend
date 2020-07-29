@@ -738,7 +738,7 @@ label {
 
 .hero-content.prod-page h2 img {
     margin-right: 15px;
-    width: 55px;
+    width: 50px;
 }
 
 .hero-area .hero-content p {
@@ -896,7 +896,7 @@ label {
     color: #717277;
     margin: 0;
     margin-bottom: 45px;
-    margin-top: 27px;
+    margin-top: 15px;
 }
 
 .chos-station button {
@@ -1208,6 +1208,36 @@ label {
 }
 
 /* end episodes css*/
+
+@media (min-width: 280px) and (max-width: 320px) {
+    .reltd-pod-itm .reltd-pod-itm-contnt .pod-itm-txt h5 {
+        font-family: Lato;
+        font-weight: 700;
+        font-size: 16px;
+        text-align: left;
+        color: #27292d;
+        margin-top: .2rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 100px;
+    }
+}
+
+@media (min-width: 321px) and (max-width: 380px) {
+    .reltd-pod-itm .reltd-pod-itm-contnt .pod-itm-txt h5 {
+        font-family: Lato;
+        font-weight: 700;
+        font-size: 16px;
+        text-align: left;
+        color: #27292d;
+        margin-top: .2rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 160px;
+    }
+}
 
 /* end features css */
 
@@ -2991,6 +3021,32 @@ a.list__link:focus .icon {
 
 .btn-removeall:hover {
     border: 1px solid #4a1756;
-    background:#4a1756;
+    background: #4a1756;
     color: #fff;
+}
+
+.img-wrap .content-overlay {
+    background: rgba(0, 0, 0, 0.4);
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    opacity: 0;
+    -webkit-transition: opacity 500ms ease, visibility 500ms ease;
+    -moz-transition: opacity 500ms ease, visibility 500ms ease;
+    transition: opacity 500ms ease, visibility 500ms ease;
+    border-radius: 1rem;
+}
+
+.img-wrap:hover .content-overlay {
+    opacity: 1;
+}
+
+.revised-pg .section-btm-lnk a:hover {
+    color: #27292d;
+    text-decoration: none;
+    background: #ebedef;
 }

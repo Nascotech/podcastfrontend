@@ -1316,7 +1316,7 @@ label {
         padding-left: 90px;
     }
     .hero-content {
-        padding-left: 34px;
+        padding-left: 0px;
     }
     .hero-content h2 {
         font-size: 40px;
@@ -3049,4 +3049,10 @@ a.list__link:focus .icon {
     color: #27292d;
     text-decoration: none;
     background: #ebedef;
+}
+
+@media (max-width: 767px) {
+  .plyr-border-top {
+    border-top: 1px solid var(--primary-color) !important;
+  }
 }

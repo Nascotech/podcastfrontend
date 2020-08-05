@@ -153,7 +153,7 @@ export class PlayerComponent implements OnInit {
         sources: [
           {
             src : this.convertUrl(result.url, result.id),
-            type: "audio/ogg"
+            type: 'audio/mp3',
           }
         ]
       };
@@ -193,7 +193,7 @@ export class PlayerComponent implements OnInit {
         sources: [
           {
             src : this.convertUrl(sourceAudio, selected),
-            type: "audio/ogg"
+            type: 'audio/mp3',
           }
         ]
       };
@@ -250,8 +250,9 @@ export class PlayerComponent implements OnInit {
   }
 
   convertUrl(url, id) {
-    let newUrl = url + '&awEpisodeId=' + id;
-    return com_adswizz_synchro_decorateUrl(newUrl);
+    //let newUrl = url + '&awEpisodeId=' + id;
+    //return com_adswizz_synchro_decorateUrl(newUrl);
+    return url;
   }
 
   playSong() {

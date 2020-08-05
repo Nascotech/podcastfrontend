@@ -25,7 +25,7 @@
     "ngx-progressive-image-loader": "^4.0.0",
     "ngx-spinner": "^6.1.2",
     "ngx-ui-loader": "^9.1.1",
-    "plyr": "^3.5.10",
+    "plyr": "^3.6.2",
     "postscribe": "^2.0.8",
     "rxjs": "~6.4.0",
     "rxjs-compat": "^6.6.0",

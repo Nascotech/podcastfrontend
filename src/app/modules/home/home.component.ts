@@ -47,19 +47,19 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getAdvScript();
     window.scroll(0,0);
     this.route.queryParams.subscribe(queryParams => {
       this.searchGroup = queryParams.groupId;
       this.searchText = queryParams.searchText;
       this.getAccessToken();
     });
-    this.getAdvScript();
   }
 
   getAccessToken() {
     this.photoUrl = this.constname.BASE.img_uri;
-    let domain = location.protocol + '//' + location.hostname;
-    //let domain = 'https://atunwapodcasts.com';
+    //let domain = location.protocol + '//' + location.hostname;
+    let domain = 'https://atunwapodcasts.com';
     this.podcastService.getAccessToken(domain).subscribe((data: any) => {
       if (data.errorMsg === "")  {
         this.userResponse = data;

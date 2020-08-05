@@ -52,7 +52,7 @@ export class DirectoryComponent implements OnInit {
   checkLocalStorage() {
     const checkInfo = JSON.parse(localStorage.getItem('publisherInfo') || '[]');
     this.advScriptData = JSON.parse(localStorage.getItem('advScriptData'));
-    if(!checkInfo || !localStorage.getItem('publisherToken') || !localStorage.getItem('themeColor') || !localStorage.getItem('advScriptData')) {
+    if(!checkInfo || !localStorage.getItem('publisherToken') || !localStorage.getItem('themeColor')) {
       this.router.navigate(['/']);
     } else {
       document.documentElement.style.setProperty('--primary-color', localStorage.getItem('themeColor'));

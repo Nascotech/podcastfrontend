@@ -47,7 +47,6 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getAdvScript();
     window.scroll(0,0);
     this.route.queryParams.subscribe(queryParams => {
       this.searchGroup = queryParams.groupId;
@@ -83,6 +82,7 @@ export class HomeComponent implements OnInit {
         if(this.userResponse.response.termsOfUse) {
           $("#terms-link").attr("href", this.userResponse.response.termsOfUse);
         }
+        this.updateGoogleScript();
         this.getPodcastlist();
       } else if (data.errorMsg === "ValidationError") {
         let messages = data.response.message;
@@ -125,16 +125,6 @@ export class HomeComponent implements OnInit {
     if(this.advScriptData.sidebar4 && !$("#sidebar4").find("script").length){
       await postscribe('#sidebar4', atob(this.advScriptData.sidebar4));
     }
-  }
-
-  getAdvScript() {
-    this.podcastService.getDefaultSetting().subscribe((data: any) => {
-      this.advScriptData = data.response;
-      localStorage.setItem('advScriptData', JSON.stringify(this.advScriptData));
-      this.updateGoogleScript();
-    }, (error: HttpErrorResponse) => {
-      this.constname.forbidden(error);
-    });
   }
 
   getPodcastlist() {

@@ -1,6 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NgcCookieConsentService, NgcStatusChangeEvent } from 'ngx-cookieconsent';
 import { Subscription }   from 'rxjs/Subscription';
+import { PodcastService } from 'src/app/services/podcast.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ConstNameService } from 'src/app/services/const-name.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import postscribe from 'postscribe';
 
 declare let $: any;
@@ -13,12 +17,18 @@ declare let $: any;
 export class DefaultComponent implements OnInit {
 
    private statusChangeSubscription: Subscription;
+   intervalId: any;
+   iterations = 0;
 
   constructor(
+    private podcastService: PodcastService,
+    private constname: ConstNameService,
+    private router: Router,
     private ccService: NgcCookieConsentService
   ) { }
 
   ngOnInit() {
+    this.intervalId = setInterval(()=> this.getAdvScript(), 2000);
     this.statusChangeSubscription = this.ccService.statusChange$.subscribe(
       (event: NgcStatusChangeEvent) => {
         if(event.status === "allow") {
@@ -42,6 +52,18 @@ export class DefaultComponent implements OnInit {
        window.clearInterval(scrollToTop);
      }
    }, 16);
+  }
+
+  getAdvScript() {
+    this.iterations++;
+    if(this.iterations === 1 ){
+      clearInterval(this.intervalId);
+    }
+    this.podcastService.getDefaultSetting().subscribe((data: any) => {
+      localStorage.setItem('advScriptData', JSON.stringify(data.response));
+    }, (error: HttpErrorResponse) => {
+      this.constname.forbidden(error);
+    });
   }
 
   ngOnDestroy() {

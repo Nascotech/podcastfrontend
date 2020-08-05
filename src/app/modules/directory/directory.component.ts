@@ -9,7 +9,7 @@ import { EventEmitterService } from 'src/app/services/event-emitter.service';
 import { Title } from '@angular/platform-browser';
 import postscribe from 'postscribe';
 
-declare var $: any;
+import * as $ from "jquery";
 
 @Component({
   selector: 'app-directory',

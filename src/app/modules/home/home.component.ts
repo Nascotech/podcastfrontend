@@ -58,7 +58,7 @@ export class HomeComponent implements OnInit {
   getAccessToken() {
     this.photoUrl = this.constname.BASE.img_uri;
     let domain = location.protocol + '//' + location.hostname;
-    //let domain = 'https://atunwapodcasts.com';
+    //let domain = 'https://podcasts.adomonline.com';
     this.podcastService.getAccessToken(domain).subscribe((data: any) => {
       if (data.errorMsg === "")  {
         this.userResponse = data;
@@ -104,6 +104,7 @@ export class HomeComponent implements OnInit {
   }
 
   async updateGoogleScript() {
+    this.advScriptData = JSON.parse(localStorage.getItem('advScriptData'));
     const isAccept = localStorage.getItem('isAccept');
     if (isAccept && isAccept === "allow") {
       $("#adswizz_1").attr("src", "//synchrobox.adswizz.com/register2.php?aw_0_req.gdpr=1");

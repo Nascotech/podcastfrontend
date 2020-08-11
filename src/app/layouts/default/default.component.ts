@@ -32,13 +32,13 @@ export class DefaultComponent implements OnInit {
     this.statusChangeSubscription = this.ccService.statusChange$.subscribe(
       (event: NgcStatusChangeEvent) => {
         if(event.status === "allow") {
-          $("#adswizz_1").attr("src", "//synchrobox.adswizz.com/register2.php?aw_0_req.gdpr=1");
-          $("#adswizz_2").attr("src", "//cdn.adswizz.com/adswizz/js/SynchroClient2.js?aw_0_req.gdpr=1");
+          $("#adswizz_1").attr("src", "//synchrobox.adswizz.com/register2.php?aw_0_req.gdpr=true");
+          $("#adswizz_2").attr("src", "//cdn.adswizz.com/adswizz/js/SynchroClient2.js?aw_0_req.gdpr=true");
           localStorage.setItem('isAccept', "allow");
         } else {
           localStorage.setItem('isAccept', "decline");
-          $("#adswizz_1").attr("src", "//synchrobox.adswizz.com/register2.php?aw_0_req.gdpr=0");
-          $("#adswizz_2").attr("src", "//cdn.adswizz.com/adswizz/js/SynchroClient2.js?aw_0_req.gdpr=0");
+          $("#adswizz_1").attr("src", "//synchrobox.adswizz.com/register2.php?aw_0_req.gdpr=false");
+          $("#adswizz_2").attr("src", "//cdn.adswizz.com/adswizz/js/SynchroClient2.js?aw_0_req.gdpr=false");
         }
     });
   }

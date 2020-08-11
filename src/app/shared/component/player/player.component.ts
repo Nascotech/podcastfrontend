@@ -33,27 +33,27 @@ export class PlayerComponent implements OnInit {
 
   ngOnInit() {
     let playlist = JSON.parse(localStorage.getItem('playList'));
-    if(playlist){
+    if (playlist) {
       this.songsList = playlist;
     }
     this.loadPlyr();
-    if (this.eventEmitterService.plySong==undefined) {
+    if (this.eventEmitterService.plySong == undefined) {
       this.eventEmitterService.plySong = this.eventEmitterService.
-      invokePodcastComponentFunction.subscribe((args:string) => {
-        this.newSetSource(args);
-      });
+        invokePodcastComponentFunction.subscribe((args: string) => {
+          this.newSetSource(args);
+        });
     }
-    if (this.eventEmitterService.playlist==undefined) {
+    if (this.eventEmitterService.playlist == undefined) {
       this.eventEmitterService.playlist = this.eventEmitterService.
-      invokePlaylist.subscribe((args:string) => {
-        this.addToPlaylist(args);
-      });
+        invokePlaylist.subscribe((args: string) => {
+          this.addToPlaylist(args);
+        });
     }
-    if (this.eventEmitterService.checkList==undefined) {
+    if (this.eventEmitterService.checkList == undefined) {
       this.eventEmitterService.checkList = this.eventEmitterService.
-      removePlaylist.subscribe((args:string) => {
-        this.removeFromPlaylist(args);
-      });
+        removePlaylist.subscribe((args: string) => {
+          this.removeFromPlaylist(args);
+        });
     }
   }
 
@@ -78,10 +78,10 @@ export class PlayerComponent implements OnInit {
     });
 
     this.player.on('ready', event => {
-        $('.plyr__controls').css('background', 'transparent');
-        $('.plyr--audio .plyr__controls').css('padding', '0px');
-        $('.plyr--full-ui').css('margin-right', '20px');
-        // $('<style>.plyr__progress:focus:after, .range:hover:after {background: rgba(211, 3, 32, .95);}</style>').appendTo('head');
+      $('.plyr__controls').css('background', 'transparent');
+      $('.plyr--audio .plyr__controls').css('padding', '0px');
+      $('.plyr--full-ui').css('margin-right', '20px');
+      // $('<style>.plyr__progress:focus:after, .range:hover:after {background: rgba(211, 3, 32, .95);}</style>').appendTo('head');
     });
 
     this.player.on('waiting', event => {
@@ -102,9 +102,9 @@ export class PlayerComponent implements OnInit {
   addToPlaylist(obj) {
     let playlistArr = [];
     let playlist = JSON.parse(localStorage.getItem('playList'));
-    if(playlist) {
+    if (playlist) {
       let match = playlist.findIndex((item) => item.id == obj.id);
-      if(match < 0) {
+      if (match < 0) {
         this.songsList.push(obj);
         playlist.push(obj);
         localStorage.setItem('playList', JSON.stringify(playlist));
@@ -119,7 +119,7 @@ export class PlayerComponent implements OnInit {
   removeFromPlaylist(episode) {
     let playlistArr = [];
     let playlist = JSON.parse(localStorage.getItem('playList'));
-    if(playlist) {
+    if (playlist) {
       for (let list of playlist) {
         if (episode.id === list.id) {
           playlist.splice(playlist.indexOf(list), 1);
@@ -141,7 +141,7 @@ export class PlayerComponent implements OnInit {
     this.toggleButton(result.id);
     if (this.active !== result.id) {
       $('.track-title').text(result.title);
-      if(result.image) {
+      if (result.image) {
         $('#plyr-img').attr("src", result.image);
       } else {
         $('#plyr-img').attr("src", '/assets/img/no-image-2.jpg');
@@ -152,7 +152,7 @@ export class PlayerComponent implements OnInit {
         title: "test",
         sources: [
           {
-            src : this.convertUrl(result.url, result.id),
+            src: this.convertUrl(result.url, result.id),
             type: 'audio/mp3',
           }
         ]
@@ -162,7 +162,7 @@ export class PlayerComponent implements OnInit {
         this.player.play();
       }
 
-      if(this.songsList) {
+      if (this.songsList) {
         this.songsList.forEach(item => {
           if (item.id === result.id) {
             $('#' + item.id).addClass('active');
@@ -181,7 +181,7 @@ export class PlayerComponent implements OnInit {
     this.toggleButton(selected);
     if (this.active !== selected) {
       $('.track-title').text(title);
-      if(image) {
+      if (image) {
         $('#plyr-img').attr("src", image);
       } else {
         $('#plyr-img').attr("src", '/assets/img/no-image-2.jpg');
@@ -192,7 +192,7 @@ export class PlayerComponent implements OnInit {
         title: "test",
         sources: [
           {
-            src : this.convertUrl(sourceAudio, selected),
+            src: this.convertUrl(sourceAudio, selected),
             type: 'audio/mp3',
           }
         ]
@@ -202,7 +202,7 @@ export class PlayerComponent implements OnInit {
         this.player.play();
       }
 
-      if(this.songsList) {
+      if (this.songsList) {
         this.songsList.forEach(item => {
           if (item.id === selected) {
             $('#' + item.id).addClass('active');
@@ -216,12 +216,12 @@ export class PlayerComponent implements OnInit {
     }
   }
 
-  toggleButton(id=null) {
+  toggleButton(id = null) {
     this.player.on('play', event => {
       $('#music-player-div').show();
       $('.episode-play-btn').show();
       $('.episode-pause-btn').hide();
-      if(id){
+      if (id) {
         $('#play_' + id).hide();
         $('#pause_' + id).show();
         $('#play_mob_' + id).hide();
@@ -235,7 +235,7 @@ export class PlayerComponent implements OnInit {
     this.player.on('pause', event => {
       $('.episode-play-btn').show();
       $('.episode-pause-btn').hide();
-      if(id) {
+      if (id) {
         $('#play_' + id).show();
         $('#pause_' + id).hide();
         $('#play_mob_' + id).show();
@@ -250,7 +250,9 @@ export class PlayerComponent implements OnInit {
   }
 
   convertUrl(url, id) {
-    let newUrl = url + '&awEpisodeId=' + id;
+    let isAccept = localStorage.getItem('isAccept');
+    let gdpr = (isAccept && isAccept === "allow") ? true : false;
+    let newUrl = url + '&awEpisodeId=' + id + '&aw_0_req.gdpr=' + gdpr;
     return com_adswizz_synchro_decorateUrl(newUrl);
   }
 
@@ -279,7 +281,7 @@ export class PlayerComponent implements OnInit {
 
   alreadyInPlaylist(episode) {
     this.songsList.forEach(item => {
-      if(item.id === episode.id){
+      if (item.id === episode.id) {
         return true;
       }
     });
@@ -287,10 +289,10 @@ export class PlayerComponent implements OnInit {
   }
 
   nextSong() {
-    if(this.songsList) {
+    if (this.songsList) {
       let match = this.songsList.findIndex((item) => item.id == this.active);
       let checkNextSong = this.songsList[match + 1];
-      if(checkNextSong) {
+      if (checkNextSong) {
         this.setSource(checkNextSong.id, checkNextSong.url, checkNextSong.title, checkNextSong.image, true);
       } else {
         console.log('next song not available');
@@ -299,10 +301,10 @@ export class PlayerComponent implements OnInit {
   }
 
   previousSong() {
-    if(this.songsList) {
+    if (this.songsList) {
       let match = this.songsList.findIndex((item) => item.id == this.active);
       let checkPreviousSong = this.songsList[match - 1];
-      if(checkPreviousSong) {
+      if (checkPreviousSong) {
         this.setSource(checkPreviousSong.id, checkPreviousSong.url, checkPreviousSong.title, checkPreviousSong.image, true);
       } else {
         console.log('Previous song not available');

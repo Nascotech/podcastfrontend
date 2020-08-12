@@ -17,8 +17,6 @@ declare let $: any;
 export class DefaultComponent implements OnInit {
 
    private statusChangeSubscription: Subscription;
-   intervalId: any;
-   iterations = 0;
 
   constructor(
     private podcastService: PodcastService,
@@ -28,7 +26,6 @@ export class DefaultComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.intervalId = setInterval(()=> this.getAdvScript(), 2000);
     this.statusChangeSubscription = this.ccService.statusChange$.subscribe(
       (event: NgcStatusChangeEvent) => {
         if(event.status === "allow") {
@@ -52,18 +49,6 @@ export class DefaultComponent implements OnInit {
        window.clearInterval(scrollToTop);
      }
    }, 16);
-  }
-
-  getAdvScript() {
-    this.iterations++;
-    if(this.iterations === 1 ){
-      clearInterval(this.intervalId);
-    }
-    this.podcastService.getDefaultSetting().subscribe((data: any) => {
-      localStorage.setItem('advScriptData', JSON.stringify(data.response));
-    }, (error: HttpErrorResponse) => {
-      this.constname.forbidden(error);
-    });
   }
 
   ngOnDestroy() {

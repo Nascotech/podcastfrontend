@@ -82,20 +82,35 @@ export class DirectoryComponent implements OnInit {
       $("#adswizz_1").attr("src", "//synchrobox.adswizz.com/register2.php?aw_0_req.gdpr=1");
       $("#adswizz_2").attr("src", "//cdn.adswizz.com/adswizz/js/SynchroClient2.js?aw_0_req.gdpr=1");
     }
+    
     if(this.advScriptData.leaderboard1 && !$("#lead-banner").find("script").length){
       await postscribe('#lead-banner', atob(this.advScriptData.leaderboard1));
+    } else if(!this.advScriptData.leaderboard1) {
+      $('#lead-banner').hide();
     }
+
     if(this.advScriptData.sidebar1 && !$("#sidebar1").find("script").length) {
       await postscribe('#sidebar1', atob(this.advScriptData.sidebar1));
+    } else if(!this.advScriptData.sidebar1) {
+      $('#sidebar1').hide();
     }
+
     if(this.advScriptData.sidebar2 && !$("#sidebar2").find("script").length){
       await postscribe('#sidebar2', atob(this.advScriptData.sidebar2));
+    } else if(!this.advScriptData.sidebar2) {
+      $('#sidebar2').hide();
     }
+
     if(this.advScriptData.sidebar3 && !$("#sidebar3").find("script").length){
       await postscribe('#sidebar3', atob(this.advScriptData.sidebar3));
+    } else if(!this.advScriptData.sidebar3) {
+      $('#sidebar3').hide();
     }
+
     if(this.advScriptData.sidebar4 && !$("#sidebar4").find("script").length){
       await postscribe('#sidebar4', atob(this.advScriptData.sidebar4));
+    } else if(!this.advScriptData.sidebar4) {
+      $('#sidebar4').hide();
     }
   }
 

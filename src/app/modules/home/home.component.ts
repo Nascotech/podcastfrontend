@@ -82,7 +82,7 @@ export class HomeComponent implements OnInit {
         if(this.userResponse.response.termsOfUse) {
           $("#terms-link").attr("href", this.userResponse.response.termsOfUse);
         }
-        this.updateGoogleScript();
+        this.getAdvScript();
         this.getPodcastlist();
       } else if (data.errorMsg === "ValidationError") {
         let messages = data.response.message;
@@ -103,6 +103,15 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  getAdvScript() {
+    this.podcastService.getDefaultSetting().subscribe((data: any) => {
+      localStorage.setItem('advScriptData', JSON.stringify(data.response));
+      this.updateGoogleScript();
+    }, (error: HttpErrorResponse) => {
+      this.constname.forbidden(error);
+    });
+  }
+
   async updateGoogleScript() {
     this.advScriptData = JSON.parse(localStorage.getItem('advScriptData'));
     const isAccept = localStorage.getItem('isAccept');
@@ -113,18 +122,32 @@ export class HomeComponent implements OnInit {
 
     if(this.advScriptData.leaderboard1 && !$("#lead-banner").find("script").length){
       await postscribe('#lead-banner', atob(this.advScriptData.leaderboard1));
+    } else if(!this.advScriptData.leaderboard1) {
+      $('#lead-banner').hide();
     }
+
     if(this.advScriptData.sidebar1 && !$("#sidebar1").find("script").length) {
       await postscribe('#sidebar1', atob(this.advScriptData.sidebar1));
+    } else if(!this.advScriptData.sidebar1) {
+      $('#sidebar1').hide();
     }
+
     if(this.advScriptData.sidebar2 && !$("#sidebar2").find("script").length){
       await postscribe('#sidebar2', atob(this.advScriptData.sidebar2));
+    } else if(!this.advScriptData.sidebar2) {
+      $('#sidebar2').hide();
     }
+
     if(this.advScriptData.sidebar3 && !$("#sidebar3").find("script").length){
       await postscribe('#sidebar3', atob(this.advScriptData.sidebar3));
+    } else if(!this.advScriptData.sidebar3) {
+      $('#sidebar3').hide();
     }
+
     if(this.advScriptData.sidebar4 && !$("#sidebar4").find("script").length){
       await postscribe('#sidebar4', atob(this.advScriptData.sidebar4));
+    } else if(!this.advScriptData.sidebar4) {
+      $('#sidebar4').hide();
     }
   }
 

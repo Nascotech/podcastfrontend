@@ -79,10 +79,10 @@ export class DirectoryComponent implements OnInit {
   async updateGoogleScript() {
     const isAccept = localStorage.getItem('isAccept');
     if (isAccept && isAccept === "allow") {
-      $("#adswizz_1").attr("src", "//synchrobox.adswizz.com/register2.php?aw_0_req.gdpr=1");
-      $("#adswizz_2").attr("src", "//cdn.adswizz.com/adswizz/js/SynchroClient2.js?aw_0_req.gdpr=1");
+      $("#adswizz_1").attr("src", "//synchrobox.adswizz.com/register2.php?aw_0_req.gdpr=true");
+      $("#adswizz_2").attr("src", "//cdn.adswizz.com/adswizz/js/SynchroClient2.js?aw_0_req.gdpr=true");
     }
-    
+
     if(this.advScriptData.leaderboard1 && !$("#lead-banner").find("script").length){
       await postscribe('#lead-banner', atob(this.advScriptData.leaderboard1));
     } else if(!this.advScriptData.leaderboard1) {

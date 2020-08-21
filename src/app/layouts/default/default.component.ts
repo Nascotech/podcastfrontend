@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Renderer2 } from '@angular/core';
 import { NgcCookieConsentService, NgcStatusChangeEvent } from 'ngx-cookieconsent';
 import { Subscription }   from 'rxjs/Subscription';
 import { PodcastService } from 'src/app/services/podcast.service';
@@ -22,22 +22,37 @@ export class DefaultComponent implements OnInit {
     private podcastService: PodcastService,
     private constname: ConstNameService,
     private router: Router,
+    private _renderer2: Renderer2,
     private ccService: NgcCookieConsentService
   ) { }
 
   ngOnInit() {
+    this.checkScript();
     this.statusChangeSubscription = this.ccService.statusChange$.subscribe(
       (event: NgcStatusChangeEvent) => {
         if(event.status === "allow") {
-          $("#adswizz_1").attr("src", "//synchrobox.adswizz.com/register2.php?aw_0_req.gdpr=true");
-          $("#adswizz_2").attr("src", "//cdn.adswizz.com/adswizz/js/SynchroClient2.js?aw_0_req.gdpr=true");
           localStorage.setItem('isAccept', "allow");
+          this.checkScript();
         } else {
           localStorage.setItem('isAccept', "decline");
-          $("#adswizz_1").attr("src", "//synchrobox.adswizz.com/register2.php?aw_0_req.gdpr=false");
-          $("#adswizz_2").attr("src", "//cdn.adswizz.com/adswizz/js/SynchroClient2.js?aw_0_req.gdpr=false");
+          this.checkScript();
         }
     });
+  }
+
+  checkScript() {
+    const isAccept = localStorage.getItem('isAccept');
+    if (isAccept && isAccept === "allow") {
+      $("#adswizz_1").remove();
+      $("#adswizz_2").remove();
+      this.renderExternalScript('//synchrobox.adswizz.com/register2.php?aw_0_req.gdpr=true', 'adswizz_1');
+      this.renderExternalScript('//cdn.adswizz.com/adswizz/js/SynchroClient2.js?aw_0_req.gdpr=true', 'adswizz_2');
+    } else {
+      $("#adswizz_1").remove();
+      $("#adswizz_2").remove();
+      this.renderExternalScript('//synchrobox.adswizz.com/register2.php?aw_0_req.gdpr=false', 'adswizz_1');
+      this.renderExternalScript('//cdn.adswizz.com/adswizz/js/SynchroClient2.js?aw_0_req.gdpr=false', 'adswizz_2');
+    }
   }
 
   onActivate(event) {
@@ -53,5 +68,16 @@ export class DefaultComponent implements OnInit {
 
   ngOnDestroy() {
     this.statusChangeSubscription.unsubscribe();
+  }
+
+  renderExternalScript(src: string, id: string): HTMLScriptElement {
+    const script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = src;
+    script.id = id;
+    script.async = true;
+    script.defer = true;
+    this._renderer2.appendChild(document.body, script);
+    return script;
   }
 }

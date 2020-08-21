@@ -17,7 +17,7 @@ import {environment} from 'src/environments/environment';
 
 const cookieConfig:NgcCookieConsentConfig = {
   cookie: {
-    domain: environment.cookieDomain
+    domain: document.location.origin
   },
   palette: {
     popup: {

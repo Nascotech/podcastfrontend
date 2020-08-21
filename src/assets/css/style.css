@@ -3056,3 +3056,7 @@ a.list__link:focus .icon {
     border-top: 1px solid var(--primary-color) !important;
   }
 }
+
+.cc-revoke.cc-bottom {
+  display: none;
+}

@@ -4,7 +4,8 @@ import { Subscription }   from 'rxjs/Subscription';
 import { PodcastService } from 'src/app/services/podcast.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ConstNameService } from 'src/app/services/const-name.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { NavigationEnd, ActivatedRoute, Router } from '@angular/router';
+import {GoogleAnalyticsService} from 'src/app/services/google-analytics.service';
 import postscribe from 'postscribe';
 
 declare let $: any;
@@ -16,7 +17,8 @@ declare let $: any;
 })
 export class DefaultComponent implements OnInit {
 
-   private statusChangeSubscription: Subscription;
+  errorMessage: string;
+  private statusChangeSubscription: Subscription;
 
   constructor(
     private podcastService: PodcastService,
@@ -27,6 +29,7 @@ export class DefaultComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.getAccessToken();
     this.checkScript();
     this.statusChangeSubscription = this.ccService.statusChange$.subscribe(
       (event: NgcStatusChangeEvent) => {
@@ -37,6 +40,30 @@ export class DefaultComponent implements OnInit {
           localStorage.setItem('isAccept', "decline");
           this.checkScript();
         }
+    });
+  }
+
+  getAccessToken() {
+    let domain = location.protocol + '//' + location.hostname;
+    //let domain = 'https://atunwapodcasts.com';
+    this.podcastService.getAccessToken(domain).subscribe((data: any) => {
+      if (data.errorMsg === "")  {
+        if(data.response.googleCode) {
+          GoogleAnalyticsService.loadGoogleAnalytics(atob(data.response.googleCode));
+          this.router.events.subscribe(event => {
+            if (event instanceof NavigationEnd) {
+              (window as any).ga('set', 'page', event.urlAfterRedirects);
+              (window as any).ga('send', 'pageview');
+            }
+          });
+        }
+      }
+    }, (error: HttpErrorResponse) => {
+       if (error.status === 0) {
+         this.errorMessage = "Server can't be connect try again.";
+       } else {
+         this.constname.forbidden(error);
+       }
     });
   }
 

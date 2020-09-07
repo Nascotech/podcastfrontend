@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit {
   ) {
     this.route.queryParams.subscribe(params => {
       this.showHeader = params['header'];
-      if(this.showHeader && this.showHeader === "off") {
+      if((this.showHeader && this.showHeader === "off") || (this.showHeader && this.showHeader === "on")) {
         localStorage.setItem('isHeader', this.showHeader);
       }
     });
@@ -29,6 +29,8 @@ export class HeaderComponent implements OnInit {
     console.log(checkHeader);
     if((this.showHeader && this.showHeader === "off") || (checkHeader && checkHeader === "off")) {
       this.nav.hide();
+    } else if ((this.showHeader && this.showHeader === "on") || (checkHeader && checkHeader === "on")) {
+      this.nav.show();
     }
   }
 }

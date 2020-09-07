@@ -1,7 +1,7 @@
 
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpHeaders } from '@angular/common/http';
+import { HttpHeaders, HttpParams } from '@angular/common/http';
 import { CoreHttpService } from './core-http.service';
 import { environment } from 'src/environments/environment';
 import {HttpClient} from '@angular/common/http';
@@ -36,7 +36,7 @@ export class PodcastService {
     let params = {
       pageNo: page_no,
       isPagination: true,
-      pageSize: 10,
+      pageSize: 24,
       groupId: groupId,
       keyword: searchText
     };
@@ -54,8 +54,10 @@ export class PodcastService {
     return this.http.get(this.getpodcastdetailsURL + id, this.constname.getAccessToken());
   }
 
-  getPodcastEpisode(id) {
-    return this.http.get(this.getpodcastepisodeURL + id, this.constname.getAccessToken());
+  getPodcastEpisode(id, pageNO) {
+    let params = new HttpParams();
+    params = params.append('pageNo', pageNO);
+    return this.http.get(this.getpodcastepisodeURL + id + '?' + params, this.constname.getAccessToken());
   }
 
   getDefaultSetting() {

@@ -87,6 +87,12 @@
 			</div>
 		</div>
 	</div>
+	<div class="section-btm-lnk text-right pt-15 pb-15">
+		<button *ngIf="this.submitted === true" type="submit" class="btn-lod-mor">
+			<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span> loading...
+		</button>
+		<a href="javascript:void(0);" *ngIf=" page !== lastPage && isloadmore==true && this.submitted === false && this.podcastEpisodes.length > 0" id="more-podcast-episode-btn" class="btn-lod-mor" (click)="loadMorePodcastEpisod()" class="btn-lod-mor">load more</a>
+	</div>
 </div>
 <div class="episode-showcase pt-20 pb-40 mobile-only">
 	<div class="section-title blue-border-tp plyr-border-top pt-45">
@@ -130,6 +136,12 @@
 				</div>
 			</div>
 		</div>
+	</div>
+	<div class="section-btm-lnk text-right pt-15 pb-15">
+		<button *ngIf="this.submitted === true" type="submit" class="btn-lod-mor">
+			<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span> loading...
+		</button>
+		<a href="javascript:void(0);" *ngIf=" page !== lastPage && isloadmore==true && this.submitted === false && this.podcastEpisodes.length > 0" class="btn-lod-mor" (click)="loadMorePodcastEpisod()" id="more-podcast-episode-btn" class="btn-lod-mor">load more</a>
 	</div>
 </div>
 <!-- end episodes-showcase block -->

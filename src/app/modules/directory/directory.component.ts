@@ -19,7 +19,15 @@ import * as $ from "jquery";
 export class DirectoryComponent implements OnInit {
 
   photoUrl: string;
+
+  submitted = false;
+  page: number = 1;
+  lastPage;
+  isloadmore: boolean = false;
+
+
   dataResponseDetails: any = [];
+  dataResponse;
   podcastDetail: any = [];
   podcastList: any = [];
   displayPodcastList: any = [];
@@ -137,8 +145,9 @@ export class DirectoryComponent implements OnInit {
   }
 
   allPodcastEpisod() {
-    this.podcastService.getPodcastEpisode(this.id).subscribe(data => {
+    this.podcastService.getPodcastEpisode(this.id, 1).subscribe(data => {
       this.dataResponseEpisode = data;
+      this.isloadmore=true;
       this.podcastEpisodes = this.dataResponseEpisode.response.data;
       //this.getTime(this.podcastEpisodes,this.id);
       localStorage.setItem('podcastEpisodes', JSON.stringify(this.dataResponseEpisode.response));
@@ -223,4 +232,26 @@ export class DirectoryComponent implements OnInit {
   updateTime(time) {
     return time.replace(/^(?:00:)?0?/, '');
   }
+
+  loadMorePodcastEpisod() {
+    this.page++;
+    this.submitted=true;
+      this.podcastService.getPodcastEpisode(this.id, this.page).subscribe(data => {
+        this.dataResponseEpisode = data;
+        this.submitted=false;
+        this.isloadmore=true;
+        let totalRecord = this.dataResponseEpisode.response.meta.total;
+        this.lastPage = Math.ceil(totalRecord / 10);        
+        if(this.lastPage > 1) {
+          $('#more-podcast-episode-btn').show();
+        }
+        this.dataResponseEpisode.response.data.forEach(item => {
+        this.podcastEpisodes.push(item);
+        });
+        //this.ngxService.stop();
+      }, (error: HttpErrorResponse) => {
+        this.submitted=false;
+        this.costname.forbidden(error);
+      });
+    }
 }

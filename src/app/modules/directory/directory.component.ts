@@ -22,6 +22,7 @@ export class DirectoryComponent implements OnInit {
   dataResponseDetails: any = [];
   podcastDetail: any = [];
   podcastList: any = [];
+  displayPodcastList: any = [];
   dataResponsePodcast: any = [];
   podcastEpisodes: any = [];
   dataResponseEpisode: any = [];
@@ -129,6 +130,7 @@ export class DirectoryComponent implements OnInit {
           this.podcastList.push(item);
         }
       });
+      this.displayPodcastList = this.podcastList.slice(0, 8);
     }, (error: HttpErrorResponse) => {
       this.costname.forbidden(error);
     });
@@ -138,7 +140,6 @@ export class DirectoryComponent implements OnInit {
     this.podcastService.getPodcastEpisode(this.id).subscribe(data => {
       this.dataResponseEpisode = data;
       this.podcastEpisodes = this.dataResponseEpisode.response.data;
-
       //this.getTime(this.podcastEpisodes,this.id);
       localStorage.setItem('podcastEpisodes', JSON.stringify(this.dataResponseEpisode.response));
     }, (error: HttpErrorResponse) => {

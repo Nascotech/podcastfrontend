@@ -12,14 +12,14 @@ export class GoogleAnalyticsService {
    * @param trackingID
    */
   static loadGoogleAnalytics(trackingID: string): void {
-    const gaScript1 = document.createElement('script');
-    gaScript1.innerText = `window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga(\'create\', \'${ trackingID }\', \'auto\');`;
-
-    const gaScript = document.createElement('script');
+    let gaScript = document.createElement('script');
     gaScript.setAttribute('async', 'true');
-    gaScript.setAttribute('src', 'https://www.google-analytics.com/analytics.js');
+    gaScript.setAttribute('src', `https://www.googletagmanager.com/gtag/js?id=${ trackingID }`);
 
-    document.documentElement.firstChild.appendChild(gaScript1);
+    let gaScript2 = document.createElement('script');
+    gaScript2.innerText = `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag(\'js\', new Date());gtag(\'config\', \'${ trackingID }\');`;
+
     document.documentElement.firstChild.appendChild(gaScript);
+    document.documentElement.firstChild.appendChild(gaScript2);
   }
 }

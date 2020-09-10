@@ -17,19 +17,14 @@ export class HeaderComponent implements OnInit {
     public nav: NavbarService
   ) {
     this.route.queryParams.subscribe(params => {
-      this.showHeader = params['header'];
-      if((this.showHeader && this.showHeader === "off") || (this.showHeader && this.showHeader === "on")) {
-        localStorage.setItem('isHeader', this.showHeader);
-      }
+      this.showHeader = params['header'] || false;
     });
   }
 
   ngOnInit() {
-    let checkHeader = localStorage.getItem('isHeader');
-    console.log(checkHeader);
-    if((this.showHeader && this.showHeader === "off") || (checkHeader && checkHeader === "off")) {
+    if(this.showHeader && this.showHeader === "off") {
       this.nav.hide();
-    } else if ((this.showHeader && this.showHeader === "on") || (checkHeader && checkHeader === "on")) {
+    } else {
       this.nav.show();
     }
   }

@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { PodcastService } from 'src/app/services/podcast.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ConstNameService } from 'src/app/services/const-name.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { interval } from 'rxjs';
@@ -20,8 +20,12 @@ export class FiltersComponent implements OnInit, OnDestroy {
   constructor(
     private podcastService: PodcastService,
     private constname: ConstNameService,
+    private route: ActivatedRoute,
     private router: Router,
   ) {
+    this.route.queryParams.subscribe(queryParams => {
+      this.groupId = queryParams.groupId || '';
+    });
   }
 
   ngOnInit() {

@@ -21,7 +21,7 @@
 				<div class="chos-station">
 					<select class="custom-dropdown custom-select" (change)="groupFilter($event)">
 						<option value="" selected>All Stations</option>
-						<option *ngFor="let group of groupList" value="{{group.id}}">{{group?.displayName}}</option>
+						<option *ngFor="let group of groupList" value="{{group.id}}" [selected]="group.id == groupId">{{group?.displayName}}</option>
 					</select>
 				</div>
 				<div class="search-station mb-station">

@@ -57,6 +57,9 @@ export class DefaultComponent implements OnInit {
             }
           });
         }
+        if(data.response.groupId) {
+          this.router.navigate(['/'], { queryParams: { groupId: data.response.groupId} });
+        }
       }
     }, (error: HttpErrorResponse) => {
        if (error.status === 0) {

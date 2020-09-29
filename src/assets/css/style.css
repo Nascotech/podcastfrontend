@@ -3038,7 +3038,7 @@ a.list__link:focus .icon {
     -webkit-transition: opacity 500ms ease, visibility 500ms ease;
     -moz-transition: opacity 500ms ease, visibility 500ms ease;
     transition: opacity 500ms ease, visibility 500ms ease;
-    border-radius: 1rem;
+    border-radius: 5px;
 }
 
 .img-wrap:hover .content-overlay {

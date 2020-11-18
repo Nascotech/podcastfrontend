@@ -58,7 +58,7 @@ export class HomeComponent implements OnInit {
   getAccessToken() {
     this.photoUrl = this.constname.BASE.img_uri;
     let domain = location.protocol + '//' + location.hostname;
-    //let domain = 'https://atunwapodcasts.com';
+    // let domain = 'https://atunwapodcasts.com';
     this.podcastService.getAccessToken(domain).subscribe((data: any) => {
       if (data.errorMsg === "")  {
         this.userResponse = data;
@@ -154,6 +154,8 @@ export class HomeComponent implements OnInit {
       this.dataResponse = data;
       this.isLoadingService = false;
       this.podcastList = this.dataResponse.response.list;
+      console.log('podcast',this.podcastList );
+      
       let totalRecord = this.dataResponse.response.total;
       this.lastPage = Math.ceil(totalRecord / 24);
       if(this.lastPage > 1) {

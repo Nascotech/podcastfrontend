@@ -7,6 +7,19 @@
 			<h3 class="primary-color">Featured Podcasts</h3>
 		</div>
 	</div>
+	<div class="row align-items-center justify-content-center pt-25 pb-25" *ngIf="podcastList.length == 0 && !isLoadingService ">
+		<div class="col-xl-12 col-12 col-lg-12 col-md-12">
+			<div class="epsod-txt no-epsod-found">
+				<div class="no-epsod-img-area">
+					<img src="./assets/img/no-episode-mic.png" class="img-fluid" alt="">
+				</div>
+				<h2>No Podcasts Found</h2>
+				<p>
+					It Seems like there is no Podcasts Available.
+				</p>
+			</div>
+		</div>
+	</div>
 	<div class="bx-lnk-list-wpr">
 		<div class="row">
 			<div class="col-sm-12 col-md-12 col-lg-12">

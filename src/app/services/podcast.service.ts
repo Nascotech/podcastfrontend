@@ -47,7 +47,7 @@ export class PodcastService {
     let params = {
       pageNo: page_no
     };
-    return this.http.post(this.getGrouplistURL, params, this.constname.getAccessToken());
+    return this.http.get(this.getGrouplistURL, this.constname.getAccessToken());
   }
 
   getPodcastDetails(id) {

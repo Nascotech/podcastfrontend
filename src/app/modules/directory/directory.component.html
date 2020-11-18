@@ -15,7 +15,7 @@
 					<h2>{{podcastDetail?.name}}</h2>
 					<span>{{podcastDetail?.createdAtTimestamp * 1000 | date}}</span>
 					<p>{{podcastDetail?.description}}</p>
-					<a (click)="playAllEpisode()" id="play_all_btn"  class="btn btn-invert">Listen All</a>
+					<a *ngIf="podcastEpisodes.length != 0" (click)="playAllEpisode()" id="play_all_btn"  class="btn btn-invert">Listen All</a>
 				</div>
 			</div>
 		</div>
@@ -45,6 +45,7 @@
 </div>
 <!-- end feature-itm block -->
 <!-- start episodes-showcase block -->
+
 <div class="episode-showcase pb-40 desktop-only">
 	<div class="section-title blue-border-tp pt-30 pb-20">
 		<div class="sec-titl-txt mblk">
@@ -52,37 +53,54 @@
 		</div>
 	</div>
 
-	<div class="epsod-itm pb-15" *ngFor="let episode of podcastEpisodes; let i = index" [ngClass]="{'pt-15' : i !== 0}">
+	<div class="epsod-itm pt-25 pb-25" *ngIf="podcastEpisodes.length == 0 && !isLoading">
+		<div class="row align-items-center justify-content-center">
+			<div class="col-xl-12 col-12 col-lg-12 col-md-12">
+				<div class="epsod-txt no-epsod-found">
+					<div class="no-epsod-img-area">
+						<img src="./assets/img/no-episode-mic.png" class="img-fluid" alt="">
+					</div>
+					<h2>No Episodes Found</h2>
+					<p>
+						It Seems like there is no Episodes Available.
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="epsod-itm pb-15" *ngFor="let episode of podcastEpisodes; let i = index" [ngClass]="{'pt-15' : i !== 0}" >
 		<div class="row align-items-center">
 			<div class="col-xl-7 col-7 col-lg-7 col-md-7">
 				<div class="epsod-txt">
-					<span>{{episode?.pubDateTimestamp * 1000 | date}}</span>
-					<h2>{{episode?.title}}</h2>
-					<p>{{episode?.description}}</p>
+					<span>{{episode.pubDate | date}}</span>
+					<h2>{{episode.title}}</h2>
+					<p>{{episode.description}}</p>
 
 					<div class="epsode-btn-grp">
-						<a id="play_{{id + '_' + i}}" class="btn episode-play-btn" (click)="setSource(id + '_' + i, episode.enclosure.url, episode.title, episode.image ? episode.image?.link : podcastDetail.image ? podcastDetail.image : 'assets/img/no-image-2.jpg', true)">
+						<a id="play_mob_{{episode.id + '_' + i}}" (click)="setSource(episode.id + '_' + i, episode.url, episode.title, episode.image ? episode.image : podcastDetail.image ? podcastDetail.image : 'assets/img/no-image-2.jpg', true)"  class="btn btn-invert episode-play-btn" >
 							<i class="fa fa-play"></i>Listen
-							<code id="duration-{{id + '-' + i}}">{{updateTime(episode['itunes:duration'])}}</code>
+							<code id="duration-mob-{{episode.id + '-' + i}}">{{updateTime(episode['duration'])}}</code>
 						</a>
-						<a style="display:none" id="pause_{{id + '_' + i}}" class="btn episode-pause-btn" (click)="setSource(id + '_' + i, episode.enclosure.url, episode.title, episode.image ? episode.image?.link : podcastDetail.image ? podcastDetail.image : 'assets/img/no-image-2.jpg', true)">
+						<a style="display:none" id="pause_mob_{{episode.id + '_' + i}}" class="btn episode-pause-btn" (click)="setSource(episode.id + '_' + i, episode.url, episode.title, episode.image ? episode.image: podcastDetail.image ? podcastDetail.image : 'assets/img/no-image-2.jpg', true)">
 							<i class="fa fa-pause"></i> Pause
-							<code id="duration-{{id + '-' + i}}">{{updateTime(episode['itunes:duration'])}}</code>
+							<code id="duration-mob-{{episode.id + '-' + i}}">{{updateTime(episode['duration'])}}</code>
 						  </a>
-						<a *ngIf="!checkPlaylistClick(id + '_' + i)" (click)="addToPlaylist(id + '_' + i,episode.enclosure.url,episode.title,episode.image ? episode.image?.link : podcastDetail.image ? podcastDetail.image : 'assets/img/no-image-2.jpg')" class="btn btn-invert ml-2">
+					  	<a *ngIf="!checkPlaylistClick(episode.id + '_' + i)" (click)="addToPlaylist(episode.id + '_' + i,episode.url,episode.title,episode.image ? episode.image : podcastDetail.image ? podcastDetail.image : 'assets/img/no-image-2.jpg')" class="btn btn-invert ml-2">
 							<i class="fas fa-plus-circle"></i>
 							Playlist
 						</a>
-						<a *ngIf="checkPlaylistClick(id + '_' + i)" (click)="removeFromPlaylist(id + '_' + i)" class="btn btn-invert ml-2">
+						<a *ngIf="checkPlaylistClick(episode.id + '_' + i)" (click)="removeFromPlaylist(episode.id + '_' + i)" class="btn btn-invert ml-2">
 							Added
 						</a>
 					</div>
+
 				</div>
 			</div>
 			<div class="col-xl-5 col-lg-5 col-md-5 col-5">
 				<div class="epsod-img">
-					<img src="{{episode.image ? episode.image?.link : podcastDetail.image ? podcastDetail.image : 'assets/img/no-image-2.jpg'}}" alt="" />
-					<!-- <img class="rounded" src="{{'assets/img/no-image-2.jpg'}}" alt="" /> -->
+					<img src="{{episode.image ? episode.image : 'assets/img/no-image-2.jpg'}}" alt="" />
+					
 				</div>
 			</div>
 		</div>
@@ -94,6 +112,7 @@
 		<a href="javascript:void(0);" *ngIf=" page !== lastPage && isloadmore==true && this.submitted === false && this.podcastEpisodes.length > 0" id="more-podcast-episode-btn" class="btn-lod-mor" (click)="loadMorePodcastEpisod()" class="btn-lod-mor">load more</a>
 	</div>
 </div>
+
 <div class="episode-showcase pt-20 pb-40 mobile-only">
 	<div class="section-title blue-border-tp plyr-border-top pt-45">
 		<div class="sec-titl-txt mblk">
@@ -105,32 +124,32 @@
 		<div class="row align-items-center">
 			<div class="col-xl-7 col-7 col-lg-7 col-md-7">
 				<div class="epsod-txt">
-					<span>{{episode?.pubDateTimestamp * 1000 | date}}</span>
+					<span>{{episode?.pubDate | date}}</span>
 					<h2>{{episode?.title}}</h2>
 					<p>{{episode?.description}}</p>
 				</div>
 			</div>
 			<div class="col-xl-5 col-lg-5 col-md-5 col-5">
 				<div class="epsod-img">
-					<img src="{{episode.image ? episode.image?.link : podcastDetail.image ? podcastDetail.image : 'assets/img/no-image-2.jpg'}}" alt="" />
+					<img src="{{episode.image ? episode.image : 'assets/img/no-image-2.jpg'}}" alt="" />
 					<!-- <img class="rounded" src="{{'assets/img/no-image-2.jpg'}}" alt="" /> -->
 				</div>
 			</div>
 			<div class="col-sm-12">
 				<div class="epsode-btn-grp">
-					<a id="play_mob_{{id + '_' + i}}" (click)="setSource(id + '_' + i, episode.enclosure.url, episode.title, episode.image ? episode.image?.link : podcastDetail.image ? podcastDetail.image : 'assets/img/no-image-2.jpg', true)"  class="btn btn-invert episode-play-btn" >
+					<a id="play_mob_{{episode.id + '_' + i}}" (click)="setSource(episode.id + '_' + i, episode.url, episode.title, episode.image ? episode.image?.link : podcastDetail.image ? podcastDetail.image : 'assets/img/no-image-2.jpg', true)"  class="btn btn-invert episode-play-btn" >
 						<i class="fa fa-play"></i>Listen
-						<code id="duration-mob-{{id + '-' + i}}">{{updateTime(episode['itunes:duration'])}}</code>
+						<code id="duration-mob-{{episode.id + '-' + i}}">{{updateTime(episode['duration'])}}</code>
 					</a>
-					<a style="display:none" id="pause_mob_{{id + '_' + i}}" class="btn episode-pause-btn" (click)="setSource(id + '_' + i, episode.enclosure.url, episode.title, episode.image ? episode.image?.link : podcastDetail.image ? podcastDetail.image : 'assets/img/no-image-2.jpg', true)">
+					<a style="display:none" id="pause_mob_{{episode.id + '_' + i}}" class="btn episode-pause-btn" (click)="setSource(episode.id + '_' + i, episode.url, episode.title, episode.image ? episode.image : podcastDetail.image ? podcastDetail.image : 'assets/img/no-image-2.jpg', true)">
 						<i class="fa fa-pause"></i> Pause
-						<code id="duration-mob-{{id + '-' + i}}">{{updateTime(episode['itunes:duration'])}}</code>
+						<code id="duration-mob-{{episode.id + '-' + i}}">{{updateTime(episode['duration'])}}</code>
 					  </a>
-				  <a *ngIf="!checkPlaylistClick(id + '_' + i)" (click)="addToPlaylist(id + '_' + i,episode.enclosure.url,episode.title,episode.image ? episode.image?.link : podcastDetail.image ? podcastDetail.image : 'assets/img/no-image-2.jpg')" class="btn btn-invert ml-2">
+				  <a *ngIf="!checkPlaylistClick(episode.id + '_' + i)" (click)="addToPlaylist(episode.id + '_' + i,episode.url,episode.title,episode.image ? episode.image : podcastDetail.image ? podcastDetail.image : 'assets/img/no-image-2.jpg')" class="btn btn-invert ml-2">
 						<i class="fas fa-plus-circle"></i>
 						Playlist
 					</a>
-					<a *ngIf="checkPlaylistClick(id + '_' + i)" (click)="removeFromPlaylist(id + '_' + i)" class="btn btn-invert ml-2">
+					<a *ngIf="checkPlaylistClick(episode.id + '_' + i)" (click)="removeFromPlaylist(episode.id + '_' + i)" class="btn btn-invert ml-2">
 						Added
 					</a>
 				</div>

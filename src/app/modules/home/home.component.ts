@@ -153,9 +153,7 @@ export class HomeComponent implements OnInit {
       this.isloadmore=true;
       this.dataResponse = data;
       this.isLoadingService = false;
-      this.podcastList = this.dataResponse.response.list;
-      console.log('podcast',this.podcastList );
-      
+      this.podcastList = this.dataResponse.response.list;      
       let totalRecord = this.dataResponse.response.total;
       this.lastPage = Math.ceil(totalRecord / 24);
       if(this.lastPage > 1) {

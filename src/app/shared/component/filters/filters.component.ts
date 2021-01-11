@@ -39,8 +39,6 @@ export class FiltersComponent implements OnInit, OnDestroy {
     }
     this.podcastService.getGroupList(1).subscribe((data: any) => {
       this.groupList = data.response;
-      console.log(data);
-      
       localStorage.setItem('groupList', JSON.stringify(data.response.data));
     }, (error: HttpErrorResponse) => {
       this.constname.forbidden(error);

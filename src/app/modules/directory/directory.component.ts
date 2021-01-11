@@ -124,7 +124,7 @@ export class DirectoryComponent implements OnInit {
     let publisherInfo = JSON.parse(localStorage.getItem('publisherInfo'));
     this.podcastService.getPodcastDetails(this.id).subscribe(data => {
       this.dataResponseDetails = data;
-      this.isLoading = false
+      this.isLoading = false;
       this.podcastDetail = this.dataResponseDetails.response;
       this.titleService.setTitle("Podcasts - " + this.podcastDetail.name + " - " + publisherInfo.publisherName);
       this.relatedPodcastList(this.podcastDetail.group);
@@ -154,8 +154,15 @@ export class DirectoryComponent implements OnInit {
     this.podcastService.getPodcastEpisode(this.id, 1).subscribe(data => {
       this.dataResponseEpisode = data;
       this.isLoading = false;
-      this.isloadmore=true;
-      this.podcastEpisodes = this.dataResponseEpisode.response.list; 
+      this.isloadmore = true;
+      let totalRecord = this.dataResponseEpisode.response.total;
+      this.podcastEpisodes = this.dataResponseEpisode.response.list;
+      this.lastPage = Math.ceil(totalRecord / 25);
+      if(this.lastPage > 1) {
+        $('#more-podcast-episode-btn').show();
+      } else {
+        $('#more-podcast-episode-btn').hide();
+      }
       //this.getTime(this.podcastEpisodes,this.id);
       localStorage.setItem('podcastEpisodes', JSON.stringify(this.dataResponseEpisode.response.list));
     }, (error: HttpErrorResponse) => {
@@ -213,7 +220,7 @@ export class DirectoryComponent implements OnInit {
     this.redirectUrl('/directory/' + id);
   }
 
-  setSource(id, url, title, image, play) {  
+  setSource(id, url, title, image, play) {
     this.eventEmitterService.onEpisodePlayButtonClick(id, url, title, image, play);
   }
 
@@ -243,18 +250,21 @@ export class DirectoryComponent implements OnInit {
 
   loadMorePodcastEpisod() {
     this.page++;
-    this.submitted=true;
+    this.submitted = true;
       this.podcastService.getPodcastEpisode(this.id, this.page).subscribe(data => {
         this.dataResponseEpisode = data;
-        this.submitted=false;
-        this.isloadmore=true;
+        this.submitted = false;
+        this.isloadmore = true;
         let totalRecord = this.dataResponseEpisode.response.total;
-        this.lastPage = Math.ceil(totalRecord / 25);        
-        if(this.lastPage > 1) {
+        this.lastPage = Math.ceil(totalRecord / 25);
+        if(this.lastPage >= this.page) {
           $('#more-podcast-episode-btn').show();
+        } else {
+          this.isloadmore = false;
+          $('#more-podcast-episode-btn').hide();
         }
         this.dataResponseEpisode.response.list.forEach(item => {
-        this.podcastEpisodes.push(item);
+          this.podcastEpisodes.push(item);
         });
         //this.ngxService.stop();
       }, (error: HttpErrorResponse) => {

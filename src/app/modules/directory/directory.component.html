@@ -13,7 +13,6 @@
 			<div class="col-xl-9 col-lg-9 col-md-8">
 				<div class="feature-itm-txt">
 					<h2>{{podcastDetail?.name}}</h2>
-					<span>{{podcastDetail?.createdAtTimestamp * 1000 | date}}</span>
 					<p>{{podcastDetail?.description}}</p>
 					<a *ngIf="podcastEpisodes.length != 0" (click)="playAllEpisode()" id="play_all_btn"  class="btn btn-invert">Listen All</a>
 				</div>
@@ -30,7 +29,6 @@
 					</div>
 					<div>
 						<h2>{{podcastDetail?.name}}</h2>
-						<span>{{podcastDetail?.createdAtTimestamp * 1000 | date}}</span>
 						<a (click)="playAllEpisode()" id="play_all_btn_mobile" class="btn btn-invert">Listen All</a>
 					</div>
 				</div>
@@ -100,7 +98,7 @@
 			<div class="col-xl-5 col-lg-5 col-md-5 col-5">
 				<div class="epsod-img">
 					<img src="{{episode.image ? episode.image : 'assets/img/no-image-2.jpg'}}" alt="" />
-					
+
 				</div>
 			</div>
 		</div>

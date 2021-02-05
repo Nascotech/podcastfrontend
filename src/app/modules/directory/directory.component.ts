@@ -49,7 +49,7 @@ export class DirectoryComponent implements OnInit {
     private router:Router,
     private titleService: Title
   ) {
-    this.route.params.subscribe(params => this.id = params['id']);
+    this.route.params.subscribe(params => this.id = params['slug']);
   }
 
   ngOnInit() {
@@ -216,8 +216,8 @@ export class DirectoryComponent implements OnInit {
       this.router.navigate([uri]));
   }
 
-  redirectTo(id) {
-    this.redirectUrl('/directory/' + id);
+  redirectTo(slug) {
+    this.redirectUrl('/directory/' + slug);
   }
 
   setSource(id, url, title, image, play) {

@@ -8,7 +8,7 @@ const routes: Routes = [
     component: DefaultComponent,
     children: [
       { path: '', loadChildren: '../../modules/home/home.module#HomeModule' },
-      { path: 'directory/:id', loadChildren: '../../modules/directory/directory.module#DirectoryModule' }
+      { path: 'directory/:slug', loadChildren: '../../modules/directory/directory.module#DirectoryModule' }
     ]
   }
 ];

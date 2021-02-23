@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit {
   photoUrl: string;
   searchText: string;
   searchGroup: string;
+  publisherSlug: string;
   dataResponse: any = [];
   lastPage;
   count: number = 1;
@@ -42,8 +43,14 @@ export class HomeComponent implements OnInit {
     private route: ActivatedRoute,
     private titleService: Title
   ) {
-    this.route.params.subscribe(params => this.searchGroup = params['groupId']);
-    this.route.params.subscribe(params => this.searchText = params['searchText']);
+    this.route.queryParams.subscribe(queryParams => {
+      this.publisherSlug = queryParams.pubid || '';
+      this.searchGroup = queryParams.groupId || '';
+      this.searchText = queryParams.searchText || '';
+      if(queryParams.pubid) {
+        localStorage.setItem('publisherSlug', this.publisherSlug);
+      }
+    });
   }
 
   ngOnInit() {
@@ -56,10 +63,9 @@ export class HomeComponent implements OnInit {
   }
 
   getAccessToken() {
+    let publisherSlug = localStorage.getItem('publisherSlug') || '';
     this.photoUrl = this.constname.BASE.img_uri;
-    let domain = location.protocol + '//' + location.hostname;
-    // let domain = 'https://radiomaisha.atunwapodcasts.com';
-    this.podcastService.getAccessToken(domain).subscribe((data: any) => {
+    this.podcastService.getAccessToken(publisherSlug).subscribe((data: any) => {
       if (data.errorMsg === "")  {
         this.userResponse = data;
         localStorage.setItem('publisherInfo', JSON.stringify(this.userResponse.response));
@@ -172,13 +178,13 @@ export class HomeComponent implements OnInit {
 
   loadMorePodcast() {
     this.count++;
-    this.submitted=true;
+    this.submitted = true;
     if(this.count <= this.lastPage) {
       //this.ngxService.start();
       this.podcastService.getPodcastList(this.count, this.searchGroup, this.searchText).subscribe(data => {
         this.dataResponse = data;
-        this.submitted=false;
-        this.isloadmore=true;
+        this.submitted = false;
+        this.isloadmore = true;
         this.dataResponse.response.list.forEach(item => {
           this.podcastList.push(item);
         });

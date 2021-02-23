@@ -26,9 +26,9 @@ export class PodcastService {
     private constname:ConstNameService
   ){}
 
-  getAccessToken(domain) {
+  getAccessToken(slug) {
     return this.http.post(this.getAccessTokenURL, {
-      domain: domain
+      publisherSlug: slug
     });
   }
 

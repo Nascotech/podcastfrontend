@@ -44,9 +44,8 @@ export class DefaultComponent implements OnInit {
   }
 
   getAccessToken() {
-    let domain = location.protocol + '//' + location.hostname;
-    // let domain = 'https://radiomaisha.atunwapodcasts.com';
-    this.podcastService.getAccessToken(domain).subscribe((data: any) => {
+    let publisherSlug = localStorage.getItem('publisherSlug') || '';
+    this.podcastService.getAccessToken(publisherSlug).subscribe((data: any) => {
       if (data.errorMsg === "")  {
         if(data.response.googleCode) {
           GoogleAnalyticsService.loadGoogleAnalytics(atob(data.response.googleCode));

@@ -1,5 +1,6 @@
 # **Front angular source** #
-By Atunwa
+
+This project is source code for atuwa digital frontend part ( publiser end ).
 
 **Project Link** : https://gitlab.com/atunwa/new-front-angular-source
 

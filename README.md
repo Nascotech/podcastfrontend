@@ -1,27 +1,20 @@
-# Atunwasetupproject
+# **Front angular source** #
+By Atunwa
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.20.
+**Project Link** : https://gitlab.com/atunwa/new-front-angular-source
 
-## Development server
+**Setup Project - local server**
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+* Step 1: Pull code from **`$ git clone https://gitlab.com/atunwa/new-front-angular-source.git atunwa_front_source`**
+* Step 2: Go to directory **`$ cd atunwa_front_source`**
+* Step 2: Checkout dev branch **`$ git checkout dev`**
+* Step 3: Install dependency **`$ npm install`**
+* Step 4: Start server **`$ ng serve --poll=2000`**
 
-## Code scaffolding
+**Build files for production server**
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+* Step 5: Create build files for production server **`$ ng build --prod`**
+* Step 6: Go to directory where files generated **`$ cd dist/atunwa-angular`**
+* Step 7: Copy all files and paste (First setup project in local): https://gitlab.com/atunwa/front-angular-build
+* Step 6: Push build code (**`$ git push origin dev`**)
+* Step 7: Pull from live server (**`$ git pull origin dev`**)

@@ -21,6 +21,10 @@ export class ConstNameService {
     localStorage.clear();
   }
 
+  CHECK_ENV = {
+    isDev: false
+  };
+
   getAccessToken() {
     return {
       headers: new HttpHeaders({

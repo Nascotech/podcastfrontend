@@ -3064,29 +3064,37 @@ a.list__link:focus .icon {
 .epsod-txt.no-epsod-found span {
     text-align: center;
   }
-  
+
   .epsod-txt.no-epsod-found h2 {
     text-align: center;
     font-size: 20px;
     font-weight: 700;
     margin-bottom: 5px;
   }
-  
+
   .epsod-txt.no-epsod-found p {
     text-align: center;
     color: #717277;
     font-size: 15px;
   }
-  
+
   .epsod-txt.no-epsod-found .epsode-btn-grp {
     text-align: center;
   }
-  
+
   .no-epsod-img-area {
     text-align: center;
     padding: 15px 0 15px 0;
   }
-  
+
   .no-epsod-img-area img {
     max-height: 80px;
+  }
+
+  .dev-env {
+    background-color: red;
+    font-size: 20px;
+    color: white;
+    margin-right: 25px;
+    font-weight: 900 !important;
   }

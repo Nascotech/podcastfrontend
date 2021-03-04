@@ -25,6 +25,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
+    localStorage.setItem('isScriptUpdate', "false");
     this.checkEnv = this.costname.CHECK_ENV.isDev;
     if(this.showHeader && this.showHeader === "off") {
       this.nav.hide();

@@ -65,7 +65,7 @@ export class HomeComponent implements OnInit {
   getAccessToken() {
     let publisherSlug = localStorage.getItem('publisherSlug') || '';
     this.photoUrl = this.constname.BASE.img_uri;
-    this.podcastService.getAccessToken(publisherSlug).subscribe((data: any) => {
+    this.podcastService.getAccessToken(publisherSlug).subscribe(async (data: any) => {
       if (data.errorMsg === "")  {
         this.userResponse = data;
         localStorage.setItem('publisherInfo', JSON.stringify(this.userResponse.response));
@@ -73,6 +73,18 @@ export class HomeComponent implements OnInit {
         localStorage.setItem('themeColor', this.userResponse.response.headerColor);
         document.documentElement.style.setProperty('--primary-color', this.userResponse.response.headerColor);
         this.titleService.setTitle("Podcasts - " + this.userResponse.response.publisherName);
+
+        let checkScript = localStorage.getItem('isScriptUpdate');
+        if(checkScript === "false") {
+          if(this.userResponse.response.headerScript) {
+            await postscribe('#custom-header', atob(this.userResponse.response.headerScript));
+          }
+          if(this.userResponse.response.bodyScript) {
+            await postscribe('#custom-body', atob(this.userResponse.response.bodyScript));
+          }
+          localStorage.setItem('isScriptUpdate', "true");
+        }
+
         if(this.userResponse.response.photo) {
           $(".header-logo").attr("src", this.photoUrl + this.userResponse.response.photo.path);
         }

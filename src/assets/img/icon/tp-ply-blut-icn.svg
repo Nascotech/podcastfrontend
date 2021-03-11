@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="88.938" height="88.938" viewBox="0 0 88.938 88.938">
+  <defs>
+    <filter id="Icon_awesome-play-circle" x="0" y="0" width="88.938" height="88.938" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Icon_awesome-play-circle)">
+    <path id="Icon_awesome-play-circle-2" data-name="Icon awesome-play-circle" d="M36.031.563A35.469,35.469,0,1,0,71.5,36.031,35.463,35.463,0,0,0,36.031.563Zm16.547,38.9L27.407,53.909a3.439,3.439,0,0,1-5.106-3V21.157a3.441,3.441,0,0,1,5.106-3l25.171,15.3A3.443,3.443,0,0,1,52.579,39.464Z" transform="translate(8.44 6.44)" fill="#8b6ae9"/>
+  </g>
+</svg>

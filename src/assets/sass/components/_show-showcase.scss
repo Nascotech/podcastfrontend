@@ -1,0 +1,81 @@
+.chos-station {
+    button {
+
+
+        font-weight: normal;
+        font-size: 21px;
+        text-align: left;
+        color: $color-white;
+        width: 346px;
+        height: 54px;
+        border-radius: 10px;
+        background: $color-primary;
+        border: 3px solid $color-white;
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+        padding: 0 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+
+
+        span {
+            margin-left: 10px;
+        }
+
+
+
+    }
+
+    .dropdown-toggle::after {
+        display: none;
+    }
+
+    .dropdown-menu {
+        width: 100%;
+    }
+}
+
+
+.bx-lnk-list-wpr {
+    position: relative;
+    z-index: -9;
+
+    .bx-itm-txt {
+        margin-top: 15px;
+    }
+
+    .bx-lnk-itm {
+        position: relative;
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .bx-itm-txt {
+            margin-top: 15px;
+
+            p {
+                width: auto;
+
+                font-weight: normal;
+                font-size: $font_sm_x1;
+                text-align: left;
+                color: $color-dark;
+                text-shadow: $text-shadow-primary;
+            }
+        }
+
+        .intigat-icn {
+            position: absolute;
+            right: 0;
+            top: 10px;
+        }
+
+    }
+}
+
+.add-bnr-wpr {
+    text-align: center !important;
+}

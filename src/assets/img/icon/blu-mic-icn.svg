@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="99.024" height="116.763" viewBox="0 0 99.024 116.763">
+  <defs>
+    <filter id="Icon_awesome-microphone-alt" x="0" y="0" width="99.024" height="116.763" filterUnits="userSpaceOnUse">
+      <feOffset dy="5" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Icon_awesome-microphone-alt)">
+    <path id="Icon_awesome-microphone-alt-2" data-name="Icon awesome-microphone-alt" d="M37.25,21.286H35.477A1.773,1.773,0,0,0,33.7,23.06v5.321A14.207,14.207,0,0,1,18.094,42.5c-7.372-.72-12.773-7.347-12.773-14.754V23.06a1.773,1.773,0,0,0-1.774-1.774H1.774A1.773,1.773,0,0,0,0,23.06v4.452c0,9.938,7.092,18.8,16.851,20.143v3.786H10.643a1.773,1.773,0,0,0-1.774,1.774v1.774a1.773,1.773,0,0,0,1.774,1.774H28.381a1.773,1.773,0,0,0,1.774-1.774V53.215a1.773,1.773,0,0,0-1.774-1.774H22.173V47.7A19.531,19.531,0,0,0,39.024,28.381V23.06A1.773,1.773,0,0,0,37.25,21.286ZM19.512,39.024A10.643,10.643,0,0,0,30.155,28.381H20.7c-.653,0-1.183-.4-1.183-.887V25.721c0-.49.53-.887,1.183-.887h9.46V21.286H20.7c-.653,0-1.183-.4-1.183-.887V18.625c0-.49.53-.887,1.183-.887h9.46V14.191H20.7c-.653,0-1.183-.4-1.183-.887V11.53c0-.49.53-.887,1.183-.887h9.46a10.643,10.643,0,0,0-21.286,0V28.381A10.643,10.643,0,0,0,19.512,39.024Z" transform="translate(30 25)" fill="#377d4e"/>
+  </g>
+</svg>

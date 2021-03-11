@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+// Configuration and helpers
+@import "abstracts/variables";
+@import "abstracts/mixins";
+
+//Base stuff
+@import "base/fonts";
+@import "base/base";
+@import "base/helpers";
+
+// Layout-related sections
+@import "components/section-title";
+@import "layout/header";
+@import "layout/footer";
+
+// Page-specific styles
+@import "pages/home";
+@import "pages/revised-page";
+
+@import "./responsive/responsive";

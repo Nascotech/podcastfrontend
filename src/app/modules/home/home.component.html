@@ -1,0 +1,58 @@
+<ngx-spinner size="medium" color="white" type="ball-scale-multiple"></ngx-spinner>
+
+<!-- start featured-podcasts-block -->
+<div class="featured-podcasts-block">
+	<div class="section-title pt-30 pb-20 no-mbb-top">
+		<div class="sec-titl-txt">
+			<h3 class="primary-color">Featured Podcasts</h3>
+		</div>
+	</div>
+	<div class="row align-items-center justify-content-center pt-25 pb-25" *ngIf="podcastList.length == 0 && !isLoadingService ">
+		<div class="col-xl-12 col-12 col-lg-12 col-md-12">
+			<div class="epsod-txt no-epsod-found">
+				<div class="no-epsod-img-area">
+					<img src="./assets/img/no-episode-mic.png" class="img-fluid" alt="">
+				</div>
+				<h2>No Podcasts Found</h2>
+				<p>
+					It Seems like there is no Podcasts Available.
+				</p>
+			</div>
+		</div>
+	</div>
+	<div class="bx-lnk-list-wpr">
+		<div class="row">
+			<div class="col-sm-12 col-md-12 col-lg-12">
+			  <!-- Start Loading Indicator -->
+			  <div class="c-loading text-center" *ngIf="isLoadingService === true">
+				<div class="spinner-grow" role="status">
+					<span class="sr-only">Loading...</span>
+				</div>
+			  </div>
+			  <!-- END Loading Indicator -->
+			</div>
+		  </div>
+		<div class="row">
+			<div *ngFor="let podcast of podcastList" routerLink="/directory/{{podcast.slug}}" class="col-xl-3 col-lg-3 col-md-4 col-6"  >
+				<div class="bx-lnk-itm">
+					<a class="img-wrap" routerLink="/directory/{{podcast.slug}}">
+						<img  class="rounded" src="{{podcast.image ? podcast.image : 'assets/img/no-image-2.jpg'}}"  onError="this.src='assets/img/no-image-2.jpg'">
+						<!-- <img class="rounded" src="{{'assets/img/no-image-2.jpg'}}"  onError="this.src='assets/img/no-image-2.jpg'"> -->
+						<div class="content-overlay"></div>
+					</a>
+				</div>
+				<div class="bx-itm-txt">
+					<a routerLink="/directory/{{podcast.slug}}">
+						<p>{{podcast?.name}}</p>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="section-btm-lnk text-right pt-15 pb-15">
+		<button *ngIf="this.submitted === true" type="submit" class="btn-lod-mor">
+			<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span> loading...
+		</button>
+		<a href="javascript:void(0);" *ngIf="count !== lastPage && isloadmore==true && this.submitted === false && this.podcastList.length > 0" (click)="loadMorePodcast()" id="more-podcast-btn" class="btn-lod-mor">load more</a>
+	</div>
+</div>

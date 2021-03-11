@@ -1,0 +1,52 @@
+.section-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    background: transparent;
+    border-top: 1px solid $color-primary;
+    filter: $drop-shadow-primary;
+    -webkit-filter: $drop-shadow-primary;
+    margin-top: -1px;
+
+    h3 {
+        font-weight: 900;
+        font-size: $font_md_x3;
+        text-align: left;
+        color: $color-dark;
+        margin: 0;
+    }
+
+    p {
+        font-weight: 300;
+        font-size: $font_md_x1;
+        text-align: left;
+        color: $color-dark;
+        margin: 0;
+    }
+}
+
+
+
+
+
+.section-btm-lnk {
+    a {
+
+        font-weight: 500;
+        font-size: $font_md_x1;
+        color: $color-dark;
+        display: block;
+        text-align: right;
+        text-transform: capitalize;
+
+        &:hover {
+            color: $color-primary;
+        }
+
+        i {
+            margin-left: 15px;
+            font-size: 28px;
+        }
+    }
+}

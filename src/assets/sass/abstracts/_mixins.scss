@@ -1,0 +1,86 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass mixins.
+// -----------------------------------------------------------------------------
+
+// before after
+@mixin pseudo($pos: absolute, $content: "") {
+    position: $pos;
+    content: $content;
+}
+
+//font style
+@mixin font_face($ff, $sze: 14px, $clr: #000, $fw: 400, $lh: 1) {
+    @if $ff {
+        font-family: $ff;
+    }
+
+    @if $sze {
+        font-size: $sze;
+    }
+
+    @if $clr {
+        color: $clr;
+    }
+
+    @if $fw {
+        font-weight: $fw;
+    }
+
+    @if $lh {
+        line-height: $lh;
+    }
+}
+
+//Padding top right
+@mixin paddingTwoValue($top2Bottom, $left2right) {
+    padding: $top2Bottom $left2right;
+}
+
+//Remove Margin Padding spacing
+@mixin rest_mp {
+    margin: 0;
+    padding: 0;
+}
+
+//transition
+@mixin transition_time($tt) {
+    transition: all $tt;
+    -webkit-transition: all $tt;
+    -moz-transition: all $tt;
+    -ms-transition: all $tt;
+    -o-transition: all $tt;
+}
+
+
+
+/*** Breakpoints ***/
+
+@mixin desktop_xl {
+    @media (min-width: 1200px) and (max-width: 1500px) {
+        @content;
+    }
+}
+
+@mixin laptop_lg {
+    @media (min-width: 992px) and (max-width: 1200px) {
+        @content;
+    }
+}
+
+@mixin table_md {
+    @media (min-width: 768px) and (max-width: 991px) {
+        @content;
+    }
+}
+
+@mixin mobile_sm {
+    @media (max-width: 767px) {
+        @content;
+    }
+}
+
+@mixin landscape_mobile_sm {
+    @media only screen and (min-width: 480px) and (max-width: 767px) {
+        @content;
+    }
+}

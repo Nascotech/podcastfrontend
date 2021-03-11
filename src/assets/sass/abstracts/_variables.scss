@@ -1,0 +1,53 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass variables.
+// -----------------------------------------------------------------------------
+
+// Color
+$color-primary: #8b6ae9;
+$color-dark: #27292d;
+$color-light: #B6BAC1;
+$color-red: #ff044e;
+$color-white: #ffff;
+$color-black: #000000;
+$color-gray: #dddd;
+$color-light-gray: #444;
+$color-blue: #461495;
+
+
+
+//Background color
+$main-bg: #f7f7f7;
+$white-bg:#ffff;
+$main-gradient-bg:linear-gradient(#8b6ae9 0%, #463575 100%);
+
+// Font Size
+$font_sm_x1: 15px;
+$font_sm_x2: 17px;
+$font_sm_x3: 20px;
+
+$font_md_x1: 23px;
+$font_md_x2: 25px;
+$font_md_x3: 30px;
+$font_md_x4: 21px;
+
+$font_lg_x1: 34px;
+$font_lg_x2: 32px;
+
+$font_xl_x2:44px;
+$font_xl_x2:47px;
+
+
+
+// Shadow
+$primary-shadow-color:rgba(0, 0, 0, 0.16);
+$text-shadow-primary:0px 3px 6px rgba(0, 100, 255, 0.16);
+$drop-shadow-primary:drop-shadow(0px 5px 20px rgba(0, 0, 0, 0.16));
+$box-shadow-primary: 0 0 10px #dddd;
+$box-shadow-secondary: 0px 2px 60px #0064ff14;
+
+
+
+
+//Font family
+$font-primary :"Helvetica Neue";
+$font-secondary :"Lato";

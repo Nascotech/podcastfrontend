@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="31.139" height="25.453" viewBox="0 0 31.139 25.453">
+  <defs>
+    <filter id="Icon_awesome-caret-down" x="0" y="0" width="31.139" height="25.453" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-color="#0064ff" flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Icon_awesome-caret-down)">
+    <path id="Icon_awesome-caret-down-2" data-name="Icon awesome-caret-down" d="M1.678,13.5H13.049a.882.882,0,0,1,.623,1.507L7.989,20.694a.886.886,0,0,1-1.251,0L1.055,15.007A.882.882,0,0,1,1.678,13.5Z" transform="translate(8.21 -7.5)"/>
+  </g>
+</svg>

@@ -1,0 +1,155 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the header of the site/application.
+// -----------------------------------------------------------------------------
+.header-area {
+    height: 130px;
+    display: flex;
+    align-items: center;
+    box-shadow: $box-shadow-primary;
+    background: $white-bg;
+
+    .container-fluid {
+        max-width: 1920px;
+    }
+
+    .home-logo {
+        display: inline-block;
+
+
+    }
+
+    .tp-auth-action {
+        display: inline-block;
+        border: 1px solid $color-primary;
+        border-radius: 30px;
+        @include paddingTwoValue(5px, 10px);
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        a {
+
+            text-align: left;
+            border-right: 1px solid $color-primary;
+            @include paddingTwoValue(5px, 10px);
+            @include font_face($font-secondary, 20px, $color-primary, 500, 1);
+
+            &:hover {
+                color: $color-dark;
+            }
+
+            &:last-child {
+                border: none;
+            }
+        }
+    }
+
+    .main-menu {
+        ul {
+            li {
+                display: inline-block;
+
+                a {
+                    text-align: left;
+                    text-shadow: $text-shadow-primary;
+                    margin-left: 37px;
+                    border-bottom: 4px solid transparent;
+                    padding-bottom: 2px;
+                    @include font_face(Lato, 20px, $color-black, bold, 1);
+                    @include transition_time(.3s);
+
+                    &:hover {
+                        border-bottom: 4px solid $color-primary;
+                    }
+                }
+            }
+        }
+    }
+
+    .tp-action {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+
+        img {
+            width: 24px;
+        }
+
+        .tp-act-lnk {
+            display: inline-block;
+            margin-left: 20px;
+
+            i {
+                font-size: 24px;
+                color: $color-black;
+                text-shadow: $text-shadow-primary;
+            }
+
+            button {
+                border: none;
+                background: none;
+                font-family: $font-primary;
+                font-weight: 500;
+                font-size: 20px;
+                text-align: left;
+                color: $color-black;
+                text-shadow: $text-shadow-primary;
+            }
+        }
+    }
+
+    .bck-home-btn {
+
+
+
+        img {
+            width: 27px;
+        }
+
+        span {
+            font-family: $font-primary;
+            font-weight: 500;
+            font-size: $font_sm_x3;
+            text-align: left;
+            margin-left: 16px;
+
+
+
+        }
+
+        a {
+            display: flex;
+            align-items: center;
+            border: 1px solid $color-primary;
+            width: 227px;
+            height: 49px;
+            border-radius: 24.5px;
+            background: $color-white;
+            color: $color-primary;
+            justify-content: center;
+            border: 1px solid $color-primary;
+
+            &:hover {
+                background: $color-primary;
+
+                span {
+                    color: $color-white;
+                }
+
+                img {
+                    filter: brightness(800%);
+                    -webkit-filter: brightness(800%);
+                }
+            }
+
+
+
+        }
+
+
+    }
+
+}
+
+/* end header area css */

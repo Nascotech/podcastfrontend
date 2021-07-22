@@ -15,8 +15,8 @@
 					<h2>{{podcastDetail?.name}}</h2>
 					<p>{{podcastDetail?.description}}</p>
 					<a *ngIf="podcastEpisodes.length != 0" (click)="playAllEpisode()" id="play_all_btn"  class="btn btn-invert">Listen All</a>
-					<a [socialShare]="'fb'" class="btn btn-invert">Share on Facebook</a>
-					<a type="button" mdbBtn floating="true" size="lg" color="fb" class="waves-light" mdbWavesEffect><mdb-icon fab icon="facebook-f"></mdb-icon></a>
+					<a [socialShare]="'fb'" class="btn btn-invert">Facebook Share</a>
+
 				</div>
 
 			</div>

@@ -6,16 +6,14 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { NgxSocialShareModule } from 'ngx-social-share';
 import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
-import {ShareIconsModule} from 'ngx-sharebuttons/icons';
 @NgModule({
   imports: [
     CommonModule,
     DirectoryRoutingModule,
     NgxUiLoaderModule,
     NgxSpinnerModule,
-    NgxSocialShareModule,
     ShareButtonsModule,
-    ShareIconsModule
+    NgxSocialShareModule,
   ],
   declarations: [DirectoryComponent]
 })

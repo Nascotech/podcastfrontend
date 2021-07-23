@@ -20,6 +20,7 @@ export class PlayerComponent implements OnInit {
   public player;
   songsList: any = [];
   id: string;
+  currentPlay: { play: any; image: any; id: any; title: any; url: any };
 
   constructor(
     private podcastServices: PodcastService,
@@ -135,8 +136,9 @@ export class PlayerComponent implements OnInit {
     this.songsList = [];
     localStorage.setItem('playList', JSON.stringify(this.songsList));
   }
-
+///
   newSetSource(result) {
+    this.currentPlay = result;
     $('.f-footer').addClass('f-padding');
     this.toggleButton(result.id);
     if (this.active !== result.id) {
@@ -177,6 +179,12 @@ export class PlayerComponent implements OnInit {
   }
 
   setSource(selected, sourceAudio, title, image, play) {
+    this.currentPlay = {
+      'id': selected,
+      'play': play,
+      'title': title,
+      'url': sourceAudio,
+      'image': image };
     $('.f-footer').addClass('f-padding');
     this.toggleButton(selected);
     if (this.active !== selected) {
@@ -310,6 +318,13 @@ export class PlayerComponent implements OnInit {
         console.log('Previous song not available');
       }
     }
+  }
+
+  sharePodcast() {
+
+    console.log(this.active);
+    console.log(this.player.source);
+    console.log(this.currentPlay);
   }
 
 }

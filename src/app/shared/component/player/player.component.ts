@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import { PodcastService } from 'src/app/services/podcast.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EventEmitterService } from 'src/app/services/event-emitter.service';
@@ -7,6 +7,8 @@ import { ConstNameService } from 'src/app/services/const-name.service';
 declare const com_adswizz_synchro_decorateUrl: any;
 declare let $: any;
 import * as Plyr from 'plyr';
+import {ClipboardService} from "ngx-clipboard";
+import {DOCUMENT} from "@angular/common";
 
 @Component({
   selector: 'app-player',
@@ -21,13 +23,17 @@ export class PlayerComponent implements OnInit {
   songsList: any = [];
   id: string;
   currentPlay: { play: any; image: any; id: any; title: any; url: any };
+  window: any;
+
 
   constructor(
     private podcastServices: PodcastService,
     private route: ActivatedRoute,
     private router: Router,
     private eventEmitterService: EventEmitterService,
-    private constname: ConstNameService
+    private constname: ConstNameService,
+    private clipboardApi: ClipboardService,
+    @Inject(DOCUMENT) private document: Document
   ) {
     this.route.params.subscribe(params => this.id = params['id']);
   }
@@ -325,6 +331,8 @@ export class PlayerComponent implements OnInit {
     console.log(this.active);
     console.log(this.player.source);
     console.log(this.currentPlay);
+    const playItem = '?autoplay=true&id=' + this.currentPlay.id + '&url=' + this.currentPlay.url + 'title=' + this.currentPlay.title
+    this.clipboardApi.copyFromContent(this.document.defaultView.window.location.hostname + this.router.url + playItem);
   }
 
 }

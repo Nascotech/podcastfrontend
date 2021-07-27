@@ -127,6 +127,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "Atunwasetupproject"
+    }
+  },
+  "defaultProject": "Atunwasetupproject",
+  "cli": {
+    "analytics": "dfd8a70f-586d-4483-b2cb-3ba7ec96c472"
+  }
 }

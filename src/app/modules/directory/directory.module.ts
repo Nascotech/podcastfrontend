@@ -5,13 +5,15 @@ import { DirectoryComponent } from './directory.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { NgxSocialShareModule } from 'ngx-social-share';
+import {ShareButtonsModule} from 'ngx-sharebuttons/buttons';
 @NgModule({
   imports: [
     CommonModule,
     DirectoryRoutingModule,
     NgxUiLoaderModule,
     NgxSpinnerModule,
-    NgxSocialShareModule
+    NgxSocialShareModule,
+    ShareButtonsModule
   ],
   declarations: [DirectoryComponent]
 })

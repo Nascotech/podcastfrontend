@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { DefaultModule } from './layouts/default/default.module';
 import { HttpClientModule} from '@angular/common/http';
 import { ClipboardModule } from 'ngx-clipboard';
+import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
+import { ShareIconsModule } from 'ngx-sharebuttons/icons';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,6 +19,10 @@ import { ClipboardModule } from 'ngx-clipboard';
     DefaultModule,
     HttpClientModule,
     ClipboardModule,
+    ShareButtonsModule.withConfig({
+      debug: true
+    }),
+    ShareIconsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

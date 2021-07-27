@@ -32,6 +32,7 @@
     "jquery": "^3.5.1",
     "ngx-clipboard": "^14.0.1",
     "ngx-cookieconsent": "^2.2.3",
+    "ngx-facebook": "^3.0.0-0",
     "ngx-progressive-image-loader": "^4.0.0",
     "ngx-sharebuttons": "^8.0.5",
     "ngx-social-share": "^1.0.0",

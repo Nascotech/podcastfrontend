@@ -12,6 +12,7 @@ import { NgxProgressiveImageLoaderModule } from 'ngx-progressive-image-loader';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { PlayerComponent } from './player/player.component';
 import { FiltersComponent } from './filters/filters.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { FiltersComponent } from './filters/filters.component';
     RouterModule,
     FormsModule,
     NgxProgressiveImageLoaderModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    NgbModule
   ],
   declarations: [
     ControlMessagesComponent,

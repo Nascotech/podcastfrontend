@@ -25,7 +25,6 @@ export class PlayerComponent implements OnInit {
   currentPlay: { play: any; image: any; id: any; title: any; url: any };
   window: any;
 
-
   constructor(
     private podcastServices: PodcastService,
     private route: ActivatedRoute,
@@ -332,7 +331,7 @@ export class PlayerComponent implements OnInit {
     // console.log(this.player.source);
     console.log(this.currentPlay);
     // console.log(this.currentPlay.image);
-    const playItem = '/?shared=true&id=' + this.currentPlay.id + '&title=' + this.currentPlay.title + '&img=' + null + '&url=' + this.currentPlay.url
+    const playItem = '/?redirectTo=' +  this.router.url + '&sharedId=' + (this.currentPlay.id.substr(0, this.currentPlay.id.indexOf('_'))) + '&title=' + this.currentPlay.title + '&img=' + null + '&url=' + this.currentPlay.url
     this.clipboardApi.copyFromContent(this.document.defaultView.window.location.hostname + this.router.url + playItem);
   }
 

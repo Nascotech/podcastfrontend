@@ -17,7 +17,7 @@
 <!--					<a [socialShare]="'fb'" class="btn btn-invert">Facebook Share</a>-->
 					<div class="row  no-gutters">
 						<div class="col-xl-4 col-lg-5 col-md-6" style="text-align: left">
-							<share-buttons theme="modern-light" show="3" [include]="['facebook','twitter','linkedin']"></share-buttons>
+							<share-buttons theme="modern-light" show="3" url="{{ this.route.url + '/?redirectTo=directory/'+ this.id  }}" [include]="['facebook','twitter','linkedin']"></share-buttons>
 						</div>
 						<div class="col-sm-4">
 							<a *ngIf="podcastEpisodes.length != 0" (click)="playAllEpisode()" id="play_all_btn"  class="btn btn-invert">Listen All</a>

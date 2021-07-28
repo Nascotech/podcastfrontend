@@ -50,6 +50,9 @@ export class HomeComponent implements OnInit {
       if(queryParams.pubid) {
         localStorage.setItem('publisherSlug', this.publisherSlug);
       }
+      if (queryParams.redirectTo){
+        this.router.navigateByUrl(queryParams.redirectTo + '' );
+      }
     });
   }
 

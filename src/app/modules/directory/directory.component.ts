@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ConstNameService } from 'src/app/services/const-name.service';
 import { PodcastService } from 'src/app/services/podcast.service';
@@ -10,6 +10,7 @@ import { Title } from '@angular/platform-browser';
 import postscribe from 'postscribe';
 
 import * as $ from "jquery";
+import {DOCUMENT} from "@angular/common";
 
 @Component({
   selector: 'app-directory',
@@ -43,15 +44,17 @@ export class DirectoryComponent implements OnInit {
   sharedUrl:String;
   sharedTitle:String;
   sharedImage:String;
+  baseLocation:String;
 
   constructor(
     private costname:ConstNameService,
     private podcastService:PodcastService,
     private spinner: NgxSpinnerService,
-    private route:ActivatedRoute,
+    public route:ActivatedRoute,
     private eventEmitterService:EventEmitterService,
     private router:Router,
-    private titleService: Title
+    private titleService: Title,
+    @Inject(DOCUMENT) private document: Document
   ) {
     this.route.params.subscribe(params => this.id = params['slug']);
   }
@@ -59,16 +62,19 @@ export class DirectoryComponent implements OnInit {
   ngOnInit() {
     window.scroll(0,0);
     this.photoUrl = this.costname.BASE.img_uri;
+    this.baseLocation = this.document.defaultView.window.location.hostname;
     this.checkLocalStorage();
     this.podcastDetils();
     this.allPodcastEpisod();
-    if (this.route.snapshot.queryParams['shared']) {
-      this.sharedId = this.route.snapshot.queryParams.id;
-      this.sharedTitle = this.route.snapshot.queryParams.title;
-      this.sharedUrl = this.route.snapshot.queryParams.url;
-      this.sharedImage = this.route.snapshot.queryParams.img;
-      this.setSource(this.sharedId, this.sharedUrl + '?', this.sharedTitle, this.sharedImage ? this.sharedImage : 'assets/img/no-image-2.jpg', true)
-      console.log("shared url "+ this.sharedUrl);
+    if (this.route.snapshot.queryParams['sharedId']) {
+      this.sharedId = this.route.snapshot.queryParams.sharedId;
+
+      // this.sharedId = this.route.snapshot.queryParams.sharedid;
+      // this.sharedTitle = this.route.snapshot.queryParams.title;
+      // this.sharedUrl = this.route.snapshot.queryParams.url;
+      // this.sharedImage = this.route.snapshot.queryParams.img;
+      // this.setSource(this.sharedId, this.sharedUrl + '?', this.sharedTitle, this.sharedImage ? this.sharedImage : 'assets/img/no-image-2.jpg', true)
+      // console.log("shared url "+ this.sharedUrl);
     }
   }
 

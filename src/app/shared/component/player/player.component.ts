@@ -328,10 +328,11 @@ export class PlayerComponent implements OnInit {
 
   sharePodcast() {
 
-    console.log(this.active);
-    console.log(this.player.source);
+    // console.log(this.active);
+    // console.log(this.player.source);
     console.log(this.currentPlay);
-    const playItem = '?autoplay=true&id=' + this.currentPlay.id + '&url=' + this.currentPlay.url + 'title=' + this.currentPlay.title
+    // console.log(this.currentPlay.image);
+    const playItem = '/?shared=true&id=' + this.currentPlay.id + '&title=' + this.currentPlay.title + '&img=' + null + '&url=' + this.currentPlay.url
     this.clipboardApi.copyFromContent(this.document.defaultView.window.location.hostname + this.router.url + playItem);
   }
 

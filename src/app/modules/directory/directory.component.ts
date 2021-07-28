@@ -39,6 +39,10 @@ export class DirectoryComponent implements OnInit {
   id:String;
   idmobile:String;
   advScriptData: any = [];
+  sharedId:String;
+  sharedUrl:String;
+  sharedTitle:String;
+  sharedImage:String;
 
   constructor(
     private costname:ConstNameService,
@@ -58,6 +62,14 @@ export class DirectoryComponent implements OnInit {
     this.checkLocalStorage();
     this.podcastDetils();
     this.allPodcastEpisod();
+    if (this.route.snapshot.queryParams['shared']) {
+      this.sharedId = this.route.snapshot.queryParams.id;
+      this.sharedTitle = this.route.snapshot.queryParams.title;
+      this.sharedUrl = this.route.snapshot.queryParams.url;
+      this.sharedImage = this.route.snapshot.queryParams.img;
+      this.setSource(this.sharedId, this.sharedUrl + '?', this.sharedTitle, this.sharedImage ? this.sharedImage : 'assets/img/no-image-2.jpg', true)
+      console.log("shared url "+ this.sharedUrl);
+    }
   }
 
   checkLocalStorage() {

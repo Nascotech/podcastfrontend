@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {AfterContentInit, Component, Inject, OnInit} from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ConstNameService } from 'src/app/services/const-name.service';
 import { PodcastService } from 'src/app/services/podcast.service';
@@ -18,7 +18,7 @@ import { ConfirmDialogService } from 'src/app/services/confirm-dialog.service';
   templateUrl: './directory.component.html',
   styleUrls: ['./directory.component.scss']
 })
-export class DirectoryComponent implements OnInit {
+export class DirectoryComponent implements OnInit, AfterContentInit{
 
   photoUrl: string;
 
@@ -71,30 +71,25 @@ export class DirectoryComponent implements OnInit {
     this.checkLocalStorage();
     this.podcastDetils();
     this.allPodcastEpisod();
+  }
+  ngAfterContentInit(){
     if (this.route.snapshot.queryParams.sharedId) {
       this.sharedId = this.route.snapshot.queryParams.sharedId;
-      console.log("shared url "+ this.sharedId);
-      const options = {
-        title: 'CONFIRM.DOWNLOAD.JOB.TITLE',
-        message: 'CONFIRM.DOWNLOAD.JOB.MESSAGE',
-        cancelText: 'CONFIRM.DOWNLOAD.JOB.CANCELTEXT',
-        confirmText: 'CONFIRM.DOWNLOAD.JOB.CONFIRMTEXT'
-      };
-      this.dialogService.open(options);
-      // this.dialogService.confirmed().subscribe(confirmed => {
-      //   if (confirmed) {
-      //
-      //   }
-      // });
-      // this.sharedId = this.route.snapshot.queryParams.sharedid;
-      // this.sharedTitle = this.route.snapshot.queryParams.title;
-      // this.sharedUrl = this.route.snapshot.queryParams.url;
-      // this.sharedImage = this.route.snapshot.queryParams.img;
-      // this.setSource(this.sharedId, this.sharedUrl + '?', this.sharedTitle, this.sharedImage ? this.sharedImage : 'assets/img/no-image-2.jpg', true)
-      // console.log("shared url "+ this.sharedUrl);
+      console.log('shared url ' + this.sharedId);
+
+      this.sharedId = this.route.snapshot.queryParams.sharedid;
+      this.sharedTitle = this.route.snapshot.queryParams.title;
+      this.sharedUrl = this.route.snapshot.queryParams.url;
+      this.sharedImage = this.route.snapshot.queryParams.img;
+      this.showDialog("Play Podcast",this.sharedTitle);
+      this.dialogService.confirmed().subscribe(confirmed => {
+        if (confirmed) {
+          this.setSource(this.sharedId, this.sharedUrl + '?', this.sharedTitle, this.sharedImage ? this.sharedImage : 'assets/img/no-image-2.jpg', true)
+        }
+
+      });
     }
   }
-
   checkLocalStorage() {
     const checkInfo = JSON.parse(localStorage.getItem('publisherInfo') || '[]');
     this.advScriptData = JSON.parse(localStorage.getItem('advScriptData'));
@@ -306,5 +301,14 @@ export class DirectoryComponent implements OnInit {
         this.submitted = false;
         this.costname.forbidden(error);
       });
+    }
+   showDialog(title,message){
+      const options = {
+        title: title,
+        message: message,
+        cancelText: 'Cancel',
+        confirmText: 'Confirm'
+      };
+      this.dialogService.open(options);
     }
 }

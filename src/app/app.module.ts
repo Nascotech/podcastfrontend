@@ -28,6 +28,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     ShareIconsModule
   ],
   providers: [ConfirmDialogService],
+  entryComponents: [ConfirmDialogService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,5 @@
 import {AfterContentInit, Component, Inject, OnInit} from '@angular/core';
-import { HttpErrorResponse } from '@angular/common/http';
+import {HttpErrorResponse, HttpParameterCodec} from '@angular/common/http';
 import { ConstNameService } from 'src/app/services/const-name.service';
 import { PodcastService } from 'src/app/services/podcast.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -20,7 +20,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
   templateUrl: './directory.component.html',
   styleUrls: ['./directory.component.scss']
 })
-export class DirectoryComponent implements OnInit, AfterContentInit{
+export class DirectoryComponent implements OnInit, AfterContentInit, HttpParameterCodec{
 
   photoUrl: string;
 
@@ -68,6 +68,20 @@ export class DirectoryComponent implements OnInit, AfterContentInit{
     this.route.params.subscribe(params => this.id = params.slug);
   }
 
+  encodeKey(key: string): string {
+    return encodeURIComponent(key);
+  }
+  encodeValue(value: string): string {
+    return encodeURIComponent(value);
+  }
+  decodeKey(key: string): string {
+    return decodeURIComponent(key);
+  }
+  decodeValue(value: string): string {
+    return decodeURIComponent(value);
+  }
+
+
   ngOnInit() {
     window.scroll(0, 0);
     this.photoUrl = this.costname.BASE.img_uri;
@@ -78,13 +92,13 @@ export class DirectoryComponent implements OnInit, AfterContentInit{
   }
   ngAfterContentInit(){
     if (this.route.snapshot.queryParams.sharedId) {
-      this.sharedId = this.route.snapshot.queryParams.sharedId;
+      this.sharedId = this.decodeValue(this.route.snapshot.queryParams.sharedId);
       console.log('shared url ' + this.sharedId);
 
-      this.sharedId = this.route.snapshot.queryParams.sharedid;
-      this.sharedTitle = this.route.snapshot.queryParams.title;
-      this.sharedUrl = this.route.snapshot.queryParams.url;
-      this.sharedImage = this.route.snapshot.queryParams.img;
+      this.sharedId = this.decodeValue(this.route.snapshot.queryParams.sharedid);
+      this.sharedTitle = this.decodeValue(this.route.snapshot.queryParams.title);
+      this.sharedUrl = this.decodeValue(this.route.snapshot.queryParams.url);
+      this.sharedImage = this.decodeValue(this.route.snapshot.queryParams.img);
       this.showDialog('Play Podcast', this.sharedTitle);
       this.dialogService.confirmed().subscribe(confirmed => {
         if (confirmed) {
@@ -317,8 +331,8 @@ export class DirectoryComponent implements OnInit, AfterContentInit{
     }
 
   socialShareUrl(id, url, title, image){
-    const playItem = '/?redirectTo=' +  this.router.url + '&sharedId=' + (id.substr(0, id.indexOf('_'))) + '&title=' + title + '&img=' + null + '&url=' + url;
+    const playItem = '/?sharedId=' + this.encodeValue((id.substr(0, id.indexOf('_')))) + '&' + this.encodeKey('title=') + this.encodeValue(title) + '&img=' + null + '&' + this.encodeKey('url=') + this.encodeValue(url);
     this.clipboardApi.copyFromContent(this.document.defaultView.window.location.hostname + this.router.url + playItem);
-    this.snackBar.open('Copied link ' + title , 'Okay');
+    this.snackBar.open('Copied ' + title , 'Okay');
   }
 }

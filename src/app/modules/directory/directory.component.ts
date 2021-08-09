@@ -331,7 +331,7 @@ export class DirectoryComponent implements OnInit, AfterContentInit, HttpParamet
     }
 
   socialShareUrl(id, url, title, image){
-    const playItem = '/?sharedId=' + this.encodeValue((id.substr(0, id.indexOf('_')))) + '&' + this.encodeKey('title=') + this.encodeValue(title) + '&img=' + null + '&' + this.encodeKey('url=') + this.encodeValue(url);
+    const playItem = '/?sharedId=' + this.encodeValue((id.substr(0, id.indexOf('_')))) + '&' + this.encodeKey('title') + '=' + this.encodeValue(title) + '&img=' + null + '&' + this.encodeKey('url') + '=' + this.encodeValue(url);
     this.clipboardApi.copyFromContent(this.document.defaultView.window.location.hostname + this.router.url + playItem);
     this.snackBar.open('Copied ' + title , 'Okay');
   }

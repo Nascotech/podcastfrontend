@@ -12,6 +12,8 @@ import postscribe from 'postscribe';
 import * as $ from 'jquery';
 import {DOCUMENT} from '@angular/common';
 import { ConfirmDialogService } from 'src/app/services/confirm-dialog.service';
+import {ClipboardService} from 'ngx-clipboard';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-directory',
@@ -58,6 +60,8 @@ export class DirectoryComponent implements OnInit, AfterContentInit{
     private eventEmitterService: EventEmitterService,
     private router: Router,
     private titleService: Title,
+    private clipboardApi: ClipboardService,
+    private snackBar: MatSnackBar,
     @Inject(DOCUMENT) private document: Document,
 
   ) {
@@ -81,10 +85,10 @@ export class DirectoryComponent implements OnInit, AfterContentInit{
       this.sharedTitle = this.route.snapshot.queryParams.title;
       this.sharedUrl = this.route.snapshot.queryParams.url;
       this.sharedImage = this.route.snapshot.queryParams.img;
-      this.showDialog("Play Podcast",this.sharedTitle);
+      this.showDialog('Play Podcast', this.sharedTitle);
       this.dialogService.confirmed().subscribe(confirmed => {
         if (confirmed) {
-          this.setSource(this.sharedId, this.sharedUrl + '?', this.sharedTitle, this.sharedImage ? this.sharedImage : 'assets/img/no-image-2.jpg', true)
+          this.setSource(this.sharedId, this.sharedUrl + '?', this.sharedTitle, this.sharedImage ? this.sharedImage : 'assets/img/no-image-2.jpg', true);
         }
 
       });
@@ -302,13 +306,19 @@ export class DirectoryComponent implements OnInit, AfterContentInit{
         this.costname.forbidden(error);
       });
     }
-   showDialog(title,message){
+   showDialog(title, message){
       const options = {
-        title: title,
-        message: message,
+        title,
+        message,
         cancelText: 'Cancel',
         confirmText: 'Confirm'
       };
       this.dialogService.open(options);
     }
+
+  socialShareUrl(id, url, title, image){
+    const playItem = '/?redirectTo=' +  this.router.url + '&sharedId=' + (id.substr(0, id.indexOf('_'))) + '&title=' + title + '&img=' + image + '&url=' + url;
+    this.clipboardApi.copyFromContent(this.document.defaultView.window.location.hostname + this.router.url + playItem);
+    this.snackBar.open('Copied link ' + title , 'Okay');
+  }
 }

@@ -42,6 +42,9 @@
 					</div>
 				</div>
 			</div>
+			<div class="col-xl-4 col-lg-5 col-md-6" style="text-align: center">
+				<share-buttons theme="modern-light" show="3" url="{{ this.route.url + '/?redirectTo=directory/'+ this.id  }}" [include]="['facebook','twitter','linkedin']"></share-buttons>
+			</div>
 			<div class="col-xl-8 col-lg-7 col-md-6">
 				<div class="feature-itm-txt">
 					<p>{{podcastDetail?.description}}</p>
@@ -78,7 +81,7 @@
 
 	<div class="epsod-itm pb-15" *ngFor="let episode of podcastEpisodes; let i = index" [ngClass]="{'pt-15' : i !== 0}" >
 		<div class="row align-items-center">
-			<div class="col-xl-7 col-7 col-lg-7 col-md-7">
+			<div class="col-xl-7 col-7 col-lg-7 col-md-7 col-sm-7">
 				<div class="epsod-txt">
 					<span>{{episode.pubDate | date}}</span>
 					<h2>{{episode.title}}</h2>
@@ -93,6 +96,12 @@
 							<i class="fa fa-pause"></i> Pause
 							<code id="duration-mob-{{episode.id + '-' + i}}">{{updateTime(episode['duration'])}}</code>
 						  </a>
+
+						<a *ngIf="true" (click)="socialShareUrl(episode.id + '_' + i,episode.url, episode.title, episode.image ? episode.image : podcastDetail.image ? podcastDetail.image : 'assets/img/no-image-2.jpg')" class="btn btn-invert">
+							<i class="fas fa-share"></i>
+							Share
+						</a>
+
 					  	<a *ngIf="!checkPlaylistClick(episode.id + '_' + i)" (click)="addToPlaylist(episode.id + '_' + i,episode.url,episode.title,episode.image ? episode.image : podcastDetail.image ? podcastDetail.image : 'assets/img/no-image-2.jpg')" class="btn btn-invert ml-2">
 							<i class="fas fa-plus-circle"></i>
 							Playlist
@@ -100,11 +109,12 @@
 						<a *ngIf="checkPlaylistClick(episode.id + '_' + i)" (click)="removeFromPlaylist(episode.id + '_' + i)" class="btn btn-invert ml-2">
 							Added
 						</a>
+
 					</div>
 
 				</div>
 			</div>
-			<div class="col-xl-5 col-lg-5 col-md-5 col-5">
+			<div class="col-xl-5 col-lg-5 col-md-5 col-5 col-sm-5">
 				<div class="epsod-img">
 					<img src="{{episode.image ? episode.image : 'assets/img/no-image-2.jpg'}}" alt="" />
 
@@ -152,11 +162,16 @@
 						<i class="fa fa-pause"></i> Pause
 						<code id="duration-mob-{{episode.id + '-' + i}}">{{updateTime(episode['duration'])}}</code>
 					  </a>
-				  <a *ngIf="!checkPlaylistClick(episode.id + '_' + i)" (click)="addToPlaylist(episode.id + '_' + i,episode.url,episode.title,episode.image ? episode.image : podcastDetail.image ? podcastDetail.image : 'assets/img/no-image-2.jpg')" class="btn btn-invert ml-2">
+
+					<a *ngIf="true" (click)="socialShareUrl(episode.id + '_' + i,episode.url, episode.title, episode.image ? episode.image : podcastDetail.image ? podcastDetail.image : 'assets/img/no-image-2.jpg')" class="btn btn-invert">
+						<i class="fas fa-share"></i>
+						Share
+					</a>
+				  <a *ngIf="!checkPlaylistClick(episode.id + '_' + i)" (click)="addToPlaylist(episode.id + '_' + i,episode.url,episode.title,episode.image ? episode.image : podcastDetail.image ? podcastDetail.image : 'assets/img/no-image-2.jpg')" class="btn btn-invert">
 						<i class="fas fa-plus-circle"></i>
 						Playlist
 					</a>
-					<a *ngIf="checkPlaylistClick(episode.id + '_' + i)" (click)="removeFromPlaylist(episode.id + '_' + i)" class="btn btn-invert ml-2">
+					<a *ngIf="checkPlaylistClick(episode.id + '_' + i)" (click)="removeFromPlaylist(episode.id + '_' + i)" class="btn btn-invert">
 						Added
 					</a>
 				</div>

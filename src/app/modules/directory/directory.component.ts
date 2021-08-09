@@ -317,7 +317,7 @@ export class DirectoryComponent implements OnInit, AfterContentInit{
     }
 
   socialShareUrl(id, url, title, image){
-    const playItem = '/?redirectTo=' +  this.router.url + '&sharedId=' + (id.substr(0, id.indexOf('_'))) + '&title=' + title + '&img=' + image + '&url=' + url;
+    const playItem = '/?redirectTo=' +  this.router.url + '&sharedId=' + (id.substr(0, id.indexOf('_'))) + '&title=' + title + '&img=' + null + '&url=' + url;
     this.clipboardApi.copyFromContent(this.document.defaultView.window.location.hostname + this.router.url + playItem);
     this.snackBar.open('Copied link ' + title , 'Okay');
   }

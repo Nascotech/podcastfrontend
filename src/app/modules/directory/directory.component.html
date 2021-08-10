@@ -97,7 +97,7 @@
 							<code id="duration-mob-{{episode.id + '-' + i}}">{{updateTime(episode['duration'])}}</code>
 						  </a>
 
-						<a *ngIf="true" (click)="socialShareUrl(episode.id + '_' + i,episode.url, episode.title, episode.image ? episode.image : podcastDetail.image ? podcastDetail.image : 'assets/img/no-image-2.jpg')" class="btn btn-invert">
+						<a *ngIf="true" (click)="socialShareUrl(episode.id)" class="btn btn-invert">
 							<i class="fas fa-share"></i>
 							Share
 						</a>
@@ -163,7 +163,7 @@
 						<code id="duration-mob-{{episode.id + '-' + i}}">{{updateTime(episode['duration'])}}</code>
 					  </a>
 
-					<a *ngIf="true" (click)="socialShareUrl(episode.id + '_' + i,episode.url, episode.title, episode.image ? episode.image : podcastDetail.image ? podcastDetail.image : 'assets/img/no-image-2.jpg')" class="btn btn-invert">
+					<a *ngIf="true" (click)="socialShareUrl(episode.id)" class="btn btn-invert">
 						<i class="fas fa-share"></i>
 						Share
 					</a>

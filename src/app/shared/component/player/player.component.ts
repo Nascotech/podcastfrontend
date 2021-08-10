@@ -9,13 +9,15 @@ declare let $: any;
 import * as Plyr from 'plyr';
 import {ClipboardService} from "ngx-clipboard";
 import {DOCUMENT} from "@angular/common";
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {HttpParameterCodec} from "@angular/common/http";
 
 @Component({
   selector: 'app-player',
   templateUrl: './player.component.html',
   styleUrls: ['./player.component.css']
 })
-export class PlayerComponent implements OnInit {
+export class PlayerComponent implements OnInit, HttpParameterCodec {
 
   songs: any = [];
   active: any = [];
@@ -32,9 +34,26 @@ export class PlayerComponent implements OnInit {
     private eventEmitterService: EventEmitterService,
     private constname: ConstNameService,
     private clipboardApi: ClipboardService,
+    private snackBar: MatSnackBar,
     @Inject(DOCUMENT) private document: Document
   ) {
     this.route.params.subscribe(params => this.id = params['id']);
+  }
+
+  encodeKey(key: string): string {
+    return encodeURIComponent(key);
+  }
+
+  encodeValue(value: string): string {
+    return encodeURIComponent(value);
+  }
+
+  decodeKey(key: string): string {
+    return decodeURIComponent(key);
+  }
+
+  decodeValue(value: string): string {
+    return decodeURIComponent(value);
   }
 
   ngOnInit() {
@@ -325,14 +344,10 @@ export class PlayerComponent implements OnInit {
     }
   }
 
-  sharePodcast() {
-
-    // console.log(this.active);
-    // console.log(this.player.source);
-    console.log(this.currentPlay);
-    // console.log(this.currentPlay.image);
-    const playItem = '/?redirectTo=' +  this.router.url + '&sharedId=' + (this.currentPlay.id.substr(0, this.currentPlay.id.indexOf('_'))) + '&title=' + this.currentPlay.title + '&img=' + null + '&url=' + this.currentPlay.url
-    this.clipboardApi.copyFromContent(this.document.defaultView.window.location.hostname + this.router.url + playItem);
+  socialShareUrl() {
+    const podcast = this.router.url.split('?')[0].split('/').pop();
+    this.clipboardApi.copyFromContent(this.document.defaultView.window.location.hostname + this.router.url + '/?podcast=' +  this.encodeValue(podcast) + '&episode=' + this.encodeValue(this.currentPlay.id.substr(0, this.currentPlay.id.indexOf('_'))));
+    this.snackBar.open('Podcast Link Copied ', 'Okay');
   }
 
 }

@@ -20,7 +20,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
   templateUrl: './directory.component.html',
   styleUrls: ['./directory.component.scss']
 })
-export class DirectoryComponent implements OnInit, AfterContentInit, HttpParameterCodec{
+export class DirectoryComponent implements OnInit, AfterContentInit, HttpParameterCodec {
 
   photoUrl: string;
 
@@ -48,22 +48,22 @@ export class DirectoryComponent implements OnInit, AfterContentInit, HttpParamet
   sharedTitle: String;
   sharedImage: String;
   baseLocation: String;
-
+  podcastSearchEpisodes: any = [];
+  podcastEpisodeItem: any = [];
 
 
   constructor(
-    private costname: ConstNameService,
-    private podcastService: PodcastService,
-    private dialogService: ConfirmDialogService,
-    private spinner: NgxSpinnerService,
-    public route: ActivatedRoute,
-    private eventEmitterService: EventEmitterService,
-    private router: Router,
-    private titleService: Title,
-    private clipboardApi: ClipboardService,
-    private snackBar: MatSnackBar,
-    @Inject(DOCUMENT) private document: Document,
-
+      private costname: ConstNameService,
+      private podcastService: PodcastService,
+      private dialogService: ConfirmDialogService,
+      private spinner: NgxSpinnerService,
+      public route: ActivatedRoute,
+      private eventEmitterService: EventEmitterService,
+      private router: Router,
+      private titleService: Title,
+      private clipboardApi: ClipboardService,
+      private snackBar: MatSnackBar,
+      @Inject(DOCUMENT) private document: Document,
   ) {
     this.route.params.subscribe(params => this.id = params.slug);
   }
@@ -71,12 +71,15 @@ export class DirectoryComponent implements OnInit, AfterContentInit, HttpParamet
   encodeKey(key: string): string {
     return encodeURIComponent(key);
   }
+
   encodeValue(value: string): string {
     return encodeURIComponent(value);
   }
+
   decodeKey(key: string): string {
     return decodeURIComponent(key);
   }
+
   decodeValue(value: string): string {
     return decodeURIComponent(value);
   }
@@ -90,25 +93,22 @@ export class DirectoryComponent implements OnInit, AfterContentInit, HttpParamet
     this.podcastDetils();
     this.allPodcastEpisod();
   }
-  ngAfterContentInit(){
-    if (this.route.snapshot.queryParams.sharedId) {
-      this.sharedId = this.decodeValue(this.route.snapshot.queryParams.sharedId);
-      console.log('shared url ' + this.sharedId);
 
-      this.sharedId = this.decodeValue(this.route.snapshot.queryParams.sharedid);
-      this.sharedTitle = this.decodeValue(this.route.snapshot.queryParams.title);
-      this.sharedUrl = this.decodeValue(this.route.snapshot.queryParams.url);
-      this.sharedImage = this.decodeValue(this.route.snapshot.queryParams.img);
-      this.showDialog('Play Podcast', this.sharedTitle);
-      console.log('shared url ' + this.sharedUrl);
-      this.dialogService.confirmed().subscribe(confirmed => {
-        if (confirmed) {
-          this.setSource(this.sharedId, this.sharedUrl + '?', this.sharedTitle, this.sharedImage ? this.sharedImage : 'assets/img/no-image-2.jpg', true);
-        }
+  ngAfterContentInit() {
+    if (this.route.snapshot.queryParams.podcast) {
+      let params_podcast = this.decodeValue(this.route.snapshot.queryParams.podcast);
+      let params_episodeId = this.decodeValue(this.route.snapshot.queryParams.episode);
+      this.searchEpisodeWithId(params_podcast, 1, params_episodeId);
+      // console.log('shared url ' + this.sharedId);
+      //
+      // this.sharedId = this.decodeValue(this.route.snapshot.queryParams.sharedid);
+      // this.sharedTitle = this.decodeValue(this.route.snapshot.queryParams.title);
+      // this.sharedUrl = this.decodeValue(this.route.snapshot.queryParams.url);
+      // this.sharedImage = this.decodeValue(this.route.snapshot.queryParams.img);
 
-      });
     }
   }
+
   checkLocalStorage() {
     const checkInfo = JSON.parse(localStorage.getItem('publisherInfo') || '[]');
     this.advScriptData = JSON.parse(localStorage.getItem('advScriptData'));
@@ -137,7 +137,7 @@ export class DirectoryComponent implements OnInit, AfterContentInit, HttpParamet
   }
 
   async updateGoogleScript() {
-    if (this.advScriptData.leaderboard1 && !$('#lead-banner').find('script').length){
+    if (this.advScriptData.leaderboard1 && !$('#lead-banner').find('script').length) {
       await postscribe('#lead-banner', atob(this.advScriptData.leaderboard1));
     } else if (!this.advScriptData.leaderboard1) {
       $('#lead-banner').hide();
@@ -149,19 +149,19 @@ export class DirectoryComponent implements OnInit, AfterContentInit, HttpParamet
       $('#sidebar1').hide();
     }
 
-    if (this.advScriptData.sidebar2 && !$('#sidebar2').find('script').length){
+    if (this.advScriptData.sidebar2 && !$('#sidebar2').find('script').length) {
       await postscribe('#sidebar2', atob(this.advScriptData.sidebar2));
     } else if (!this.advScriptData.sidebar2) {
       $('#sidebar2').hide();
     }
 
-    if (this.advScriptData.sidebar3 && !$('#sidebar3').find('script').length){
+    if (this.advScriptData.sidebar3 && !$('#sidebar3').find('script').length) {
       await postscribe('#sidebar3', atob(this.advScriptData.sidebar3));
     } else if (!this.advScriptData.sidebar3) {
       $('#sidebar3').hide();
     }
 
-    if (this.advScriptData.sidebar4 && !$('#sidebar4').find('script').length){
+    if (this.advScriptData.sidebar4 && !$('#sidebar4').find('script').length) {
       await postscribe('#sidebar4', atob(this.advScriptData.sidebar4));
     } else if (!this.advScriptData.sidebar4) {
       $('#sidebar4').hide();
@@ -223,7 +223,7 @@ export class DirectoryComponent implements OnInit, AfterContentInit, HttpParamet
   getTime(podcastEpisodes, podcastId) {
     podcastEpisodes.forEach(async (item, index) => {
       const url = item.enclosure.url.split('?')[0];
-      this.getDuration(url).then(function(length) {
+      this.getDuration(url).then(function (length) {
         $('#duration-' + podcastId + '-' + index).text(length);
         $('#duration-mob-' + podcastId + '-' + index).text(length);
       });
@@ -231,18 +231,18 @@ export class DirectoryComponent implements OnInit, AfterContentInit, HttpParamet
   }
 
   getDuration(src) {
-    return new Promise(function(resolve) {
-        const audio = new Audio();
-        $(audio).on('loadedmetadata', function(){
-          const totalSeconds = Math.floor(audio.duration);
-          const hours   = Math.floor(totalSeconds / 3600);
-          const minutes = Math.floor((totalSeconds - (hours * 3600)) / 60);
-          const seconds = totalSeconds - (hours * 3600) - (minutes * 60);
-          // (hours < 10 ? "0" + hours : hours) + ":" +
-          const result = (minutes < 10 ? '0' + minutes : minutes) + ':' + (seconds  < 10 ? '0' + seconds : seconds);
-          resolve(result);
-        });
-        audio.src = src;
+    return new Promise(function (resolve) {
+      const audio = new Audio();
+      $(audio).on('loadedmetadata', function () {
+        const totalSeconds = Math.floor(audio.duration);
+        const hours = Math.floor(totalSeconds / 3600);
+        const minutes = Math.floor((totalSeconds - (hours * 3600)) / 60);
+        const seconds = totalSeconds - (hours * 3600) - (minutes * 60);
+        // (hours < 10 ? "0" + hours : hours) + ":" +
+        const result = (minutes < 10 ? '0' + minutes : minutes) + ':' + (seconds < 10 ? '0' + seconds : seconds);
+        resolve(result);
+      });
+      audio.src = src;
     });
   }
 
@@ -260,9 +260,10 @@ export class DirectoryComponent implements OnInit, AfterContentInit, HttpParamet
       this.eventEmitterService.onEpisodePlaylistButtonClick(info.id + '_' + index, info.url, info.title, img);
     });
   }
+
   redirectUrl(uri: string) {
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
-      this.router.navigate([uri]));
+        this.router.navigate([uri]));
   }
 
   redirectTo(slug) {
@@ -301,39 +302,86 @@ export class DirectoryComponent implements OnInit, AfterContentInit, HttpParamet
     this.page++;
     this.submitted = true;
     this.podcastService.getPodcastEpisode(this.id, this.page).subscribe(data => {
-        this.dataResponseEpisode = data;
-        this.submitted = false;
-        this.isloadmore = true;
-        const totalRecord = this.dataResponseEpisode.response.total;
-        this.lastPage = Math.ceil(totalRecord / 25);
-        if (this.lastPage >= this.page) {
-          $('#more-podcast-episode-btn').show();
-        } else {
-          this.isloadmore = false;
-          $('#more-podcast-episode-btn').hide();
-        }
-        this.dataResponseEpisode.response.list.forEach(item => {
-          this.podcastEpisodes.push(item);
-        });
-        // this.ngxService.stop();
-      }, (error: HttpErrorResponse) => {
-        this.submitted = false;
-        this.costname.forbidden(error);
+      this.dataResponseEpisode = data;
+      this.submitted = false;
+      this.isloadmore = true;
+      const totalRecord = this.dataResponseEpisode.response.total;
+      this.lastPage = Math.ceil(totalRecord / 25);
+      if (this.lastPage >= this.page) {
+        $('#more-podcast-episode-btn').show();
+      } else {
+        this.isloadmore = false;
+        $('#more-podcast-episode-btn').hide();
+      }
+      this.dataResponseEpisode.response.list.forEach(item => {
+        this.podcastEpisodes.push(item);
       });
-    }
-   showDialog(title, message){
-      const options = {
-        title,
-        message,
-        cancelText: 'Cancel',
-        confirmText: 'Confirm'
-      };
-      this.dialogService.open(options);
-    }
+      // this.ngxService.stop();
+    }, (error: HttpErrorResponse) => {
+      this.submitted = false;
+      this.costname.forbidden(error);
+    });
+  }
 
-  socialShareUrl(id, url, title, image){
-    const playItem = '/?sharedId=' + this.encodeValue((id.substr(0, id.indexOf('_')))) + '&' + this.encodeKey('title') + '=' + this.encodeValue(title) + '&img=' + image + '&' + this.encodeKey('url') + '=' + this.encodeValue(url);
-    this.clipboardApi.copyFromContent(this.document.defaultView.window.location.hostname + this.router.url + playItem);
-    this.snackBar.open('Copied ' + title , 'Okay');
+  showDialog(title, message) {
+    const options = {
+      title,
+      message,
+      cancelText: 'Cancel',
+      confirmText: 'Confirm'
+    };
+    this.dialogService.open(options);
+  }
+
+  socialShareUrl(id) {
+    this.clipboardApi.copyFromContent(this.document.defaultView.window.location.hostname + this.router.url + "/?podcast=" + this.encodeValue(String(this.id)) + "&episode=" + this.encodeValue(id));
+    this.snackBar.open('Podcast Link Copied ', 'Okay');
+  }
+
+  searchEpisodeWithId(podcastId, page, episodeId) {
+    let foudEpisode = false;
+    let searchlastPage = 1;
+    this.podcastService.getPodcastEpisode(podcastId, page).subscribe(data => {
+      this.dataResponseEpisode = data;
+      const totalRecord = this.dataResponseEpisode.response.total;
+      searchlastPage = Math.ceil(totalRecord / 25);
+      console.log('searchlastPage - ' + searchlastPage);
+      console.log('Current page - ' + page);
+      this.dataResponseEpisode.response.list.forEach(item => {
+       // console.log('item - ' + item.id);
+        if (item.id === episodeId) {
+          this.sharedId = item.id;
+          this.sharedUrl = item.url;
+          this.sharedTitle = item.title;
+          this.sharedImage = item.image ? item.image : this.podcastDetail.image ? this.podcastDetail.image : 'assets/img/no-image-2.jpg';
+          console.log('Found item - ' + this.sharedImage);
+          foudEpisode = true;
+          this.playsharedLink();
+          return;
+        }
+      });
+      if (!foudEpisode) {
+        console.log('rather');
+        if (page < searchlastPage ){
+          console.log('GOT here');
+          this.searchEpisodeWithId(podcastId, page+1, episodeId);
+        }
+      }
+    }, (error: HttpErrorResponse) => {
+      this.submitted = false;
+      this.costname.forbidden(error);
+    });
+
+  }
+
+  playsharedLink(){
+    this.showDialog('Play Podcast', this.sharedTitle);
+    console.log('shared url ' + this.sharedUrl);
+    this.dialogService.confirmed().subscribe(confirmed => {
+      if (confirmed) {
+        this.setSource(this.sharedId, this.sharedUrl + '?', this.sharedTitle,  this.sharedImage, true);
+      }
+
+    });
   }
 }

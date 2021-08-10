@@ -100,6 +100,7 @@ export class DirectoryComponent implements OnInit, AfterContentInit, HttpParamet
       this.sharedUrl = this.decodeValue(this.route.snapshot.queryParams.url);
       this.sharedImage = this.decodeValue(this.route.snapshot.queryParams.img);
       this.showDialog('Play Podcast', this.sharedTitle);
+      console.log('shared url ' + this.sharedUrl);
       this.dialogService.confirmed().subscribe(confirmed => {
         if (confirmed) {
           this.setSource(this.sharedId, this.sharedUrl + '?', this.sharedTitle, this.sharedImage ? this.sharedImage : 'assets/img/no-image-2.jpg', true);
@@ -331,7 +332,7 @@ export class DirectoryComponent implements OnInit, AfterContentInit, HttpParamet
     }
 
   socialShareUrl(id, url, title, image){
-    const playItem = '/?sharedId=' + this.encodeValue((id.substr(0, id.indexOf('_')))) + '&' + this.encodeKey('title') + '=' + this.encodeValue(title) + '&img=' + null + '&' + this.encodeKey('url') + '=' + this.encodeValue(url);
+    const playItem = '/?sharedId=' + this.encodeValue((id.substr(0, id.indexOf('_')))) + '&' + this.encodeKey('title') + '=' + this.encodeValue(title) + '&img=' + image + '&' + this.encodeKey('url') + '=' + this.encodeValue(url);
     this.clipboardApi.copyFromContent(this.document.defaultView.window.location.hostname + this.router.url + playItem);
     this.snackBar.open('Copied ' + title , 'Okay');
   }

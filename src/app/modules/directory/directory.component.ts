@@ -344,12 +344,12 @@ export class DirectoryComponent implements OnInit, AfterContentInit, HttpParamet
     let foudEpisode = false;
     let searchlastPage = 1;
     this.podcastService.getPodcastEpisode(podcastId, page).subscribe(data => {
-      this.dataResponseEpisode = data;
-      const totalRecord = this.dataResponseEpisode.response.total;
+      this.podcastSearchEpisodes = data;
+      const totalRecord = this.podcastSearchEpisodes.response.total;
       searchlastPage = Math.ceil(totalRecord / 25);
       console.log('searchlastPage - ' + searchlastPage);
       console.log('Current page - ' + page);
-      this.dataResponseEpisode.response.list.forEach(item => {
+      this.podcastSearchEpisodes.response.list.forEach(item => {
        // console.log('item - ' + item.id);
         if (item.id === episodeId) {
           this.sharedId = item.id;

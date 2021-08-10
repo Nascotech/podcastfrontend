@@ -346,8 +346,11 @@ export class PlayerComponent implements OnInit, HttpParameterCodec {
 
   socialShareUrl() {
     const podcast = this.router.url.split('?')[0].split('/').pop();
-    this.clipboardApi.copyFromContent(this.document.defaultView.window.location.hostname + this.router.url + '/?podcast=' +  this.encodeValue(podcast) + '&episode=' + this.encodeValue(this.currentPlay.id.substr(0, this.currentPlay.id.indexOf('_'))));
-    this.snackBar.open('Podcast Link Copied ', 'Okay');
+    const episode = this.currentPlay.id.substr(0, this.currentPlay.id.indexOf('_'));
+    this.clipboardApi.copyFromContent(this.document.defaultView.window.location.hostname + this.router.url + '/?podcast=' +  this.encodeValue(podcast) + '&episode=' + this.encodeValue(episode));
+    this.snackBar.open('Podcast Link Copied ', 'Okay',{
+          verticalPosition: 'top'
+    });
   }
 
 }

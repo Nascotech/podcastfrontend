@@ -335,7 +335,9 @@ export class DirectoryComponent implements OnInit, AfterContentInit, HttpParamet
 
   socialShareUrl(id) {
     this.clipboardApi.copyFromContent(this.document.defaultView.window.location.hostname + this.router.url + "/?podcast=" + this.encodeValue(String(this.id)) + "&episode=" + this.encodeValue(id));
-    this.snackBar.open('Podcast Link Copied ', 'Okay');
+    this.snackBar.open('Podcast Link Copied ', 'Okay',{
+      verticalPosition: 'top'
+    });
   }
 
   searchEpisodeWithId(podcastId, page, episodeId) {

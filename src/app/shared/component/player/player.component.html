@@ -54,7 +54,7 @@
             <div id="style-1" class="playlist">
               <ul id="my-row" class="playlist--list">
                 <li *ngFor="let song of songsList; let i = index" id="{{song.id}}" [attr.data-id]="song.id" [attr.data-title]="song.title" [attr.data-audio]="song.url">
-                  <span class="name">{{song.title}}</span>
+                  <span class="name">{{song.title + " - " + (song.eDate | date) }}</span>
                   <span class="pull-right playlist-btn">
                     <a id="playlist_play_{{song.id}}" class="mr-2 episode-play-btn" (click)="setSource(song.id,song.url,song.title,song.image,true)" href="javascript:void(0);"><i class="fa fa-play"></i></a>
                     <a id="playlist_pause_{{song.id}}" class="mr-2 episode-pause-btn" style="display:none" (click)="setSource(song.id,song.url,song.title,song.image,true)" href="javascript:void(0);"><i class="fa fa-pause"></i></a>

@@ -47,6 +47,7 @@ export class DirectoryComponent implements OnInit, AfterContentInit, HttpParamet
   sharedUrl: String;
   sharedTitle: String;
   sharedImage: String;
+  sharedeDate: String;
   baseLocation: String;
   podcastSearchEpisodes: any = [];
   podcastEpisodeItem: any = [];
@@ -255,9 +256,9 @@ export class DirectoryComponent implements OnInit, AfterContentInit, HttpParamet
         img = this.podcastDetail.image;
       }
       if (index == 0) {
-        this.eventEmitterService.onEpisodePlayButtonClick(info.id + '_' + index, info.url, info.title, img, true);
+        this.eventEmitterService.onEpisodePlayButtonClick(info.id + '_' + index, info.url, info.title, info.pubDate, img, true);
       }
-      this.eventEmitterService.onEpisodePlaylistButtonClick(info.id + '_' + index, info.url, info.title, img);
+      this.eventEmitterService.onEpisodePlaylistButtonClick(info.id + '_' + index, info.url, info.title, info.pubDate, img);
     });
   }
 
@@ -270,12 +271,12 @@ export class DirectoryComponent implements OnInit, AfterContentInit, HttpParamet
     this.redirectUrl('/directory/' + slug);
   }
 
-  setSource(id, url, title, image, play) {
-    this.eventEmitterService.onEpisodePlayButtonClick(id, url, title, image, play);
+  setSource(id, url, title, eDate, image, play) {
+    this.eventEmitterService.onEpisodePlayButtonClick(id, url, title, eDate, image, play);
   }
 
-  addToPlaylist(episodeId, url, title, image) {
-    this.eventEmitterService.onEpisodePlaylistButtonClick(episodeId, url, title, image);
+  addToPlaylist(episodeId, url, title, eDate, image) {
+    this.eventEmitterService.onEpisodePlaylistButtonClick(episodeId, url, title, eDate, image);
   }
 
   removeFromPlaylist(episodeId) {
@@ -333,6 +334,10 @@ export class DirectoryComponent implements OnInit, AfterContentInit, HttpParamet
     this.dialogService.open(options);
   }
 
+  socialShare(id) {
+    return (this.document.defaultView.window.location.hostname + this.router.url + "/?podcast=" + this.encodeValue(String(this.id)) + "&episode=" + this.encodeValue(id));
+  }
+
   socialShareUrl(id) {
     this.clipboardApi.copyFromContent(this.document.defaultView.window.location.hostname + this.router.url + "/?podcast=" + this.encodeValue(String(this.id)) + "&episode=" + this.encodeValue(id));
     this.snackBar.open('Podcast Link Copied ', 'Okay',{
@@ -355,6 +360,7 @@ export class DirectoryComponent implements OnInit, AfterContentInit, HttpParamet
           this.sharedId = item.id;
           this.sharedUrl = item.url;
           this.sharedTitle = item.title;
+          this.sharedeDate = item.pubDate;
           this.sharedImage = item.image ? item.image : this.podcastDetail.image ? this.podcastDetail.image : 'assets/img/no-image-2.jpg';
           console.log('Found item - ' + this.sharedImage);
           foudEpisode = true;
@@ -381,7 +387,7 @@ export class DirectoryComponent implements OnInit, AfterContentInit, HttpParamet
     console.log('shared url ' + this.sharedUrl);
     this.dialogService.confirmed().subscribe(confirmed => {
       if (confirmed) {
-        this.setSource(this.sharedId, this.sharedUrl + '?', this.sharedTitle,  this.sharedImage, true);
+        this.setSource(this.sharedId, this.sharedUrl + '?', this.sharedTitle, this.sharedeDate, this.sharedImage, true);
       }
 
     });

@@ -11,6 +11,9 @@ import { ShareIconsModule } from 'ngx-sharebuttons/icons';
 import { ConfirmDialogService } from 'src/app/services/confirm-dialog.service';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatMenuModule} from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +30,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
       debug: true
     }),
     ShareIconsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatMenuModule,
+    MatIconModule
 
   ],
   providers: [ConfirmDialogService],

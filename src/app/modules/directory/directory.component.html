@@ -204,7 +204,7 @@
 							<span><share-buttons theme="modern-light" [showIcon]="false" [showText]="true" show="1" url="{{ socialShare(episode.id)  }}" [include]="['facebook']"></share-buttons></span>
 						</button>
 						<button mat-menu-item>
-							<mat-icon>mdi:twitter</mat-icon>
+							<mat-icon>chat_bubble_outline</mat-icon>
 							<span><share-buttons theme="modern-light" [showIcon]="false" [showText]="true" show="1" url="{{ socialShare(episode.id)  }}" [include]="['twitter']"></share-buttons></span>
 						</button>
 						<button mat-menu-item>
@@ -212,12 +212,23 @@
 							<span><share-buttons theme="modern-light" [showIcon]="false" [showText]="true" show="1" url="{{ socialShare(episode.id)  }}" [include]="['whatsapp']"></share-buttons></span>
 						</button>
 						<button mat-menu-item>
-							<mat-icon><i class="fa fa-copy" aria-hidden="true"></i></mat-icon>
-							<span (click)="socialShareUrl(episode.id)">Copy Link</span>
+							<mat-icon>link</mat-icon>
+							<span><share-buttons theme="modern-light" [showIcon]="false" [showText]="true" show="1" url="{{ socialShare(episode.id)  }}" [include]="['copy']"></share-buttons></span>
+						</button>
+						<button mat-menu-item>
+							<button mat-menu-item [matMenuTriggerFor]="moreSocial">More Options</button>
 						</button>
 					</mat-menu>
-
-				  <a *ngIf="!checkPlaylistClick(episode.id + '_' + i)" (click)="addToPlaylist(episode.id + '_' + i,episode.url,episode.title, episode.pubDate,episode.image ? episode.image : podcastDetail.image ? podcastDetail.image : 'assets/img/no-image-2.jpg')" class="btn btn-invert">
+					<mat-menu #moreSocial="matMenu">
+						<button mat-menu-item><share-buttons theme="modern-light" [showIcon]="false" [showText]="true" show="1" url="{{ socialShare(episode.id)  }}" [include]="['linkedin']"></share-buttons></button>
+						<button mat-menu-item><share-buttons theme="modern-light" [showIcon]="false" [showText]="true" show="1" url="{{ socialShare(episode.id)  }}" [include]="['pinterest']"></share-buttons></button>
+						<button mat-menu-item><share-buttons theme="modern-light" [showIcon]="false" [showText]="true" show="1" url="{{ socialShare(episode.id)  }}" [include]="['viber']"></share-buttons></button>
+						<button mat-menu-item><share-buttons theme="modern-light" [showIcon]="false" [showText]="true" show="1" url="{{ socialShare(episode.id)  }}" [include]="['telegram']"></share-buttons></button>
+						<button mat-menu-item><share-buttons theme="modern-light" [showIcon]="false" [showText]="true" show="1" url="{{ socialShare(episode.id)  }}" [include]="['email']"></share-buttons></button>
+						<button mat-menu-item><share-buttons theme="modern-light" [showIcon]="false" [showText]="true" show="1" url="{{ socialShare(episode.id)  }}" [include]="['sms']"></share-buttons></button>
+						<button mat-menu-item><share-buttons theme="modern-light" [showIcon]="false" [showText]="true" show="1" url="{{ socialShare(episode.id)  }}" [include]="['xing']"></share-buttons></button>
+					</mat-menu>
+					<a *ngIf="!checkPlaylistClick(episode.id + '_' + i)" (click)="addToPlaylist(episode.id + '_' + i,episode.url,episode.title, episode.pubDate,episode.image ? episode.image : podcastDetail.image ? podcastDetail.image : 'assets/img/no-image-2.jpg')" class="btn btn-invert">
 						<i class="fas fa-plus-circle"></i>
 						Playlist
 					</a>

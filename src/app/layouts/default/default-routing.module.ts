@@ -7,8 +7,8 @@ const routes: Routes = [
     path: '',
     component: DefaultComponent,
     children: [
-      { path: '', loadChildren: '../../modules/home/home.module#HomeModule' },
-      { path: 'directory/:slug', loadChildren: '../../modules/directory/directory.module#DirectoryModule' }
+      { path: '', loadChildren: () => import('../../modules/home/home.module').then(m => m.HomeModule) },
+      { path: 'directory/:slug', loadChildren: () => import('../../modules/directory/directory.module').then(m => m.DirectoryModule) }
     ]
   }
 ];

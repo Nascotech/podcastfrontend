@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import { PodcastService } from 'src/app/services/podcast.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EventEmitterService } from 'src/app/services/event-emitter.service';
@@ -7,28 +7,53 @@ import { ConstNameService } from 'src/app/services/const-name.service';
 declare const com_adswizz_synchro_decorateUrl: any;
 declare let $: any;
 import * as Plyr from 'plyr';
+import {ClipboardService} from "ngx-clipboard";
+import {DOCUMENT} from "@angular/common";
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {HttpParameterCodec} from "@angular/common/http";
 
 @Component({
   selector: 'app-player',
   templateUrl: './player.component.html',
   styleUrls: ['./player.component.css']
 })
-export class PlayerComponent implements OnInit {
+export class PlayerComponent implements OnInit, HttpParameterCodec {
 
   songs: any = [];
   active: any = [];
   public player;
   songsList: any = [];
   id: string;
+  currentPlay: { play: any; image: any; id: any; title: any; url: any };
+  window: any;
 
   constructor(
     private podcastServices: PodcastService,
     private route: ActivatedRoute,
     private router: Router,
     private eventEmitterService: EventEmitterService,
-    private constname: ConstNameService
+    private constname: ConstNameService,
+    private clipboardApi: ClipboardService,
+    private snackBar: MatSnackBar,
+    @Inject(DOCUMENT) private document: Document
   ) {
     this.route.params.subscribe(params => this.id = params['id']);
+  }
+
+  encodeKey(key: string): string {
+    return encodeURIComponent(key);
+  }
+
+  encodeValue(value: string): string {
+    return encodeURIComponent(value);
+  }
+
+  decodeKey(key: string): string {
+    return decodeURIComponent(key);
+  }
+
+  decodeValue(value: string): string {
+    return decodeURIComponent(value);
   }
 
   ngOnInit() {
@@ -135,8 +160,9 @@ export class PlayerComponent implements OnInit {
     this.songsList = [];
     localStorage.setItem('playList', JSON.stringify(this.songsList));
   }
-
+///
   newSetSource(result) {
+    this.currentPlay = result;
     $('.f-footer').addClass('f-padding');
     this.toggleButton(result.id);
     if (this.active !== result.id) {
@@ -177,6 +203,12 @@ export class PlayerComponent implements OnInit {
   }
 
   setSource(selected, sourceAudio, title, image, play) {
+    this.currentPlay = {
+      'id': selected,
+      'play': play,
+      'title': title,
+      'url': sourceAudio,
+      'image': image };
     $('.f-footer').addClass('f-padding');
     this.toggleButton(selected);
     if (this.active !== selected) {
@@ -310,6 +342,15 @@ export class PlayerComponent implements OnInit {
         console.log('Previous song not available');
       }
     }
+  }
+
+  socialShareUrl() {
+    const podcast = this.router.url.split('?')[0].split('/').pop();
+    const episode = this.currentPlay.id.substr(0, this.currentPlay.id.indexOf('_'));
+    this.clipboardApi.copyFromContent(this.document.defaultView.window.location.hostname + this.router.url + '/?podcast=' +  this.encodeValue(podcast) + '&episode=' + this.encodeValue(episode));
+    this.snackBar.open('Podcast Link Copied ', 'Okay',{
+          verticalPosition: 'top'
+    });
   }
 
 }

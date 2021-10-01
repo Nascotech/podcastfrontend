@@ -1,6 +1,6 @@
-import { Component, OnInit, Renderer2, Inject } from '@angular/core';
+import {Component, OnInit, Renderer2, Inject, AfterContentInit} from '@angular/core';
 import { PodcastService } from 'src/app/services/podcast.service';
-import { HttpErrorResponse } from '@angular/common/http';
+import {HttpErrorResponse, HttpParameterCodec} from '@angular/common/http';
 import { ConstNameService } from 'src/app/services/const-name.service';
 import {NgxUiLoaderService} from 'ngx-ui-loader';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -10,13 +10,16 @@ import { Title } from '@angular/platform-browser';
 import postscribe from 'postscribe';
 
 import * as $ from "jquery";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {ConfirmDialogService} from "../../services/confirm-dialog.service";
+import {EventEmitterService} from "../../services/event-emitter.service";
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterContentInit, HttpParameterCodec {
 
   photoUrl: string;
   searchText: string;
@@ -34,6 +37,14 @@ export class HomeComponent implements OnInit {
   errorMessage: string;
   validationMessage = [];
   advScriptData: any = [];
+  podcastSearchEpisodes: any = [];
+  podcastEpisodeItem: any = [];
+  sharedId: String;
+  sharedUrl: String;
+  sharedTitle: String;
+  sharedImage: String;
+  sharedeDate: String;
+  baseLocation: String;
 
   constructor(
     private podcastService: PodcastService,
@@ -41,7 +52,10 @@ export class HomeComponent implements OnInit {
     private router: Router,
     private _renderer2: Renderer2,
     private route: ActivatedRoute,
-    private titleService: Title
+    private snackBar: MatSnackBar,
+    private titleService: Title,
+    private dialogService: ConfirmDialogService,
+    private eventEmitterService: EventEmitterService,
   ) {
     this.route.queryParams.subscribe(queryParams => {
       this.publisherSlug = queryParams.pubid || '';
@@ -50,8 +64,27 @@ export class HomeComponent implements OnInit {
       if(queryParams.pubid) {
         localStorage.setItem('publisherSlug', this.publisherSlug);
       }
+      if (queryParams.redirectTo){
+        this.router.navigateByUrl(queryParams.redirectTo + '' );
+      }
     });
   }
+  encodeKey(key: string): string {
+    return encodeURIComponent(key);
+  }
+
+  encodeValue(value: string): string {
+    return encodeURIComponent(value);
+  }
+
+  decodeKey(key: string): string {
+    return decodeURIComponent(key);
+  }
+
+  decodeValue(value: string): string {
+    return decodeURIComponent(value);
+  }
+
 
   ngOnInit() {
     window.scroll(0,0);
@@ -60,6 +93,14 @@ export class HomeComponent implements OnInit {
       this.searchText = queryParams.searchText;
       this.getAccessToken();
     });
+  }
+
+  ngAfterContentInit() {
+    if (this.route.snapshot.queryParams.podcast) {
+      let params_podcast = this.decodeValue(this.route.snapshot.queryParams.podcast);
+      let params_episodeId = this.decodeValue(this.route.snapshot.queryParams.episode);
+      this.searchEpisodeWithId(params_podcast, 1, params_episodeId);
+    }
   }
 
   getAccessToken() {
@@ -209,5 +250,63 @@ export class HomeComponent implements OnInit {
     } else {
       this.isFullListDisplayed = true;
     }
+  }
+  showDialog(title, message) {
+    const options = {
+      title,
+      message,
+      cancelText: 'Cancel',
+      confirmText: 'Confirm'
+    };
+    this.dialogService.open(options);
+  }
+  searchEpisodeWithId(podcastId, page, episodeId) {
+    let foudEpisode = false;
+    let searchlastPage = 1;
+    this.podcastService.getPodcastEpisode(podcastId, page).subscribe(data => {
+      this.podcastSearchEpisodes = data;
+      const totalRecord = this.podcastSearchEpisodes.response.total;
+      searchlastPage = Math.ceil(totalRecord / 25);
+      console.log('searchlastPage - ' + searchlastPage);
+      console.log('Current page - ' + page);
+      this.podcastSearchEpisodes.response.list.forEach(item => {
+        // console.log('item - ' + item.id);
+        if (item.id === episodeId) {
+          this.sharedId = item.id;
+          this.sharedUrl = item.url;
+          this.sharedTitle = item.title;;
+          this.sharedeDate = item.pubDate;
+          this.sharedImage = item.image ? item.image : 'assets/img/no-image-2.jpg';
+          console.log('Found item - ' + this.sharedImage);
+          foudEpisode = true;
+          this.playsharedLink();
+          return;
+        }
+      });
+      if (!foudEpisode) {
+        console.log('rather');
+        if (page < searchlastPage ){
+          console.log('GOT here');
+          this.searchEpisodeWithId(podcastId, page+1, episodeId);
+        }
+      }
+    }, (error: HttpErrorResponse) => {
+      this.submitted = false;
+      this.constname.forbidden(error);
+    });
+
+  }
+
+  playsharedLink(){
+    this.showDialog('Play Podcast', this.sharedTitle);
+    console.log('shared url ' + this.sharedUrl);
+    this.dialogService.confirmed().subscribe(confirmed => {
+      if (confirmed) {
+        this.setSource(this.sharedId, this.sharedUrl + '?', this.sharedTitle, this.sharedeDate,  this.sharedImage, true);
+      }
+    });
+  }
+  setSource(id, url, title, eDate, image, play) {
+    this.eventEmitterService.onEpisodePlayButtonClick(id, url, title, eDate, image, play);
   }
 }

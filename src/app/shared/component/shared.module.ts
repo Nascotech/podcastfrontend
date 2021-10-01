@@ -12,6 +12,9 @@ import { NgxProgressiveImageLoaderModule } from 'ngx-progressive-image-loader';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { PlayerComponent } from './player/player.component';
 import { FiltersComponent } from './filters/filters.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   imports: [
@@ -21,7 +24,9 @@ import { FiltersComponent } from './filters/filters.component';
     RouterModule,
     FormsModule,
     NgxProgressiveImageLoaderModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    NgbModule,
+    MatDialogModule,
   ],
   declarations: [
     ControlMessagesComponent,
@@ -31,7 +36,8 @@ import { FiltersComponent } from './filters/filters.component';
     SidebarComponent,
     LeadAddbannerComponent,
     PlayerComponent,
-    FiltersComponent
+    FiltersComponent,
+    ConfirmDialogComponent
   ],
   exports: [
     CommonModule,
@@ -45,7 +51,9 @@ import { FiltersComponent } from './filters/filters.component';
     SidebarComponent,
     LeadAddbannerComponent,
     PlayerComponent,
-    FiltersComponent
-  ]
+    FiltersComponent,
+    ConfirmDialogComponent
+  ],
+  entryComponents: [ConfirmDialogComponent],
 })
 export class SharedModule {}

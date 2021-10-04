@@ -61,8 +61,11 @@ export class HomeComponent implements OnInit, AfterContentInit, HttpParameterCod
       this.publisherSlug = queryParams.pubid || '';
       this.searchGroup = queryParams.groupId || '';
       this.searchText = queryParams.searchText || '';
-      if(queryParams.pubid) {
+
+      if (queryParams.pubid) {
         localStorage.setItem('publisherSlug', this.publisherSlug);
+      }else if(queryParams.groupId){
+        localStorage.removeItem('publisherSlug')
       }
       if (queryParams.redirectTo){
         this.router.navigateByUrl(queryParams.redirectTo + '' );
@@ -88,6 +91,7 @@ export class HomeComponent implements OnInit, AfterContentInit, HttpParameterCod
 
   ngOnInit() {
     window.scroll(0,0);
+
     this.route.queryParams.subscribe(queryParams => {
       this.searchGroup = queryParams.groupId;
       this.searchText = queryParams.searchText;
@@ -99,11 +103,14 @@ export class HomeComponent implements OnInit, AfterContentInit, HttpParameterCod
     if (this.route.snapshot.queryParams.podcast) {
       let params_podcast = this.decodeValue(this.route.snapshot.queryParams.podcast);
       let params_episodeId = this.decodeValue(this.route.snapshot.queryParams.episode);
+      console.log(params_podcast);
+      console.log(params_episodeId);
       this.searchEpisodeWithId(params_podcast, 1, params_episodeId);
     }
   }
 
   getAccessToken() {
+
     let publisherSlug = localStorage.getItem('publisherSlug') || '';
     this.photoUrl = this.constname.BASE.img_uri;
     this.podcastService.getAccessToken(publisherSlug).subscribe(async (data: any) => {
@@ -141,7 +148,7 @@ export class HomeComponent implements OnInit, AfterContentInit, HttpParameterCod
         if(this.userResponse.response.termsOfUse) {
           $("#terms-link").attr("href", this.userResponse.response.termsOfUse);
         }
-        this.getAdvScript();
+        //this.getAdvScript();
         this.getPodcastlist();
       } else if (data.errorMsg === "ValidationError") {
         let messages = data.response.message;

@@ -148,7 +148,7 @@ export class HomeComponent implements OnInit, AfterContentInit, HttpParameterCod
         if(this.userResponse.response.termsOfUse) {
           $("#terms-link").attr("href", this.userResponse.response.termsOfUse);
         }
-        //this.getAdvScript();
+        this.getAdvScript();
         this.getPodcastlist();
       } else if (data.errorMsg === "ValidationError") {
         let messages = data.response.message;

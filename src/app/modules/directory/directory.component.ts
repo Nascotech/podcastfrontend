@@ -66,7 +66,9 @@ export class DirectoryComponent implements OnInit, AfterContentInit, HttpParamet
       private snackBar: MatSnackBar,
       @Inject(DOCUMENT) private document: Document,
   ) {
-    this.route.params.subscribe(params => this.id = params.slug);
+    this.route.params.subscribe(params => {
+      this.id = params.slug
+    });
   }
 
   encodeKey(key: string): string {

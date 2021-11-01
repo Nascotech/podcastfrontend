@@ -4,6 +4,7 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchPipe } from '../../pipe/search.pipe';
+import { FilterGroupPipe } from '../../pipes/filter-group.pipe';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 
@@ -18,7 +19,8 @@ import { NgxUiLoaderModule } from 'ngx-ui-loader';
   ],
   declarations: [
     HomeComponent,
-    SearchPipe
+    SearchPipe,
+    FilterGroupPipe
   ]
 })
 export class HomeModule { }

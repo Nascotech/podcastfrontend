@@ -23,9 +23,7 @@ export class FiltersComponent implements OnInit, OnDestroy {
         private route: ActivatedRoute,
         private router: Router,
     ) {
-        console.log('test1');
         this.route.paramMap.subscribe(queryParams => {
-            console.log('test');
             if (queryParams.get('gid') !== null) {
                 this.groupId = Number(queryParams.get('gid'));
             }
@@ -84,7 +82,26 @@ export class FiltersComponent implements OnInit, OnDestroy {
 
     clearSearch() {
         this.searchText = '';
-        this.router.navigate(['/'], {queryParams: {groupId: this.groupId, searchText: this.searchText}});
+        const publisherSlug = localStorage.getItem('publisherSlug') || '';
+        if (publisherSlug !== '') {
+            if (this.groupId > 0) {
+                this.router.navigate([`/publisher/${publisherSlug}/${this.groupId}`]);
+            } else {
+                this.router.navigate([`/publisher/${publisherSlug}`]);
+            }
+
+        }else {
+            this.route.paramMap.subscribe(queryParams => {
+                if (queryParams.get('gid') !== null) {
+                    this.groupId = Number(queryParams.get('gid'));
+                }
+            });
+            if (this.groupId > 0) {
+                this.router.navigate([`/group/${this.groupId}`]);
+            }else {
+                this.router.navigate(['/']);
+            }
+        }
     }
 
     ngOnDestroy() {

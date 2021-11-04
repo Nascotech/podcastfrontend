@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit, AfterContentInit, HttpParameterCod
 
     photoUrl: string;
     searchText: string;
-    searchGroup = 0;
+    searchGroup: any;
     publisherSlug: string;
     dataResponse: any = [];
     lastPage;
@@ -45,7 +45,7 @@ export class HomeComponent implements OnInit, AfterContentInit, HttpParameterCod
     sharedImage: string;
     sharedeDate: string;
     baseLocation: string;
-    groupId = 0;
+    groupId: any;
 
     constructor(
         private podcastService: PodcastService,
@@ -68,10 +68,11 @@ export class HomeComponent implements OnInit, AfterContentInit, HttpParameterCod
             if (queryParams.get('gid') !== null) {
                 this.groupId = Number(queryParams.get('gid'));
                 this.searchGroup = this.groupId;
+                this.getPodcastlist();
             }
         });
+        this.searchGroup = this.groupId || '';
         this.route.queryParams.subscribe(queryParams => {
-            this.searchGroup = queryParams.groupId || '';
             this.searchText = queryParams.searchText || '';
         });
     }
@@ -221,7 +222,6 @@ export class HomeComponent implements OnInit, AfterContentInit, HttpParameterCod
             this.dataResponse = data;
             this.isLoadingService = false;
             this.podcastList = this.dataResponse.response.list;
-            console.log(this.podcastList);
             const totalRecord = this.dataResponse.response.total;
             this.lastPage = Math.ceil(totalRecord / 24);
             if (this.lastPage > 1) {

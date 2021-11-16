@@ -58,7 +58,6 @@ export class HomeComponent implements OnInit, AfterContentInit, HttpParameterCod
         private dialogService: ConfirmDialogService,
         private eventEmitterService: EventEmitterService,
     ) {
-
         this.route.paramMap.subscribe(queryParams => {
             if (queryParams.get('pid') !== null) {
                 localStorage.setItem('publisherSlug', queryParams.get('pid'));
@@ -92,7 +91,6 @@ export class HomeComponent implements OnInit, AfterContentInit, HttpParameterCod
     decodeValue(value: string): string {
         return decodeURIComponent(value);
     }
-
 
     ngOnInit() {
         window.scroll(0, 0);

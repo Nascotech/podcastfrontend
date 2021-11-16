@@ -8,6 +8,9 @@ const routes: Routes = [
     component: DefaultComponent,
     children: [
       { path: '', loadChildren: () => import('../../modules/home/home.module').then(m => m.HomeModule) },
+      { path: 'publisher/:pid', loadChildren: () => import('../../modules/home/home.module').then(m => m.HomeModule) },
+      { path: 'publisher/:pid/:gid', loadChildren: () => import('../../modules/home/home.module').then(m => m.HomeModule) },
+      { path: 'group/:gid', loadChildren: () => import('../../modules/home/home.module').then(m => m.HomeModule) },
       { path: 'directory/:slug', loadChildren: () => import('../../modules/directory/directory.module').then(m => m.DirectoryModule) }
     ]
   }
